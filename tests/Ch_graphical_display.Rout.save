@@ -1,0 +1,361 @@
+
+R version 2.9.0 (2009-04-17)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ###################################################
+> ### chunk number 1: setup
+> ###################################################
+> rm(list = ls())
+> if (!file.exists("tables")) dir.create("tables")
+> set.seed(290875)
+> options(prompt = "R> ", continue = "+  ",
++     width = 63, # digits = 4,
++     show.signif.stars = FALSE,
++     SweaveHooks = list(leftpar = function()
++         par(mai = par("mai") * c(1, 1.05, 1, 1)),
++         bigleftpar = function()
++         par(mai = par("mai") * c(1, 1.7, 1, 1))))
+R> HSAURpkg <- require("HSAUR2")
+Loading required package: HSAUR2
+Loading required package: lattice
+Loading required package: MASS
+Loading required package: scatterplot3d
+R> if (!HSAURpkg) stop("cannot load package ", sQuote("HSAUR2"))
+R> rm(HSAURpkg)
+R>  ### </FIXME> hm, R-2.4.0 --vanilla seems to need this
+R> a <- Sys.setlocale("LC_ALL", "C")
+R>  ### </FIXME>
+R> book <- TRUE
+R> refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
++                  "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
++                  "MDS", "CA"), 1:18)
+R> ch <- function(x) {
++      ch <- refs[which(refs[,1] == x),]
++      if (book) {
++          return(paste("Chapter~\\\\ref{", ch[1], "}", sep = ""))
++      } else {
++          return(paste("Chapter~", ch[2], sep = ""))
++      }
++  }
+R> if (file.exists("deparse.R"))
++      source("deparse.R")
+R> setHook(packageEvent("lattice", "attach"), function(...) {
++      lattice.options(default.theme =
++          function()
++              standard.theme("pdf", color = FALSE))
++      })
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 2: singlebook
+R> ###################################################
+R> book <- FALSE
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 3: DAGD-USmelanoma-histbox
+R> ###################################################
+R> xr <- range(USmelanoma$mortality) * c(0.9, 1.1)
+R> xr
+[1]  77.4 251.9
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 4: DAGD-USmelanoma-histbox
+R> ###################################################
+R> layout(matrix(1:2, nrow = 2))
+R> par(mar = par("mar") * c(0.8, 1, 1, 1))
+R> boxplot(USmelanoma$mortality, ylim = xr, horizontal = TRUE,
++          xlab = "Mortality")
+R> hist(USmelanoma$mortality, xlim = xr, xlab = "", main = "",
++       axes = FALSE, ylab = "")
+R> axis(1)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 5: DAGD-USmelanoma-boxocean
+R> ###################################################
+R> plot(mortality ~ ocean, data = USmelanoma,
++       xlab = "Contiguity to an ocean", ylab = "Mortality")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 6: DAGD-USmelanoma-dens
+R> ###################################################
+R> dyes <- with(USmelanoma, density(mortality[ocean == "yes"]))
+R> dno <- with(USmelanoma, density(mortality[ocean == "no"]))
+R> plot(dyes, lty = 1, xlim = xr, main = "", ylim = c(0, 0.018))
+R> lines(dno, lty = 2)
+R> legend("topleft", lty = 1:2, legend = c("Coastal State",
++         "Land State"), bty = "n")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 7: DAGD-USmelanoma-xy
+R> ###################################################
+R> layout(matrix(1:2, ncol = 2))
+R> plot(mortality ~ longitude, data = USmelanoma)
+R> plot(mortality ~ latitude, data = USmelanoma)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 8: DAGD-USmelanoma-lat
+R> ###################################################
+R> plot(mortality ~ latitude, data = USmelanoma,
++       pch = as.integer(USmelanoma$ocean))
+R> legend("topright", legend = c("Land state", "Coast state"),
++         pch = 1:2, bty = "n")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 9: DAGD-USmelanoma-south
+R> ###################################################
+R> subset(USmelanoma, latitude < 32)
+          mortality latitude longitude ocean
+Florida         197     28.0      82.0   yes
+Louisiana       190     31.2      91.8   yes
+Texas           229     31.5      98.0   yes
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 10: DAGD-CHFLS-happy
+R> ###################################################
+R> barplot(xtabs(~ R_happy, data = CHFLS))
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 11: DAGD-CHFLS-health_happy_xtabs
+R> ###################################################
+R> xtabs(~ R_happy + R_health, data = CHFLS)
+                R_health
+R_happy          Poor Not good Fair Good Excellent
+  Very unhappy      2        7    4    1         0
+  Not too happy     4       46   67   42        26
+  Somewhat happy    3       77  350  459       166
+  Very happy        1        9   40   80       150
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 12: DAGD-CHFLS-health_happy_xtabs2
+R> ###################################################
+R> hh <- xtabs(~ R_health + R_happy, data = CHFLS)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 13: DAGD-CHFLS-health_happy
+R> ###################################################
+R> plot(R_happy ~ R_health, data = CHFLS)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 14: DAGD-CHFLS-happy_income
+R> ###################################################
+R> layout(matrix(1:2, ncol = 2))
+R> plot(R_happy ~ log(R_income + 1), data = CHFLS)
+R> cdplot(R_happy ~ log(R_income + 1), data = CHFLS)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 15: DAGD-CHFLS-RAincome3 eval=FALSE
+R> ###################################################
+R> ## xyplot(jitter(log(A_income + 0.5)) ~
+R> ##        jitter(log(R_income + 0.5)) | R_edu, data = CHFLS)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 16: DAGD-CHFLS-RAincome3
+R> ###################################################
+R> lattice.options(default.theme =
++          function()
++              standard.theme("pdf", color = FALSE))
+R> print(xyplot(jitter(log(A_income + 0.5)) ~ jitter(log(R_income + 0.5)) | R_edu, data = CHFLS))
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 17: DAGD-household-tab
+R> ###################################################
+R> data("household", package = "HSAUR2")
+R> toLatex(HSAURtable(household),
++    caption = paste("Household expenditure for single men and women."),
++    label = "DAGD-household-tab")
+\index{household data@\Robject{household} data}
+\begin{center}
+\begin{longtable}{ rrrrr }
+\caption{\Robject{household} data. Household expenditure for single men and women. \label{DAGD-household-tab}}
+\\
+\hline
+\Robject{housing} & \Robject{food} & \Robject{goods} & \Robject{service} & \Robject{gender} \\ \hline
+\endfirsthead
+\caption[]{\Robject{household} data (continued).} \\
+\hline
+\Robject{housing} & \Robject{food} & \Robject{goods} & \Robject{service} & \Robject{gender} \\ \hline
+\endhead
+820 & 114 & 183 & 154 & female \\
+184 & 74 & 6 & 20 & female \\
+921 & 66 & 1686 & 455 & female \\
+488 & 80 & 103 & 115 & female \\
+721 & 83 & 176 & 104 & female \\
+614 & 55 & 441 & 193 & female \\
+801 & 56 & 357 & 214 & female \\
+396 & 59 & 61 & 80 & female \\
+864 & 65 & 1618 & 352 & female \\
+845 & 64 & 1935 & 414 & female \\
+404 & 97 & 33 & 47 & female \\
+781 & 47 & 1906 & 452 & female \\
+457 & 103 & 136 & 108 & female \\
+1029 & 71 & 244 & 189 & female \\
+1047 & 90 & 653 & 298 & female \\
+552 & 91 & 185 & 158 & female \\
+718 & 104 & 583 & 304 & female \\
+495 & 114 & 65 & 74 & female \\
+382 & 77 & 230 & 147 & female \\
+1090 & 59 & 313 & 177 & female \\
+497 & 591 & 153 & 291 & male \\
+839 & 942 & 302 & 365 & male \\
+798 & 1308 & 668 & 584 & male \\
+892 & 842 & 287 & 395 & male \\
+1585 & 781 & 2476 & 1740 & male \\
+755 & 764 & 428 & 438 & male \\
+388 & 655 & 153 & 233 & male \\
+617 & 879 & 757 & 719 & male \\
+248 & 438 & 22 & 65 & male \\
+1641 & 440 & 6471 & 2063 & male \\
+1180 & 1243 & 768 & 813 & male \\
+619 & 684 & 99 & 204 & male \\
+253 & 422 & 15 & 48 & male \\
+661 & 739 & 71 & 188 & male \\
+1981 & 869 & 1489 & 1032 & male \\
+1746 & 746 & 2662 & 1594 & male \\
+1865 & 915 & 5184 & 1767 & male \\
+238 & 522 & 29 & 75 & male \\
+1199 & 1095 & 261 & 344 & male \\
+1524 & 964 & 1739 & 1410 & male \\
+\hline
+\end{longtable}
+\end{center}
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 18: DAGD-USstates-tab
+R> ###################################################
+R> data("USstates", package = "HSAUR2")
+R> toLatex(HSAURtable(USstates),
++    caption = paste("Socio-demographic variables for ten US states."),
++    label = "DAGD-USstates-tab")
+\index{USstates data@\Robject{USstates} data}
+\begin{center}
+\begin{longtable}{ rrrrrrr }
+\caption{\Robject{USstates} data. Socio-demographic variables for ten US states. \label{DAGD-USstates-tab}}
+\\
+\hline
+\Robject{Population} & \Robject{Income} & \Robject{Illiteracy} & \Robject{Life.Expectancy} & \Robject{Homicide} & \Robject{Graduates} & \Robject{Freezing} \\ \hline
+\endfirsthead
+\caption[]{\Robject{USstates} data (continued).} \\
+\hline
+\Robject{Population} & \Robject{Income} & \Robject{Illiteracy} & \Robject{Life.Expectancy} & \Robject{Homicide} & \Robject{Graduates} & \Robject{Freezing} \\ \hline
+\endhead
+3615 & 3624 & 2.1 & 69.05 & 15.1 & 41.3 & 20 \\
+21198 & 5114 & 1.1 & 71.71 & 10.3 & 62.6 & 20 \\
+2861 & 4628 & 0.5 & 72.56 & 2.3 & 59.0 & 140 \\
+2341 & 3098 & 2.4 & 68.09 & 12.5 & 41.0 & 50 \\
+812 & 4281 & 0.7 & 71.23 & 3.3 & 57.6 & 174 \\
+10735 & 4561 & 0.8 & 70.82 & 7.4 & 53.2 & 124 \\
+2284 & 4660 & 0.6 & 72.13 & 4.2 & 60.0 & 44 \\
+11860 & 4449 & 1.0 & 70.43 & 6.1 & 50.2 & 126 \\
+681 & 4167 & 0.5 & 72.08 & 1.7 & 52.3 & 172 \\
+472 & 3907 & 0.6 & 71.64 & 5.5 & 57.1 & 168 \\
+\hline
+\end{longtable}
+\end{center}
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 19: DAGD-suicides2-tab
+R> ###################################################
+R> data("suicides2", package = "HSAUR2")
+R> toLatex(HSAURtable(suicides2),
++    caption = paste("Mortality rates per $100,000$ from male suicides."),
++    label = "DAGD-suicides2-tab", rownames = TRUE)
+\index{suicides2 data@\Robject{suicides2} data}
+\begin{center}
+\begin{longtable}{l rrrrr }
+\caption{\Robject{suicides2} data. Mortality rates per $100,000$ from male suicides. \label{DAGD-suicides2-tab}}
+\\
+\hline
+  &  \Robject{A25.34} & \Robject{A35.44} & \Robject{A45.54} & \Robject{A55.64} & \Robject{A65.74} \\ \hline
+\endfirsthead
+\caption[]{\Robject{suicides2} data (continued).} \\
+\hline
+  &  \Robject{A25.34} & \Robject{A35.44} & \Robject{A45.54} & \Robject{A55.64} & \Robject{A65.74} \\ \hline
+\endhead
+Canada   &  22 & 27 & 31 & 34 & 24 \\
+Israel   &  9 & 19 & 10 & 14 & 27 \\
+Japan   &  22 & 19 & 21 & 31 & 49 \\
+Austria   &  29 & 40 & 52 & 53 & 69 \\
+France   &  16 & 25 & 36 & 47 & 56 \\
+Germany   &  28 & 35 & 41 & 49 & 52 \\
+Hungary   &  48 & 65 & 84 & 81 & 107 \\
+Italy   &  7 & 8 & 11 & 18 & 27 \\
+Netherlands   &  8 & 11 & 18 & 20 & 28 \\
+Poland   &  26 & 29 & 36 & 32 & 28 \\
+Spain   &  4 & 7 & 10 & 16 & 22 \\
+Sweden   &  28 & 41 & 46 & 51 & 35 \\
+Switzerland   &  22 & 34 & 41 & 50 & 51 \\
+UK   &  10 & 13 & 15 & 17 & 22 \\
+USA   &  20 & 22 & 28 & 33 & 37 \\
+\hline
+\end{longtable}
+\end{center}
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 20: DAGD-banknote-tab
+R> ###################################################
+R> data("banknote", package = "alr3")
+R> banknote$Y <- NULL
+R> banknote <- banknote[c(1:5, 101:200),]
+R> toLatex(HSAURtable(banknote, pkg = "alr3", nrow = 10),
++    caption = paste("Swiss bank note data."),
++    label = "DAGD-banknote-tab", rownames = FALSE)
+\index{banknote data@\Robject{banknote} data}
+\begin{center}
+\begin{longtable}{ rrrrrr }
+\caption{\Robject{banknote} data (package \Rpackage{alr3}). Swiss bank note data. \label{DAGD-banknote-tab}}
+\\
+\hline
+\Robject{Length} & \Robject{Left} & \Robject{Right} & \Robject{Bottom} & \Robject{Top} & \Robject{Diagonal} \\ \hline
+\endfirsthead
+\caption[]{\Robject{banknote} data (continued).} \\
+\hline
+\Robject{Length} & \Robject{Left} & \Robject{Right} & \Robject{Bottom} & \Robject{Top} & \Robject{Diagonal} \\ \hline
+\endhead
+214.8 & 131.0 & 131.1 & 9.0 & 9.7 & 141.0 \\
+214.6 & 129.7 & 129.7 & 8.1 & 9.5 & 141.7 \\
+214.8 & 129.7 & 129.7 & 8.7 & 9.6 & 142.2 \\
+214.8 & 129.7 & 129.6 & 7.5 & 10.4 & 142.0 \\
+215.0 & 129.6 & 129.7 & 10.4 & 7.7 & 141.8 \\
+214.4 & 130.1 & 130.3 & 9.7 & 11.7 & 139.8 \\
+214.9 & 130.5 & 130.2 & 11.0 & 11.5 & 139.5 \\
+214.9 & 130.3 & 130.1 & 8.7 & 11.7 & 140.2 \\
+215.0 & 130.4 & 130.6 & 9.9 & 10.9 & 140.3 \\
+214.7 & 130.2 & 130.3 & 11.8 & 10.9 & 139.7 \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+\hline
+\end{longtable}
+\end{center}
+R> 
+R> 
+R> 

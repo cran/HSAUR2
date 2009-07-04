@@ -1,0 +1,288 @@
+
+R version 2.9.0 (2009-04-17)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ###################################################
+> ### chunk number 1: setup
+> ###################################################
+> rm(list = ls())
+> if (!file.exists("tables")) dir.create("tables")
+> set.seed(290875)
+> options(prompt = "R> ", continue = "+  ",
++     width = 63, # digits = 4,
++     show.signif.stars = FALSE,
++     SweaveHooks = list(leftpar = function()
++         par(mai = par("mai") * c(1, 1.05, 1, 1)),
++         bigleftpar = function()
++         par(mai = par("mai") * c(1, 1.7, 1, 1))))
+R> HSAURpkg <- require("HSAUR2")
+Loading required package: HSAUR2
+Loading required package: lattice
+Loading required package: MASS
+Loading required package: scatterplot3d
+R> if (!HSAURpkg) stop("cannot load package ", sQuote("HSAUR2"))
+R> rm(HSAURpkg)
+R>  ### </FIXME> hm, R-2.4.0 --vanilla seems to need this
+R> a <- Sys.setlocale("LC_ALL", "C")
+R>  ### </FIXME>
+R> book <- TRUE
+R> refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
++                  "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
++                  "MDS", "CA"), 1:18)
+R> ch <- function(x) {
++      ch <- refs[which(refs[,1] == x),]
++      if (book) {
++          return(paste("Chapter~\\\\ref{", ch[1], "}", sep = ""))
++      } else {
++          return(paste("Chapter~", ch[2], sep = ""))
++      }
++  }
+R> if (file.exists("deparse.R"))
++      source("deparse.R")
+R> setHook(packageEvent("lattice", "attach"), function(...) {
++      lattice.options(default.theme =
++          function()
++              standard.theme("pdf", color = FALSE))
++      })
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 2: singlebook
+R> ###################################################
+R> book <- FALSE
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 3: MLR-clouds-boxplots
+R> ###################################################
+R> data("clouds", package = "HSAUR2")
+R> layout(matrix(1:2, nrow = 2))
+R> bxpseeding <- boxplot(rainfall ~ seeding, data = clouds,
++      ylab = "Rainfall", xlab = "Seeding")
+R> bxpecho <- boxplot(rainfall ~ echomotion, data = clouds,
++      ylab = "Rainfall", xlab = "Echo Motion")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 4: MLR-clouds-scatterplots
+R> ###################################################
+R> layout(matrix(1:4, nrow = 2))
+R> plot(rainfall ~ time, data = clouds)
+R> plot(rainfall ~ cloudcover, data = clouds)
+R> plot(rainfall ~ sne, data = clouds, xlab="S-Ne criterion")
+R> plot(rainfall ~ prewetness, data = clouds)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 5: MLR-clouds-outliers
+R> ###################################################
+R> rownames(clouds)[clouds$rainfall %in% c(bxpseeding$out,
++                                          bxpecho$out)]
+[1] "1"  "15"
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 6: MLR-clouds-formula
+R> ###################################################
+R> clouds_formula <- rainfall ~ seeding +
++      seeding:(sne + cloudcover + prewetness + echomotion) +
++      time
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 7: MLR-clouds-modelmatrix
+R> ###################################################
+R> Xstar <- model.matrix(clouds_formula, data = clouds)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 8: MLR-clouds-contrasts
+R> ###################################################
+R> attr(Xstar, "contrasts")
+$seeding
+[1] "contr.treatment"
+
+$echomotion
+[1] "contr.treatment"
+
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 9: MLR-clouds-lm
+R> ###################################################
+R> clouds_lm <- lm(clouds_formula, data = clouds)
+R> class(clouds_lm)
+[1] "lm"
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 10: MLR-clouds-summary
+R> ###################################################
+R> summary(clouds_lm)
+
+Call:
+lm(formula = clouds_formula, data = clouds)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.5259 -1.1486 -0.2704  1.0401  4.3913 
+
+Coefficients:
+                                Estimate Std. Error t value
+(Intercept)                     -0.34624    2.78773  -0.124
+seedingyes                      15.68293    4.44627   3.527
+time                            -0.04497    0.02505  -1.795
+seedingno:sne                    0.41981    0.84453   0.497
+seedingyes:sne                  -2.77738    0.92837  -2.992
+seedingno:cloudcover             0.38786    0.21786   1.780
+seedingyes:cloudcover           -0.09839    0.11029  -0.892
+seedingno:prewetness             4.10834    3.60101   1.141
+seedingyes:prewetness            1.55127    2.69287   0.576
+seedingno:echomotionstationary   3.15281    1.93253   1.631
+seedingyes:echomotionstationary  2.59060    1.81726   1.426
+                                Pr(>|t|)
+(Intercept)                      0.90306
+seedingyes                       0.00372
+time                             0.09590
+seedingno:sne                    0.62742
+seedingyes:sne                   0.01040
+seedingno:cloudcover             0.09839
+seedingyes:cloudcover            0.38854
+seedingno:prewetness             0.27450
+seedingyes:prewetness            0.57441
+seedingno:echomotionstationary   0.12677
+seedingyes:echomotionstationary  0.17757
+
+Residual standard error: 2.205 on 13 degrees of freedom
+Multiple R-squared: 0.7158,	Adjusted R-squared: 0.4972 
+F-statistic: 3.274 on 10 and 13 DF,  p-value: 0.02431 
+
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 11: MLR-clouds-coef
+R> ###################################################
+R> betastar <- coef(clouds_lm)
+R> betastar
+                    (Intercept) 
+                    -0.34624093 
+                     seedingyes 
+                    15.68293481 
+                           time 
+                    -0.04497427 
+                  seedingno:sne 
+                     0.41981393 
+                 seedingyes:sne 
+                    -2.77737613 
+           seedingno:cloudcover 
+                     0.38786207 
+          seedingyes:cloudcover 
+                    -0.09839285 
+           seedingno:prewetness 
+                     4.10834188 
+          seedingyes:prewetness 
+                     1.55127493 
+ seedingno:echomotionstationary 
+                     3.15281358 
+seedingyes:echomotionstationary 
+                     2.59059513 
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 12: MLR-clouds-vcov
+R> ###################################################
+R> Vbetastar <- vcov(clouds_lm)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 13: MLR-clouds-sd
+R> ###################################################
+R> sqrt(diag(Vbetastar))
+                    (Intercept) 
+                     2.78773403 
+                     seedingyes 
+                     4.44626606 
+                           time 
+                     0.02505286 
+                  seedingno:sne 
+                     0.84452994 
+                 seedingyes:sne 
+                     0.92837010 
+           seedingno:cloudcover 
+                     0.21785501 
+          seedingyes:cloudcover 
+                     0.11028981 
+           seedingno:prewetness 
+                     3.60100694 
+          seedingyes:prewetness 
+                     2.69287308 
+ seedingno:echomotionstationary 
+                     1.93252592 
+seedingyes:echomotionstationary 
+                     1.81725973 
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 14: MLR-clouds-lmplot
+R> ###################################################
+R> psymb <- as.numeric(clouds$seeding)
+R> plot(rainfall ~ sne, data = clouds, pch = psymb,
++       xlab = "S-Ne criterion")
+R> abline(lm(rainfall ~ sne, data = clouds,
++            subset = seeding == "no"))
+R> abline(lm(rainfall ~ sne, data = clouds,
++            subset = seeding == "yes"), lty = 2)
+R> legend("topright", legend = c("No seeding", "Seeding"),
++         pch = 1:2, lty = 1:2, bty = "n")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 15: MLR-clouds-residfitted
+R> ###################################################
+R> clouds_resid <- residuals(clouds_lm)
+R> clouds_fitted <- fitted(clouds_lm)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 16: MLR-clouds-residplot
+R> ###################################################
+R> plot(clouds_fitted, clouds_resid, xlab = "Fitted values",
++       ylab = "Residuals", type = "n",
++       ylim = max(abs(clouds_resid)) * c(-1, 1))
+R> abline(h = 0, lty = 2)
+R> text(clouds_fitted, clouds_resid, labels = rownames(clouds))
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 17: MLR-clouds-qqplot
+R> ###################################################
+R> qqnorm(clouds_resid, ylab = "Residuals")
+R> qqline(clouds_resid)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 18: MLR-clouds-cook eval=FALSE
+R> ###################################################
+R> ## plot(clouds_lm)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 19: MLR-clouds-cook
+R> ###################################################
+R> plot(clouds_lm, which = 4, sub.caption = NULL)
+R> 
+R> 
+R> 

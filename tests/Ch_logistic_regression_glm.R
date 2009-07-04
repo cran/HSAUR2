@@ -1,0 +1,287 @@
+###################################################
+### chunk number 1: setup
+###################################################
+rm(list = ls())
+if (!file.exists("tables")) dir.create("tables")
+set.seed(290875)
+options(prompt = "R> ", continue = "+  ",
+    width = 63, # digits = 4,
+    show.signif.stars = FALSE,
+    SweaveHooks = list(leftpar = function()
+        par(mai = par("mai") * c(1, 1.05, 1, 1)),
+        bigleftpar = function()
+        par(mai = par("mai") * c(1, 1.7, 1, 1))))
+HSAURpkg <- require("HSAUR2")
+if (!HSAURpkg) stop("cannot load package ", sQuote("HSAUR2"))
+rm(HSAURpkg)
+ ### </FIXME> hm, R-2.4.0 --vanilla seems to need this
+a <- Sys.setlocale("LC_ALL", "C")
+ ### </FIXME>
+book <- TRUE
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
+                "MDS", "CA"), 1:18)
+ch <- function(x) {
+    ch <- refs[which(refs[,1] == x),]
+    if (book) {
+        return(paste("Chapter~\\\\ref{", ch[1], "}", sep = ""))
+    } else {
+        return(paste("Chapter~", ch[2], sep = ""))
+    }
+}
+if (file.exists("deparse.R"))
+    source("deparse.R")
+setHook(packageEvent("lattice", "attach"), function(...) {
+    lattice.options(default.theme =
+        function()
+            standard.theme("pdf", color = FALSE))
+    })
+
+
+###################################################
+### chunk number 2: singlebook
+###################################################
+book <- FALSE
+
+
+###################################################
+### chunk number 3: GLM-backpain-tab
+###################################################
+data("backpain", package = "HSAUR2")
+int <- interaction(backpain$suburban, backpain$driver)
+foo <- function(i) {
+    x <- xtabs(~ status + int, data = backpain, subset = i)
+    x[1,] %*% t(x[2,])
+}
+tmp <- tapply(1:nrow(backpain), backpain$ID, foo)
+tab <- 0
+for (i in tmp) tab <- tab + i
+ltab <- apply(tab, 1, function(x) paste(x, collapse = " & "))
+rs <- rowSums(tab)
+cs <- colSums(tab)
+xtab <- c("\\begin{table}",
+          "\\begin{center}",
+          paste("\\caption{\\Robject{backpain} data. Number of drivers (D) and non-drivers ($\\bar{\\text{D}}$),",
+                           "suburban (S) and city inhabitants ($\\bar{\\text{S}}$) either",
+                           "suffering from a herniated disc (cases) or not (controls). \\label{GLM-backpain-tab}}"),
+          "\\begin{tabular}{rrrrrrrr}",
+          "\\hline",
+          " & & & \\multicolumn{4}{c}{Controls} & \\\\",
+          " & & & \\multicolumn{2}{c}{$\\bar{\\text{D}}$} & \\multicolumn{2}{c}{D} & \\\\",
+          " & & & $\\bar{\\text{S}}$ & S & $\\bar{\\text{S}}$ & S & Total \\\\ \\hline",
+          paste("      & $\\bar{\\text{D}}$ & $\\bar{\\text{S}}$ &", ltab[1], "&", rs[1], "\\\\" ),
+          paste("Cases & & S &", ltab[2], " & ", rs[2], "\\\\"),
+          paste(" & D & $\\bar{\\text{S}}$ &", ltab[3], " & ", rs[3], "\\\\"),
+          paste(" & & S &", ltab[4], " & ", rs[4], "\\\\"),
+          "\\hline",
+          paste(" & \\multicolumn{2}{c}{Total} & ", paste(cs, collapse = "&"), "&", sum(tab), "\\\\"),
+          "\\hline",
+          "\\end{tabular}",
+          "\\end{center}",
+          "\\end{table}")
+writeLines(xtab)
+
+
+###################################################
+### chunk number 4: GLM-plasma-plot
+###################################################
+data("plasma", package = "HSAUR2")
+layout(matrix(1:2, ncol = 2))
+cdplot(ESR ~ fibrinogen, data = plasma)
+cdplot(ESR ~ globulin, data = plasma)
+
+
+###################################################
+### chunk number 5: GLM-plasma-fit1
+###################################################
+plasma_glm_1 <- glm(ESR ~ fibrinogen, data = plasma,
+                    family = binomial())
+
+
+###################################################
+### chunk number 6: GLM-plasma-summary-1
+###################################################
+summary(plasma_glm_1)
+
+
+###################################################
+### chunk number 7: GLM-plasma-confint
+###################################################
+ci <- confint(plasma_glm_1)["fibrinogen",]
+
+
+###################################################
+### chunk number 8: GLM-plasma-confint
+###################################################
+confint(plasma_glm_1, parm = "fibrinogen")
+
+
+###################################################
+### chunk number 9: GLM-plasma-confint
+###################################################
+print(ci)
+
+
+###################################################
+### chunk number 10: GLM-plasma-exp
+###################################################
+exp(coef(plasma_glm_1)["fibrinogen"])
+
+
+###################################################
+### chunk number 11: GLM-plasma-exp-ci
+###################################################
+ci <- exp(confint(plasma_glm_1, parm = "fibrinogen"))
+
+
+###################################################
+### chunk number 12: GLM-plasma-exp-ci
+###################################################
+exp(confint(plasma_glm_1, parm = "fibrinogen"))
+
+
+###################################################
+### chunk number 13: GLM-plasma-exp-ci
+###################################################
+print(ci)
+
+
+###################################################
+### chunk number 14: GLM-plasma-fit2
+###################################################
+plasma_glm_2 <- glm(ESR ~ fibrinogen + globulin,
+    data = plasma, family = binomial())
+
+
+###################################################
+### chunk number 15: GLM-plasma-summary-2
+###################################################
+summary(plasma_glm_2)
+
+
+###################################################
+### chunk number 16: GLM-plasma-anova-hide
+###################################################
+plasma_anova <- anova(plasma_glm_1, plasma_glm_2, test = "Chisq")
+
+
+###################################################
+### chunk number 17: GLM-plasma-anova
+###################################################
+anova(plasma_glm_1, plasma_glm_2, test = "Chisq")
+
+
+###################################################
+### chunk number 18: GLM-plasma-predict
+###################################################
+prob <- predict(plasma_glm_2, type = "response")
+
+
+###################################################
+### chunk number 19: GLM-plasma-bubble
+###################################################
+plot(globulin ~ fibrinogen, data = plasma, xlim = c(2, 6),
+     ylim = c(25, 55), pch = ".")
+symbols(plasma$fibrinogen, plasma$globulin, circles = prob,
+        add = TRUE)
+
+
+###################################################
+### chunk number 20: GLM-womensrole-fit1
+###################################################
+data("womensrole", package = "HSAUR2")
+fm1 <- cbind(agree, disagree) ~ gender + education
+womensrole_glm_1 <- glm(fm1, data = womensrole,
+                        family = binomial())
+
+
+###################################################
+### chunk number 21: GLM-womensrole-summary-1
+###################################################
+summary(womensrole_glm_1)
+
+
+###################################################
+### chunk number 22: GLM-womensrole-probfit
+###################################################
+role.fitted1 <- predict(womensrole_glm_1, type = "response")
+
+
+###################################################
+### chunk number 23: GLM-plot-setup
+###################################################
+myplot <- function(role.fitted) {
+    f <- womensrole$gender == "Female"
+    plot(womensrole$education, role.fitted, type = "n",
+         ylab = "Probability of agreeing",
+         xlab = "Education", ylim = c(0,1))
+    lines(womensrole$education[!f], role.fitted[!f], lty = 1)
+    lines(womensrole$education[f], role.fitted[f], lty = 2)
+    lgtxt <- c("Fitted (Males)", "Fitted (Females)")
+    legend("topright", lgtxt, lty = 1:2, bty = "n")
+    y <- womensrole$agree / (womensrole$agree +
+                              womensrole$disagree)
+    text(womensrole$education, y, ifelse(f, "\\VE", "\\MA"),
+         family = "HersheySerif", cex = 1.25)
+}
+
+
+###################################################
+### chunk number 24: GLM-role-fitted1
+###################################################
+myplot(role.fitted1)
+
+
+###################################################
+### chunk number 25: GLM-womensrole-fit2
+###################################################
+fm2 <- cbind(agree,disagree) ~ gender * education
+womensrole_glm_2 <- glm(fm2, data = womensrole,
+                        family = binomial())
+
+
+###################################################
+### chunk number 26: GLM-womensrole-summary-2
+###################################################
+summary(womensrole_glm_2)
+
+
+###################################################
+### chunk number 27: GLM-role-fitted2
+###################################################
+role.fitted2 <- predict(womensrole_glm_2, type = "response")
+myplot(role.fitted2)
+
+
+###################################################
+### chunk number 28: GLM-role-plot2
+###################################################
+res <- residuals(womensrole_glm_2, type = "deviance")
+plot(predict(womensrole_glm_2), res,
+     xlab="Fitted values", ylab = "Residuals",
+     ylim = max(abs(res)) * c(-1,1))
+abline(h = 0, lty = 2)
+
+
+###################################################
+### chunk number 29: GLM-polyps-fit1
+###################################################
+data("polyps", package = "HSAUR2")
+polyps_glm_1 <- glm(number ~ treat + age, data = polyps,
+                    family = poisson())
+
+
+###################################################
+### chunk number 30: GLM-polyps-summary-1
+###################################################
+summary(polyps_glm_1)
+
+
+###################################################
+### chunk number 31: GLM-polyp-quasi
+###################################################
+polyps_glm_2 <- glm(number ~ treat + age, data = polyps,
+                    family = quasipoisson())
+summary(polyps_glm_2)
+
+

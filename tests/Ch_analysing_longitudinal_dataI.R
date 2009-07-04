@@ -1,0 +1,134 @@
+###################################################
+### chunk number 1: setup
+###################################################
+rm(list = ls())
+if (!file.exists("tables")) dir.create("tables")
+set.seed(290875)
+options(prompt = "R> ", continue = "+  ",
+    width = 63, # digits = 4,
+    show.signif.stars = FALSE,
+    SweaveHooks = list(leftpar = function()
+        par(mai = par("mai") * c(1, 1.05, 1, 1)),
+        bigleftpar = function()
+        par(mai = par("mai") * c(1, 1.7, 1, 1))))
+HSAURpkg <- require("HSAUR2")
+if (!HSAURpkg) stop("cannot load package ", sQuote("HSAUR2"))
+rm(HSAURpkg)
+ ### </FIXME> hm, R-2.4.0 --vanilla seems to need this
+a <- Sys.setlocale("LC_ALL", "C")
+ ### </FIXME>
+book <- TRUE
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
+                "MDS", "CA"), 1:18)
+ch <- function(x) {
+    ch <- refs[which(refs[,1] == x),]
+    if (book) {
+        return(paste("Chapter~\\\\ref{", ch[1], "}", sep = ""))
+    } else {
+        return(paste("Chapter~", ch[2], sep = ""))
+    }
+}
+if (file.exists("deparse.R"))
+    source("deparse.R")
+setHook(packageEvent("lattice", "attach"), function(...) {
+    lattice.options(default.theme =
+        function()
+            standard.theme("pdf", color = FALSE))
+    })
+
+
+###################################################
+### chunk number 2: singlebook
+###################################################
+book <- FALSE
+
+
+###################################################
+### chunk number 3: ALDI-setup
+###################################################
+library("Matrix")
+library("lme4")
+library("multcomp")
+ ### fix bug in lme4 0.9975-1 (for the time being)
+residuals <- function(object) object@y - fitted(object)
+
+
+###################################################
+### chunk number 4: ALDI-plot-BtheB
+###################################################
+data("BtheB", package = "HSAUR2")
+layout(matrix(1:2, nrow = 1))
+ylim <- range(BtheB[,grep("bdi", names(BtheB))],
+              na.rm = TRUE)
+tau <- subset(BtheB, treatment == "TAU")[,
+    grep("bdi", names(BtheB))]
+boxplot(tau, main = "Treated as Usual", ylab = "BDI",
+        xlab = "Time (in months)", names = c(0, 2, 3, 5, 8),
+        ylim = ylim)
+btheb <- subset(BtheB, treatment == "BtheB")[,
+    grep("bdi", names(BtheB))]
+boxplot(btheb, main = "Beat the Blues", ylab = "BDI",
+        xlab = "Time (in months)", names = c(0, 2, 3, 5, 8),
+        ylim = ylim)
+
+
+###################################################
+### chunk number 5: ALDI-long-BtheB
+###################################################
+data("BtheB", package = "HSAUR2")
+BtheB$subject <- factor(rownames(BtheB))
+nobs <- nrow(BtheB)
+BtheB_long <- reshape(BtheB, idvar = "subject",
+    varying = c("bdi.2m", "bdi.3m", "bdi.5m", "bdi.8m"),
+    direction = "long")
+BtheB_long$time <- rep(c(2, 3, 5, 8), rep(nobs, 4))
+
+
+###################################################
+### chunk number 6: ALDI-showlong-BtheB
+###################################################
+subset(BtheB_long, subject %in% c("1", "2", "3"))
+
+
+###################################################
+### chunk number 7: ALDI-fit-BtheB
+###################################################
+library("lme4")
+BtheB_lmer1 <- lmer(bdi ~ bdi.pre + time + treatment + drug +
+    length + (1 | subject), data = BtheB_long,
+    REML = FALSE, na.action = na.omit)
+BtheB_lmer2 <- lmer(bdi ~ bdi.pre + time + treatment + drug +
+    length + (time | subject), data = BtheB_long,
+    REML = FALSE, na.action = na.omit)
+anova(BtheB_lmer1, BtheB_lmer2)
+
+
+###################################################
+### chunk number 8: ALDI-summary-BtheB
+###################################################
+summary(BtheB_lmer1)
+
+
+###################################################
+### chunk number 9: ALDI-summary-BtheB-p
+###################################################
+cftest(BtheB_lmer1)
+
+
+###################################################
+### chunk number 10: ALDI-qqnorm-BtheB
+###################################################
+layout(matrix(1:2, ncol = 2))
+qint <- ranef(BtheB_lmer1)$subject[["(Intercept)"]]
+qres <- residuals(BtheB_lmer1)
+qqnorm(qint, ylab = "Estimated random intercepts",
+       xlim = c(-3, 3), ylim = c(-20, 20),
+       main = "Random intercepts")
+qqline(qint)
+qqnorm(qres, xlim = c(-3, 3), ylim = c(-20, 20),
+       ylab = "Estimated residuals",
+       main = "Residuals")
+qqline(qres)
+
+
