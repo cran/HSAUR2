@@ -2,8 +2,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -535,7 +533,7 @@ pairwise multivariate tests under some control (and still maintain
 a reasonable power), \cite{HSAUR:Stevens2001} recommends setting
 the nominal level $\alpha = 0.15$ 
 and carrying out each test at the $\alpha / m$ level 
-where $m$ s the number of tests performed. The 
+where $m$ is the number of tests performed. The 
 results of the four pairwise tests suggest that as the epochs become 
 further separated in time the four skull measurements become 
 increasingly distinct.

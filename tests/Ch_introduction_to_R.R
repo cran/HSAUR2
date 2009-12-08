@@ -90,7 +90,7 @@ pkgs <- paste("\\Rpackage{", pkgs, "}", sep = "")
 nrows <- ceiling(length(pkgs) / colwidth)
 cat(paste(c("\\begin{tabular}{", paste(rep("l", colwidth), collapse=""), "}"), collapse = ""),
     "\n", file = "tables/rec.tex", append = FALSE)
-for (i in 1:(nrows-1)) {
+for (i in 1:nrows) {
     cat(paste(pkgs[(1:colwidth) + (i-1)*colwidth], collapse = " & "),
         file = "tables/rec.tex", append = TRUE)
     cat("\\\\ \n", file = "tables/rec.tex", append = TRUE)

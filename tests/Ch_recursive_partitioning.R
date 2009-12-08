@@ -51,7 +51,6 @@ library("vcd")
 library("lattice")
 library("randomForest")
 library("party")
-#library("partykit")
 ltheme <- canonical.theme(color = FALSE) ## in-built B&W theme
 ltheme$strip.background$col <- "transparent" ## change strip bg
 lattice.options(default.theme = ltheme)
@@ -73,13 +72,6 @@ bodyfat_rpart <- rpart(DEXfat ~ age + waistcirc + hipcirc +
 
 
 ###################################################
-### chunk number 5: RP-bodyfat-plot
-###################################################
-#library("partykit")
-#plot(as.party(bodyfat_rpart), tp_args = list(id = FALSE))
-
-
-###################################################
 ### chunk number 6: RP-bodyfat-cp
 ###################################################
 print(bodyfat_rpart$cptable)
@@ -91,12 +83,6 @@ opt <- which.min(bodyfat_rpart$cptable[,"xerror"])
 ###################################################
 cp <- bodyfat_rpart$cptable[opt, "CP"]
 bodyfat_prune <- prune(bodyfat_rpart, cp = cp)
-
-
-###################################################
-### chunk number 8: RP-bodyfat-pruneplot
-###################################################
-#plot(as.party(bodyfat_prune), tp_args = list(id = FALSE))
 
 
 ###################################################
@@ -125,12 +111,6 @@ glaucoma_rpart$cptable
 opt <- which.min(glaucoma_rpart$cptable[,"xerror"])
 cp <- glaucoma_rpart$cptable[opt, "CP"]
 glaucoma_prune <- prune(glaucoma_rpart, cp = cp)
-
-
-###################################################
-### chunk number 12: RP-glaucoma-plot
-###################################################
-#plot(as.party(glaucoma_prune), tp_args = list(id = FALSE))
 
 
 ###################################################
@@ -225,12 +205,6 @@ rf <- randomForest(Class ~ ., data = GlaucomaM)
 ### chunk number 22: RP-glaucoma-rf-oob
 ###################################################
 table(predict(rf), GlaucomaM$Class)
-
-
-###################################################
-### chunk number 23: RP-detach
-###################################################
-#detach("package:partykit")
 
 
 ###################################################

@@ -132,3 +132,18 @@ qqnorm(qres, xlim = c(-3, 3), ylim = c(-20, 20),
 qqline(qres)
 
 
+###################################################
+### chunk number 11: ALDI-dropout
+###################################################
+bdi <- BtheB[, grep("bdi", names(BtheB))]
+plot(1:4, rep(-0.5, 4), type = "n", axes = FALSE,
+     ylim = c(0, 50), xlab = "Months", ylab = "BDI")
+axis(1, at = 1:4, labels = c(0, 2, 3, 5))
+axis(2)
+for (i in 1:4) {
+    dropout <- is.na(bdi[,i + 1])
+    points(rep(i, nrow(bdi)) + ifelse(dropout, 0.05, -0.05),
+           jitter(bdi[,i]), pch = ifelse(dropout, 20, 1))
+}
+
+

@@ -1,8 +1,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -386,6 +384,27 @@ qqline(qres)
 \caption{Quantile-quantile plots of predicted random intercepts and
 residuals for the random intercept model \Robject{BtheB\_lmer1} fitted to the
 \Robject{BtheB} data. \label{ALDI:qqplots}}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+<<ALDI-dropout, echo = TRUE, fig = TRUE>>=
+bdi <- BtheB[, grep("bdi", names(BtheB))]
+plot(1:4, rep(-0.5, 4), type = "n", axes = FALSE, 
+     ylim = c(0, 50), xlab = "Months", ylab = "BDI")
+axis(1, at = 1:4, labels = c(0, 2, 3, 5))
+axis(2)
+for (i in 1:4) {
+    dropout <- is.na(bdi[,i + 1])
+    points(rep(i, nrow(bdi)) + ifelse(dropout, 0.05, -0.05), 
+           jitter(bdi[,i]), pch = ifelse(dropout, 20, 1))
+}
+@
+\caption{Distribution of BDI values for patients
+         that do (circles) and do not (bullets) attend the next scheduled visit. 
+         \label{ALDI-dropout}}
 \end{center}
 \end{figure}
 

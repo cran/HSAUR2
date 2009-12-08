@@ -1,7 +1,5 @@
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -533,7 +531,7 @@ and, as an \R{} data object, it is part of the \Rpackage{HSAUR2}
 package (\textit{Source}: From Forbes.com, New York, New York, 2004. With
 permission.). In a first step, we make the data available for computations within
 \R. The \Rcmd{data} function searches for data objects of the specified
-name (\Robject{"Forbes2000")} 
+name (\Robject{"Forbes2000"})
 in the package specified via the \Rarg{package} argument and, if the
 search was successful, attaches the data object to the global environment:
 \index{Forbes2000 data@\Robject{Forbes2000} data}

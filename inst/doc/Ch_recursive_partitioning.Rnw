@@ -1,8 +1,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -285,7 +283,6 @@ As expected, higher values for waist- and hip circumferences and wider knees
 correspond to higher values of body fat content. The rightmost terminal node
 consists of only three rather extreme observations.
 
-
 \index{Cross-validation}
 To determine if the tree is appropriate or if some of the branches need to 
 be subjected to pruning we can use the \Robject{cptable}
@@ -330,9 +327,6 @@ abline(a = 0, b = 1)
 
 
 \subsection{Glaucoma Diagnosis}
-
-
-
 
 
 <<RP-seed-again, echo = FALSE, results = hide>>=
@@ -488,6 +482,8 @@ table(predict(rf), GlaucomaM$Class)
 @
 
 \subsection{Trees Revisited}
+
+
 
 
 For the body fat data, such a \stress{conditional inference tree} 

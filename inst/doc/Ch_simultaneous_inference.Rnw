@@ -1,8 +1,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -411,9 +409,9 @@ a random intercept is included in the model. Essentially,
 trees that are close to each other are handled like repeated
 measurements in a longitudinal analysis. We are interested
 in probability estimates and confidence intervals for each tree species.
-Each of the six fixed parameters of the model corresponds to one species 
+Each of the five fixed parameters of the model corresponds to one species 
 (in absence of a global intercept term);
-therefore, $\K = \text{diag}(6)$ is the linear function we are interested
+therefore, $\K = \text{diag}(5)$ is the linear function we are interested
 in:
 <<SIMC-trees-setup, echo = FALSE, results = hide>>=
 trees513 <- subset(trees513, !species %in% c("fir", "ash/maple/elm/lime", "softwood (other)"))
@@ -449,11 +447,11 @@ ci$confint <- 1 - binomial()$linkinv(ci$confint)
 ci$confint[,2:3] <- ci$confint[,3:2]
 @
 The result is shown in Figure~\ref{SIMC-trees-plot}. Browsing
-is less frequent in hardwood but especially small oak trees are severely
+is more frequent in hardwood but especially small oak trees are severely
 at risk.  Consequently, the local authorities increased the number of roe deers
 to be harvested in the following years.
-The large confidence interval for ash, maple, elm and lime
-trees is caused by the small sample size.
+%%The large confidence interval for ash, maple, elm and lime
+%%trees is caused by the small sample size.
 
 %%\setkeys{Gin}{width=0.8\textwidth}
 \begin{figure}[t]
@@ -463,7 +461,7 @@ plot(ci, xlab = "Probability of Damage Caused by Browsing",
      xlim = c(0, 0.5), main = "", ylim = c(0.5, 5.5))
 @
 \caption{Probability of damage caused by roe deer browsing
-   for six tree species. Sample sizes are given in brackets. \label{SIMC-trees-plot}}
+   for five tree species. Sample sizes are given in brackets. \label{SIMC-trees-plot}}
 \end{center}
 \end{figure}
 \index{Generalised linear mixed model|)}

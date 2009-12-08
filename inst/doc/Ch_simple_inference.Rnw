@@ -1,8 +1,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -317,7 +315,7 @@ A boxplot of each set of estimates
 might be useful and is depicted in Figure~\ref{SI-rw-bxp}. The
 \Rcmd{layout} function (line 1 in Figure~\ref{SI-rw-bxp}) divides the
 plotting area in three parts. The \Rcmd{boxplot} function produces a boxplot
-in the upper part and the two \Rcmd{qqnorm} statements in lines 8 and 11
+in the upper part and the two \Rcmd{qqnorm} statements in lines 7 and 10
 set up the normal probability plots that can be
 used to assess the normality assumption of the $t$-test.
 \index{Normal probability plot}

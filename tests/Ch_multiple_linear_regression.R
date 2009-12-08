@@ -45,7 +45,70 @@ book <- FALSE
 
 
 ###################################################
-### chunk number 3: MLR-clouds-boxplots
+### chunk number 3: MLR-hubble-tab
+###################################################
+data("hubble", package = "gamair")
+names(hubble) <- c("galaxy", "velocity", "distance")
+toLatex(HSAURtable(hubble, package = "gamair"), pcol = 2,
+    caption = paste("Distance and velocity for 24 galaxies."),
+    label = "MLR-hubble-tab")
+
+
+###################################################
+### chunk number 4: MLR-clouds-tab
+###################################################
+data("clouds", package = "HSAUR2")
+toLatex(HSAURtable(clouds), pcol = 1,
+    caption = paste("Cloud seeding experiments in Florida -- see text for",
+                    "explanations of the variables."),
+    label = "MLR-clouds-tab")
+
+
+###################################################
+### chunk number 5: MLR-hubble-plot
+###################################################
+plot(velocity ~ distance, data = hubble)
+
+
+###################################################
+### chunk number 6: MLR-hubble-beta1
+###################################################
+sum(hubble$distance * hubble$velocity) /
+    sum(hubble$distance^2)
+
+
+###################################################
+### chunk number 7: MLR-hubble-lm
+###################################################
+hmod <- lm(velocity ~ distance - 1, data = hubble)
+
+
+###################################################
+### chunk number 8: MLR-hubble-lm
+###################################################
+coef(hmod)
+
+
+###################################################
+### chunk number 9: MLR-hubble-age
+###################################################
+Mpc <- 3.09 * 10^19
+ysec <- 60^2 * 24 * 365.25
+Mpcyear <- Mpc / ysec
+1 / (coef(hmod) / Mpcyear)
+
+
+###################################################
+### chunk number 10: MLR-hubble-lmplot
+###################################################
+layout(matrix(1:2, ncol = 2))
+plot(velocity ~ distance, data = hubble)
+abline(hmod)
+plot(hmod, which = 1)
+
+
+###################################################
+### chunk number 11: MLR-clouds-boxplots
 ###################################################
 data("clouds", package = "HSAUR2")
 layout(matrix(1:2, nrow = 2))
@@ -56,7 +119,7 @@ bxpecho <- boxplot(rainfall ~ echomotion, data = clouds,
 
 
 ###################################################
-### chunk number 4: MLR-clouds-scatterplots
+### chunk number 12: MLR-clouds-scatterplots
 ###################################################
 layout(matrix(1:4, nrow = 2))
 plot(rainfall ~ time, data = clouds)
@@ -66,14 +129,14 @@ plot(rainfall ~ prewetness, data = clouds)
 
 
 ###################################################
-### chunk number 5: MLR-clouds-outliers
+### chunk number 13: MLR-clouds-outliers
 ###################################################
 rownames(clouds)[clouds$rainfall %in% c(bxpseeding$out,
                                         bxpecho$out)]
 
 
 ###################################################
-### chunk number 6: MLR-clouds-formula
+### chunk number 14: MLR-clouds-formula
 ###################################################
 clouds_formula <- rainfall ~ seeding +
     seeding:(sne + cloudcover + prewetness + echomotion) +
@@ -81,51 +144,51 @@ clouds_formula <- rainfall ~ seeding +
 
 
 ###################################################
-### chunk number 7: MLR-clouds-modelmatrix
+### chunk number 15: MLR-clouds-modelmatrix
 ###################################################
 Xstar <- model.matrix(clouds_formula, data = clouds)
 
 
 ###################################################
-### chunk number 8: MLR-clouds-contrasts
+### chunk number 16: MLR-clouds-contrasts
 ###################################################
 attr(Xstar, "contrasts")
 
 
 ###################################################
-### chunk number 9: MLR-clouds-lm
+### chunk number 17: MLR-clouds-lm
 ###################################################
 clouds_lm <- lm(clouds_formula, data = clouds)
 class(clouds_lm)
 
 
 ###################################################
-### chunk number 10: MLR-clouds-summary
+### chunk number 18: MLR-clouds-summary
 ###################################################
 summary(clouds_lm)
 
 
 ###################################################
-### chunk number 11: MLR-clouds-coef
+### chunk number 19: MLR-clouds-coef
 ###################################################
 betastar <- coef(clouds_lm)
 betastar
 
 
 ###################################################
-### chunk number 12: MLR-clouds-vcov
+### chunk number 20: MLR-clouds-vcov
 ###################################################
 Vbetastar <- vcov(clouds_lm)
 
 
 ###################################################
-### chunk number 13: MLR-clouds-sd
+### chunk number 21: MLR-clouds-sd
 ###################################################
 sqrt(diag(Vbetastar))
 
 
 ###################################################
-### chunk number 14: MLR-clouds-lmplot
+### chunk number 22: MLR-clouds-lmplot
 ###################################################
 psymb <- as.numeric(clouds$seeding)
 plot(rainfall ~ sne, data = clouds, pch = psymb,
@@ -139,14 +202,14 @@ legend("topright", legend = c("No seeding", "Seeding"),
 
 
 ###################################################
-### chunk number 15: MLR-clouds-residfitted
+### chunk number 23: MLR-clouds-residfitted
 ###################################################
 clouds_resid <- residuals(clouds_lm)
 clouds_fitted <- fitted(clouds_lm)
 
 
 ###################################################
-### chunk number 16: MLR-clouds-residplot
+### chunk number 24: MLR-clouds-residplot
 ###################################################
 plot(clouds_fitted, clouds_resid, xlab = "Fitted values",
      ylab = "Residuals", type = "n",
@@ -156,20 +219,20 @@ text(clouds_fitted, clouds_resid, labels = rownames(clouds))
 
 
 ###################################################
-### chunk number 17: MLR-clouds-qqplot
+### chunk number 25: MLR-clouds-qqplot
 ###################################################
 qqnorm(clouds_resid, ylab = "Residuals")
 qqline(clouds_resid)
 
 
 ###################################################
-### chunk number 18: MLR-clouds-cook eval=FALSE
+### chunk number 26: MLR-clouds-cook eval=FALSE
 ###################################################
 ## plot(clouds_lm)
 
 
 ###################################################
-### chunk number 19: MLR-clouds-cook
+### chunk number 27: MLR-clouds-cook
 ###################################################
 plot(clouds_lm, which = 4, sub.caption = NULL)
 

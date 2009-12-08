@@ -51,6 +51,7 @@ library("mclust")
 library("mvtnorm")
 mai <- par("mai")
 options(SweaveHooks = list(rmai = function() { par(mai = mai * c(1,1,1,2))}))
+data("pottery", package = "HSAUR2")
 
 
 ###################################################

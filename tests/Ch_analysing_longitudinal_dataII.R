@@ -273,3 +273,33 @@ summary(epilepsy_gee2)
 summary(epilepsy_gee3)
 
 
+###################################################
+### chunk number 26: ALDII-respiratory-lmer
+###################################################
+library("lme4")
+resp_lmer <- lmer(status ~ baseline + month +
+    trt + gender + age + centre + (1 | subject),
+    family = binomial(), data = resp)
+exp(fixef(resp_lmer))
+
+
+###################################################
+### chunk number 27: ALDII-resp-lmer-dirty
+###################################################
+su <- summary(resp_lmer)
+if (!interactive()) {
+    summary <- function(x) {
+        cat("\n...\n")
+        cat("Fixed effects:\n")
+        printCoefmat(su@coefs)
+        cat("\n...\n")
+    }
+}
+
+
+###################################################
+### chunk number 28: ALDII-resp-lmer-summary
+###################################################
+summary(resp_lmer)
+
+

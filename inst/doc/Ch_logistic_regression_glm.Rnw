@@ -1,8 +1,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -601,6 +599,85 @@ overdispersion in these data
 is that polyps do not occur independently of one another, but 
 instead may `cluster' together. %'
 \index{Overdispersion|)}
+
+
+\subsection{Driving and Back Pain}
+
+A frequently used design in medicine is the matched case-control study in which 
+each patient suffering from a particular condition of interest included in the 
+study is matched to one or more people without the condition.  The most commonly 
+used matching variables are age, ethnic group, mental status etc.  A design with $m$ 
+controls per case is known as a $1:m$ matched study.  In many cases $m$ will be one, 
+and it is the $1:1$ matched study that we shall concentrate on here where we analyse 
+the data on low back pain given in Table~\ref{GLM-backpain-tab}.  
+To begin we shall describe the form of the logistic model appropriate for 
+case-control studies in the simplest case where there is only one binary explanatory 
+variable.
+
+With matched pairs data the form of the logistic model involves the probability, $\varphi$, 
+that in matched pair number $i$, for a given value of the explanatory variable 
+the member of the pair is a case.  Specifically the model is
+\begin{eqnarray*}
+\text{logit}(\varphi_i) = \alpha_i + \beta x.
+\end{eqnarray*}
+The odds that a subject with $x=1$ is a case equals $\exp(\beta)$ times the odds 
+that a subject with $x=0$ is a case.
+
+The model generalises to the situation where there are $q$ explanatory variables as
+\begin{eqnarray*}
+\text{logit}(\varphi_i) = \alpha_i + \beta_1 x_1 + \beta_2 x_2 + \dots \beta_q x_q.
+\end{eqnarray*}
+
+Typically one $x$ is an explanatory variable of real interest, such as past 
+exposure to a risk factor, with the others being used as a form of statistical 
+control in addition to the variables already controlled by virtue of using them 
+to form matched pairs. This is the case in our back pain example where it is the 
+effect of car driving on lower back pain that is of most interest.
+
+The problem with the model above is that the number of parameters increases at 
+the same rate as the sample size with the consequence that maximum likelihood 
+estimation is no longer viable.  We can overcome this problem if we regard 
+the parameters $\alpha_i$ as of little interest and so are willing to forgo 
+their estimation.  If we do, we can then create a \stress{conditional likelihood function} 
+that will yield maximum likelihood estimators of the coefficients, $\beta_1, \dots, \beta_q$, 
+that are consistent and asymptotically normally distributed. The mathematics behind 
+this are described in \cite{HSAUR:Collett2003}.
+
+The model can be fitted using the \Rcmd{clogit} function from
+package \Rpackage{survival}; the results are shown in Figure~\ref{GLM-backpain-print}.
+<<GLM-backpain-clogit, echo = TRUE>>=
+library("survival")
+backpain_glm <- clogit(I(status == "case") ~ 
+    driver + suburban + strata(ID), data = backpain)
+@
+The response has to be a logical (\Rcmd{TRUE} for cases) and the
+\Rcmd{strata} command specifies the matched pairs.
+
+\renewcommand{\nextcaption}{\R{} output of the \Robject{print}
+                            method for the conditional logistic regression model fitted
+                            to the \Robject{backpain} data.
+                            \label{GLM-backpain-print}}
+\SchunkLabel
+<<GLM-backpain-print, echo = TRUE>>=
+print(backpain_glm)
+@
+\SchunkRaw
+
+The estimate of the odds ratio of a herniated disc occurring
+in a driver relative to a nondriver is $\Sexpr{round(exp(coef(backpain_glm)[1]),2)}$
+with a $95\%$ confidence interval of 
+$\Sexpr{paste("(", paste(round(exp(confint(backpain_glm)[1,]), 2), collapse = ","),")", sep = "")}$.
+Conditional on residence we can say that the risk of a herniated disc
+occurring in a driver is about twice that of a nondriver.
+There is no evidence that where a person lives affects the risk
+of lower back pain.
+
+\section{Summary}
+
+Generalised linear models provide a very powerful and flexible framework
+for the application of regression models to a variety of non-normal
+response variables, for example, logistic regression to binary responses   
+and Poisson regression to count data.
 
 
 \bibliographystyle{LaTeXBibTeX/refstyle}

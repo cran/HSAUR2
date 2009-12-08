@@ -1,8 +1,6 @@
 
 
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -235,7 +233,43 @@ book <- FALSE
 
 \chapter[Errata]{Errata}
 
-Nothing known.
+We would like to thank your Japanese translators,
+Prof. Takashi Daimon, Prof. Satoshi Teramukai, and 
+Prof. Toshihiro Yoshikawa for bringing inconsistenties and typos
+to our attention. Typos have been fixed silently, more serious
+mistakes are listed below.
+
+\section{Data Analysis Using Graphical Displays}
+
+The correct title is Chinese Health and Family Life Survey, not Study.
+
+\section{Simple Inference}
+
+page 54 top: The \Rcmd{qqnorm} statements are in lines 7 and 10, not 8 and 11.
+
+\section{Conditional Inference}
+
+page 69: $n_{jk}$ instead of $n_{ij}$
+
+\section{Density Estimation}
+
+Line numbering on page 147 was wrong and should read:
+The \Rcmd{hist} function places an ordinary
+histogram of the geyser data in each of the three plotting regions (lines 4,
+9, 14). Then, the \Rcmd{density} function with three different kernels 
+(lines 7, 12, 17, with a Gaussian kernel being the default in line 7) is
+plotted in addition. 
+
+\section{Simultaneous Inference}
+
+page 262: $\mathbf{K} = \text{diag}(5)$ instead of $\mathbf{K} = \text{diag}(6)$. Browsing
+          is \textit{more} frequent in hardwood. No data on ash, elm and lime shown here.
+
+\section{Principle Components}
+
+page 292: hurdles and long jump have highest weight.
+
+
 
 %\bibliographystyle{LaTeXBibTeX/refstyle}
 %\bibliography{LaTeXBibTeX/HSAUR}   
