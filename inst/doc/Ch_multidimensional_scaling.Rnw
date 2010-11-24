@@ -1,12 +1,10 @@
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
 
 %%% keeps `sweave' from adding `\usepackage{Sweave}': DO NOT REMOVE
-%\usepackage{Sweave} 
+%\usepackage{Sweave}
 
 
 \RequirePackage[T1]{fontenc}
@@ -35,7 +33,7 @@
   \renewenvironment{Schunk}{\begin{figure}[ht] }{\caption{\nextcaption}
   \end{figure} }
   \DefineVerbatimEnvironment{Sinput}{Verbatim}{frame = topline}
-  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline, 
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline,
                                                 samepage = true,
                                                 fontfamily=courier,
                                                 fontshape=it,
@@ -47,7 +45,7 @@
 \DefineVerbatimEnvironment{Sinput}
 {Verbatim}
 {
-%%  numbers=left
+%% numbers=left
 }
 
 \newcommand{\numberSinput}{
@@ -84,31 +82,31 @@
 
 %%% other symbols
 \newcommand{\file}[1]{\hbox{\rm\texttt{#1}}}
-%%\newcommand{\stress}[1]{\index{#1}\textit{#1}} 
-\newcommand{\stress}[1]{\textit{#1}} 
+%%\newcommand{\stress}[1]{\index{#1}\textit{#1}}
+\newcommand{\stress}[1]{\textit{#1}}
 \newcommand{\booktitle}[1]{\textit{#1}} %%'
 
 %%% Math symbols
 \usepackage{amstext}
 \usepackage{amsmath}
-\newcommand{\E}{\mathsf{E}}   
-\newcommand{\Var}{\mathsf{Var}}   
-\newcommand{\Cov}{\mathsf{Cov}}   
-\newcommand{\Cor}{\mathsf{Cor}}   
-\newcommand{\x}{\mathbf{x}}   
-\newcommand{\y}{\mathbf{y}}   
+\newcommand{\E}{\mathsf{E}}
+\newcommand{\Var}{\mathsf{Var}}
+\newcommand{\Cov}{\mathsf{Cov}}
+\newcommand{\Cor}{\mathsf{Cor}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
 \renewcommand{\a}{\mathbf{a}}
-\newcommand{\W}{\mathbf{W}}   
-\newcommand{\C}{\mathbf{C}}   
-\renewcommand{\H}{\mathbf{H}}   
-\newcommand{\X}{\mathbf{X}}   
-\newcommand{\B}{\mathbf{B}}   
-\newcommand{\V}{\mathbf{V}}   
-\newcommand{\I}{\mathbf{I}}   
-\newcommand{\D}{\mathbf{D}}   
-\newcommand{\bS}{\mathbf{S}}   
-\newcommand{\N}{\mathcal{N}}   
-\renewcommand{\P}{\mathsf{P}}   
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\C}{\mathbf{C}}
+\renewcommand{\H}{\mathbf{H}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\N}{\mathcal{N}}
+\renewcommand{\P}{\mathsf{P}}
 \newcommand{\K}{\mathbf{K}}
 \newcommand{\m}{\mathbf{m}}
 \newcommand{\argmin}{\operatorname{argmin}\displaylimits}
@@ -170,32 +168,26 @@
 \hyphenation{drop-out}
 \hyphenation{mar-gi-nal}
 
-%%% new bidirectional quotes need 
+%%% new bidirectional quotes need
 \usepackage[utf8]{inputenc}
 \begin{document}
-
 %% Title page
-
 \title{A Handbook of Statistical Analyses Using \R{} --- 2nd Edition}
-
 \author{Brian S. Everitt and Torsten Hothorn}
-
 \maketitle
 %%\VignetteIndexEntry{Chapter Multidimensional Scaling}
 %%\VignetteDepends{ape}
 \setcounter{chapter}{16}
-
-
-\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
-
+\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE}
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
-    width = 63, # digits = 4, 
+    width = 63, # digits = 4,
     show.signif.stars = FALSE,
-    SweaveHooks = list(leftpar = function() 
+    SweaveHooks = list(leftpar = function()
         par(mai = par("mai") * c(1, 1.05, 1, 1)),
         bigleftpar = function()
         par(mai = par("mai") * c(1, 1.7, 1, 1))))
@@ -206,8 +198,8 @@ rm(HSAURpkg)
 a <- Sys.setlocale("LC_ALL", "C")
  ### </FIXME>
 book <- TRUE
-refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM", 
-                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA", 
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
                 "MDS", "CA"), 1:18)
 ch <- function(x) {
     ch <- refs[which(refs[,1] == x),]
@@ -219,39 +211,29 @@ ch <- function(x) {
 }
 if (file.exists("deparse.R"))
     source("deparse.R")
-
 setHook(packageEvent("lattice", "attach"), function(...) {
-    lattice.options(default.theme = 
+    lattice.options(default.theme =
         function()
             standard.theme("pdf", color = FALSE))
     })
 @
-
 \pagestyle{headings}
 <<singlebook, echo = FALSE>>=
 book <- FALSE
 @
-
 <<MDS-setup, echo = FALSE, results = hide>>=
 x <- library("ape")
 @
-
 \chapter[Multidimensional Scaling]{Multidimensional Scaling: British Water
 Voles and Voting in US Congress \label{MDS}}
-
 \section{Introduction}
-
-
 \section{Multidimensional Scaling}
-
-
 \section{Analysis Using \R{}}
-
-We can apply classical scaling to the distance matrix for 
+We can apply classical scaling to the distance matrix for
 populations of water voles using the \R{} function \Rcmd{cmdscale}.
-The following code finds the classical scaling solution and computes 
-the two criteria for assessing the required number of dimensions 
-as described above. 
+The following code finds the classical scaling solution and computes
+the two criteria for assessing the required number of dimensions
+as described above.
 <<MDS-voles-cmdscale, echo = TRUE>>=
 data("watervoles", package = "HSAUR2")
 voles_mds <- cmdscale(watervoles, k = 13, eig = TRUE)
@@ -259,8 +241,8 @@ voles_mds$eig
 @
 Note that some of the eigenvalues are negative.
 The criterion $P_2$ can be computed by
-<<MDS-voles-criterion1, echo = TRUE>>=  
-sum(abs(voles_mds$eig[1:2]))/sum(abs(voles_mds$eig)) 
+<<MDS-voles-criterion1, echo = TRUE>>=
+sum(abs(voles_mds$eig[1:2]))/sum(abs(voles_mds$eig))
 @
 and the criterion suggested by \cite{HSAUR:Mardiaetal1979} is
 <<MDS-voles-criterion2, echo = TRUE>>=
@@ -272,8 +254,6 @@ between the water vole populations can be represented adequately in two
 dimensions. The two-dimensional solution can be plotted by extracting
 the coordinates from the \Robject{points} element of the \Robject{voles\_mds}
 object; the plot is shown in Figure~\ref{MDS-watervoles-plot}.
-
-
 \begin{figure}
 \begin{center}
 <<MDS-watervoles-plot, echo = TRUE, fig = TRUE>>=
@@ -287,8 +267,6 @@ text(x, y, labels = colnames(watervoles))
 distance matrix for water vole populations. \label{MDS-watervoles-plot}}
 \end{center}
 \end{figure}
-
-
 \begin{figure}
 \begin{center}
 <<MDS-watervoles-mst, echo = TRUE, fig = TRUE>>=
@@ -306,9 +284,8 @@ text(x, y, labels = colnames(watervoles))
 \label{MDS-watervoles-mst}}
 \end{center}
 \end{figure}
-
-We shall now apply non-metric scaling to the voting behaviour shown in 
-Table~\ref{MDS-voting-tab}. Non-metric scaling is available with 
+We shall now apply non-metric scaling to the voting behaviour shown in
+Table~\ref{MDS-voting-tab}. Non-metric scaling is available with
 function \Rcmd{isoMDS} from package \Rpackage{MASS}
 \citep{HSAUR:VenablesRipley2002}:
 <<MDS-voting, echo = TRUE, results = hide>>=
@@ -316,14 +293,12 @@ library("MASS")
 data("voting", package = "HSAUR2")
 voting_mds <- isoMDS(voting)
 @
-and we again depict the two-dimensional solution 
+and we again depict the two-dimensional solution
 (Figure~\ref{MDS-voting-plot}). The Figure suggests that voting behaviour is
 essentially along party lines, although there is more variation among
-Republicans. The voting behaviour of one of the Republicans (Rinaldo) 
+Republicans. The voting behaviour of one of the Republicans (Rinaldo)
 seems to be closer to his democratic colleagues rather than to the voting
 behaviour of other Republicans.
-
-
 \begin{figure}
 \begin{center}
 <<MDS-voting-plot, echo = TRUE, fig = TRUE>>=
@@ -332,29 +307,26 @@ y <- voting_mds$points[,2]
 plot(x, y, xlab = "Coordinate 1", ylab = "Coordinate 2",
      xlim = range(voting_mds$points[,1])*1.2, type = "n")
 text(x, y, labels = colnames(voting))
-voting_sh <- Shepard(voting[lower.tri(voting)], 
+voting_sh <- Shepard(voting[lower.tri(voting)],
                      voting_mds$points)
 @
 \caption{Two-dimensional solution from non-metric multidimensional scaling of
 distance matrix for voting matrix. \label{MDS-voting-plot}}
 \end{center}
 \end{figure}
-
 \begin{figure}
 \begin{center}
 <<MDS-voting-Shepard, echo = TRUE, fig = TRUE>>=
-plot(voting_sh, pch = ".", xlab = "Dissimilarity", 
-     ylab = "Distance", xlim = range(voting_sh$x), 
+plot(voting_sh, pch = ".", xlab = "Dissimilarity",
+     ylab = "Distance", xlim = range(voting_sh$x),
      ylim = range(voting_sh$x))
 lines(voting_sh$x, voting_sh$yf, type = "S")
 @
 \caption{The Shepard diagram for the \Robject{voting} data shows some
-         discrepancies between the original dissimilarities and the 
+         discrepancies between the original dissimilarities and the
          multidimensional scaling solution. \label{MDS-voting-shepard}}
 \end{center}
 \end{figure}
-
-
 \bibliographystyle{LaTeXBibTeX/refstyle}
-\bibliography{LaTeXBibTeX/HSAUR}   
+\bibliography{LaTeXBibTeX/HSAUR}
 \end{document}

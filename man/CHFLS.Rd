@@ -77,10 +77,12 @@ of 1534 women. The data have been extracted as given in the example section.
 
     library("foreign")
 
-    ### data see http://www.spc.uchicago.edu/prc/chfls.php
-    chfls1 <- url("http://www.src.uchigaco.edu/datalib/chfls/data/chfls1.dta")
+    dataurl <- "http://www.src.uchicago.edu/datalib/chfls/data/chfls1.sav"
+    td <- tempdir()
+    download.file(dataurl, destfile = file.path(td, "chfls1.sav"), mode = "wb")
 
-    chfls1 <- read.stata("chfls1.dta", to.data.frame = TRUE)
+    ### for a description see http://popcenter.uchicago.edu/data/chfls.shtml
+    chfls1 <- read.spss(file.path(td, "chfls1.sav"), to.data.frame = TRUE)
 
     tmp <- chfls1[, c("REGION6", "ZJ05", "ZJ06", "A35", "ZJ07", "ZJ16M", "INCRM",
                       "JK01", "JK02", "JK20", "HY04", "HY07", "A02", "AGEGAPM", 
@@ -116,7 +118,7 @@ of 1534 women. The data have been extracted as given in the example section.
     tmp$Aheight[tmp$Aheight < 0] <- NA
 
     olevels <- c("never", "rarely", "sometimes", "often", "always")
-    tmpA <- subset(tmp, Rgender == "female" & Rhomosexual != "yes" & orgasm %in% olevels)
+    tmpA <- subset(tmp, Rgender == "female" & Rhomosexual != "yes" & orgasm \%in\% olevels)
 
     ### 1534 subjects
     dim(tmpA)

@@ -1,8 +1,10 @@
 ###################################################
 ### chunk number 1: setup
 ###################################################
+#line 182 "Ch_simple_inference.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
     width = 63, # digits = 4,
@@ -41,12 +43,14 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 ###################################################
 ### chunk number 2: singlebook
 ###################################################
+#line 221 "Ch_simple_inference.Rnw"
 book <- FALSE
 
 
 ###################################################
 ### chunk number 3: SI-setup
 ###################################################
+#line 228 "Ch_simple_inference.Rnw"
 library("vcd")
 if (!interactive()) {
 print.htest <- function (x, digits = 4, quote = TRUE, prefix = "", ...)
@@ -85,18 +89,21 @@ print.htest <- function (x, digits = 4, quote = TRUE, prefix = "", ...)
 ###################################################
 ### chunk number 4: SI-roomwidth-data
 ###################################################
+#line 269 "Ch_simple_inference.Rnw"
 data("roomwidth", package = "HSAUR2")
 
 
 ###################################################
 ### chunk number 5: SI-roomwidth-convert
 ###################################################
+#line 281 "Ch_simple_inference.Rnw"
 convert <- ifelse(roomwidth$unit == "feet", 1, 3.28)
 
 
 ###################################################
 ### chunk number 6: SI-roomwidth-summary
 ###################################################
+#line 287 "Ch_simple_inference.Rnw"
 tapply(roomwidth$width * convert, roomwidth$unit, summary)
 tapply(roomwidth$width * convert, roomwidth$unit, sd)
 
@@ -104,6 +111,7 @@ tapply(roomwidth$width * convert, roomwidth$unit, sd)
 ###################################################
 ### chunk number 7: SI-roomwidth-boxplot
 ###################################################
+#line 304 "Ch_simple_inference.Rnw"
 layout(matrix(c(1,2,1,3), nrow = 2, ncol = 2, byrow = FALSE))
 boxplot(I(width * convert) ~ unit, data = roomwidth,
         ylab = "Estimated width (feet)",
@@ -121,12 +129,14 @@ qqline(roomwidth$width[!feet])
 ###################################################
 ### chunk number 8: SI-roomwidth-formula
 ###################################################
+#line 334 "Ch_simple_inference.Rnw"
 I(width * convert) ~ unit
 
 
 ###################################################
 ### chunk number 9: SI-roomwidth-tt-T-hide
 ###################################################
+#line 342 "Ch_simple_inference.Rnw"
 tt <- t.test(I(width * convert) ~ unit, data = roomwidth,
              var.equal = TRUE)
 
@@ -134,6 +144,7 @@ tt <- t.test(I(width * convert) ~ unit, data = roomwidth,
 ###################################################
 ### chunk number 10: SI-roomwidth-tt-T
 ###################################################
+#line 349 "Ch_simple_inference.Rnw"
 t.test(I(width * convert) ~ unit, data = roomwidth,
        var.equal = TRUE)
 
@@ -141,6 +152,7 @@ t.test(I(width * convert) ~ unit, data = roomwidth,
 ###################################################
 ### chunk number 11: SI-roomwidth-tt-F
 ###################################################
+#line 357 "Ch_simple_inference.Rnw"
 t.test(I(width * convert) ~ unit, data = roomwidth,
        var.equal = FALSE)
 
@@ -148,6 +160,7 @@ t.test(I(width * convert) ~ unit, data = roomwidth,
 ###################################################
 ### chunk number 12: SI-roomwidth-wt
 ###################################################
+#line 365 "Ch_simple_inference.Rnw"
 wilcox.test(I(width * convert) ~ unit, data = roomwidth,
             conf.int = TRUE)
 
@@ -155,6 +168,7 @@ wilcox.test(I(width * convert) ~ unit, data = roomwidth,
 ###################################################
 ### chunk number 13: SI-roomwidth-wt-hide
 ###################################################
+#line 370 "Ch_simple_inference.Rnw"
 pwt <- round(wilcox.test(I(width * convert) ~ unit, data =
              roomwidth)$p.value, 3)
 
@@ -162,12 +176,14 @@ pwt <- round(wilcox.test(I(width * convert) ~ unit, data =
 ###################################################
 ### chunk number 14: SI-waves-data
 ###################################################
+#line 376 "Ch_simple_inference.Rnw"
 data("waves", package = "HSAUR2")
 
 
 ###################################################
 ### chunk number 15: SI-wavese-boxplot
 ###################################################
+#line 387 "Ch_simple_inference.Rnw"
 mooringdiff <- waves$method1 - waves$method2
 layout(matrix(1:2, ncol = 2))
 boxplot(mooringdiff, ylab = "Differences (Newton metres)",
@@ -180,30 +196,35 @@ qqline(mooringdiff)
 ###################################################
 ### chunk number 16: SI-waves-tt
 ###################################################
+#line 403 "Ch_simple_inference.Rnw"
 t.test(mooringdiff)
 
 
 ###################################################
 ### chunk number 17: SI-waves-wt
 ###################################################
+#line 407 "Ch_simple_inference.Rnw"
 pwt <- round(wilcox.test(mooringdiff)$p.value, 3)
 
 
 ###################################################
 ### chunk number 18: SI-waves-wt
 ###################################################
+#line 413 "Ch_simple_inference.Rnw"
 wilcox.test(mooringdiff)
 
 
 ###################################################
 ### chunk number 19: SI-water-data
 ###################################################
+#line 420 "Ch_simple_inference.Rnw"
 data("water", package = "HSAUR2")
 
 
 ###################################################
 ### chunk number 20: SI-water-plot
 ###################################################
+#line 442 "Ch_simple_inference.Rnw"
 nf <- layout(matrix(c(2, 0, 1, 3), 2, 2, byrow = TRUE),
              c(2, 1), c(1, 2), TRUE)
 psymb <- as.numeric(water$location)
@@ -218,24 +239,28 @@ boxplot(water$mortality)
 ###################################################
 ### chunk number 21: SI-water-cor
 ###################################################
+#line 463 "Ch_simple_inference.Rnw"
 cor.test(~ mortality + hardness, data = water)
 
 
 ###################################################
 ### chunk number 22: SI-water-cor
 ###################################################
+#line 467 "Ch_simple_inference.Rnw"
 cr <- round(cor.test(~ mortality + hardness, data = water)$estimate, 3)
 
 
 ###################################################
 ### chunk number 23: SI-pistonrings-chisq-hide
 ###################################################
+#line 471 "Ch_simple_inference.Rnw"
 chisqt <- chisq.test(pistonrings)
 
 
 ###################################################
 ### chunk number 24: SI-pistonrings-chisq
 ###################################################
+#line 477 "Ch_simple_inference.Rnw"
 data("pistonrings", package = "HSAUR2")
 chisq.test(pistonrings)
 
@@ -243,12 +268,14 @@ chisq.test(pistonrings)
 ###################################################
 ### chunk number 25: SI-pistonrings-resid
 ###################################################
+#line 495 "Ch_simple_inference.Rnw"
 chisq.test(pistonrings)$residuals
 
 
 ###################################################
 ### chunk number 26: SI-assoc-plot
 ###################################################
+#line 508 "Ch_simple_inference.Rnw"
 library("vcd")
 assoc(pistonrings)
 
@@ -256,6 +283,7 @@ assoc(pistonrings)
 ###################################################
 ### chunk number 27: SI-rearrests-data
 ###################################################
+#line 519 "Ch_simple_inference.Rnw"
 data("rearrests", package = "HSAUR2")
 rearrests
 
@@ -263,18 +291,21 @@ rearrests
 ###################################################
 ### chunk number 28: SI-rearrests-mcnemar
 ###################################################
+#line 523 "Ch_simple_inference.Rnw"
 mcs <- round(mcnemar.test(rearrests, correct = FALSE)$statistic, 2)
 
 
 ###################################################
 ### chunk number 29: SI-arrests-mcnemar
 ###################################################
+#line 544 "Ch_simple_inference.Rnw"
 mcnemar.test(rearrests, correct = FALSE)
 
 
 ###################################################
 ### chunk number 30: SI-arrests-binom
 ###################################################
+#line 552 "Ch_simple_inference.Rnw"
 binom.test(rearrests[2], n = sum(rearrests[c(2,3)]))
 
 

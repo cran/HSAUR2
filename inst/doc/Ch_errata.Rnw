@@ -1,12 +1,10 @@
 
-
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
 
 %%% keeps `sweave' from adding `\usepackage{Sweave}': DO NOT REMOVE
-%\usepackage{Sweave} 
+%\usepackage{Sweave}
 
 
 \RequirePackage[T1]{fontenc}
@@ -35,7 +33,7 @@
   \renewenvironment{Schunk}{\begin{figure}[ht] }{\caption{\nextcaption}
   \end{figure} }
   \DefineVerbatimEnvironment{Sinput}{Verbatim}{frame = topline}
-  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline, 
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline,
                                                 samepage = true,
                                                 fontfamily=courier,
                                                 fontshape=it,
@@ -47,7 +45,7 @@
 \DefineVerbatimEnvironment{Sinput}
 {Verbatim}
 {
-%%  numbers=left
+%% numbers=left
 }
 
 \newcommand{\numberSinput}{
@@ -84,31 +82,31 @@
 
 %%% other symbols
 \newcommand{\file}[1]{\hbox{\rm\texttt{#1}}}
-%%\newcommand{\stress}[1]{\index{#1}\textit{#1}} 
-\newcommand{\stress}[1]{\textit{#1}} 
+%%\newcommand{\stress}[1]{\index{#1}\textit{#1}}
+\newcommand{\stress}[1]{\textit{#1}}
 \newcommand{\booktitle}[1]{\textit{#1}} %%'
 
 %%% Math symbols
 \usepackage{amstext}
 \usepackage{amsmath}
-\newcommand{\E}{\mathsf{E}}   
-\newcommand{\Var}{\mathsf{Var}}   
-\newcommand{\Cov}{\mathsf{Cov}}   
-\newcommand{\Cor}{\mathsf{Cor}}   
-\newcommand{\x}{\mathbf{x}}   
-\newcommand{\y}{\mathbf{y}}   
+\newcommand{\E}{\mathsf{E}}
+\newcommand{\Var}{\mathsf{Var}}
+\newcommand{\Cov}{\mathsf{Cov}}
+\newcommand{\Cor}{\mathsf{Cor}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
 \renewcommand{\a}{\mathbf{a}}
-\newcommand{\W}{\mathbf{W}}   
-\newcommand{\C}{\mathbf{C}}   
-\renewcommand{\H}{\mathbf{H}}   
-\newcommand{\X}{\mathbf{X}}   
-\newcommand{\B}{\mathbf{B}}   
-\newcommand{\V}{\mathbf{V}}   
-\newcommand{\I}{\mathbf{I}}   
-\newcommand{\D}{\mathbf{D}}   
-\newcommand{\bS}{\mathbf{S}}   
-\newcommand{\N}{\mathcal{N}}   
-\renewcommand{\P}{\mathsf{P}}   
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\C}{\mathbf{C}}
+\renewcommand{\H}{\mathbf{H}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\N}{\mathcal{N}}
+\renewcommand{\P}{\mathsf{P}}
 \newcommand{\K}{\mathbf{K}}
 \newcommand{\m}{\mathbf{m}}
 \newcommand{\argmin}{\operatorname{argmin}\displaylimits}
@@ -170,31 +168,25 @@
 \hyphenation{drop-out}
 \hyphenation{mar-gi-nal}
 
-%%% new bidirectional quotes need 
+%%% new bidirectional quotes need
 \usepackage[utf8]{inputenc}
 \begin{document}
-
 %% Title page
-
 \title{A Handbook of Statistical Analyses Using \R{} --- 2nd Edition}
-
 \author{Brian S. Everitt and Torsten Hothorn}
-
 \maketitle
 %%\VignetteIndexEntry{Errata}
 \setcounter{chapter}{15}
-
-
-\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
-
+\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE}
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
-    width = 63, # digits = 4, 
+    width = 63, # digits = 4,
     show.signif.stars = FALSE,
-    SweaveHooks = list(leftpar = function() 
+    SweaveHooks = list(leftpar = function()
         par(mai = par("mai") * c(1, 1.05, 1, 1)),
         bigleftpar = function()
         par(mai = par("mai") * c(1, 1.7, 1, 1))))
@@ -205,8 +197,8 @@ rm(HSAURpkg)
 a <- Sys.setlocale("LC_ALL", "C")
  ### </FIXME>
 book <- TRUE
-refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM", 
-                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA", 
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
                 "MDS", "CA"), 1:18)
 ch <- function(x) {
     ch <- refs[which(refs[,1] == x),]
@@ -218,59 +210,65 @@ ch <- function(x) {
 }
 if (file.exists("deparse.R"))
     source("deparse.R")
-
 setHook(packageEvent("lattice", "attach"), function(...) {
-    lattice.options(default.theme = 
+    lattice.options(default.theme =
         function()
             standard.theme("pdf", color = FALSE))
     })
 @
-
 \pagestyle{headings}
 <<singlebook, echo = FALSE>>=
 book <- FALSE
 @
-
 \chapter[Errata]{Errata}
-
 We would like to thank your Japanese translators,
-Prof. Takashi Daimon, Prof. Satoshi Teramukai, and 
+Prof. Takashi Daimon, Prof. Satoshi Teramukai, and
 Prof. Toshihiro Yoshikawa for bringing inconsistenties and typos
 to our attention. Typos have been fixed silently, more serious
-mistakes are listed below.
-
+mistakes are listed below. We would also like to thank
+Antony Unwin for helpful comments on several displays. Typos
+in formulae in Chapters~16 and 17 were spotted and reported
+by Prof. Schader.
 \section{Data Analysis Using Graphical Displays}
-
 The correct title is Chinese Health and Family Life Survey, not Study.
-
 \section{Simple Inference}
-
 page 54 top: The \Rcmd{qqnorm} statements are in lines 7 and 10, not 8 and 11.
-
 \section{Conditional Inference}
-
 page 69: $n_{jk}$ instead of $n_{ij}$
-
 \section{Density Estimation}
-
 Line numbering on page 147 was wrong and should read:
 The \Rcmd{hist} function places an ordinary
 histogram of the geyser data in each of the three plotting regions (lines 4,
-9, 14). Then, the \Rcmd{density} function with three different kernels 
+9, 14). Then, the \Rcmd{density} function with three different kernels
 (lines 7, 12, 17, with a Gaussian kernel being the default in line 7) is
-plotted in addition. 
-
+plotted in addition.
+\section{Smoothers and Generalised Additive Models}
+page 194: interpretation of Figure 10.9 was wrong and now reads:
+``The risk of kyphosis being present decreases with higher
+starting vertebral level and lower number of vertebrae involved.
+Children about $100$ months old are under higher risk compared
+to younger or older children.''
 \section{Simultaneous Inference}
-
 page 262: $\mathbf{K} = \text{diag}(5)$ instead of $\mathbf{K} = \text{diag}(6)$. Browsing
           is \textit{more} frequent in hardwood. No data on ash, elm and lime shown here.
-
-\section{Principle Components}
-
+\section{Principal Components}
+page 287: formula reads
+\begin{eqnarray*}
+\sum_{r = 1}^n \sum_{s = 1}^n \left(d^2_{rs} - \hat{d}^2_{rs}\right)^2
+\end{eqnarray*}
 page 292: hurdles and long jump have highest weight.
-
-
-
+\section{Multidimensional Scaling}
+page 303: formula reads
+\begin{eqnarray*}
+b_{ij} = -\frac{1}{2}\left(d_{ij}^2 - n^{-1} \sum_{r = 1}^n d_{ir}^2 -
+n^{-1} \sum_{s = 1}^n d_{sj}^2 + n^{-2} \sum_{r = 1}^n \sum_{s = 1}^n
+d_{rs}^2 \right).
+\end{eqnarray*}
+\section{Meta-Analysis}
+page 283, Table~15.4: Several typos corrected.
+\section{Cluster Analysis}
+Pages 328, Table~18.6, and 334, Table~18.18: also
+display observations with \texttt{eccen == 0}.
 %\bibliographystyle{LaTeXBibTeX/refstyle}
-%\bibliography{LaTeXBibTeX/HSAUR}   
+%\bibliography{LaTeXBibTeX/HSAUR}
 \end{document}

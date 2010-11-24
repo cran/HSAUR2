@@ -1,8 +1,10 @@
 ###################################################
 ### chunk number 1: setup
 ###################################################
+#line 181 "preface.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
     width = 63, # digits = 4,
@@ -41,30 +43,35 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 ###################################################
 ### chunk number 2: pre-HSAUR-install eval=FALSE
 ###################################################
+## #line 260 "preface.Rnw"
 ## install.packages("HSAUR")
 
 
 ###################################################
 ### chunk number 3: pre-HSAUR eval=FALSE
 ###################################################
+## #line 264 "preface.Rnw"
 ## library("HSAUR")
 
 
 ###################################################
 ### chunk number 4: pre-vignette eval=FALSE
 ###################################################
+## #line 271 "preface.Rnw"
 ## vignette("Ch_introduction_to_R", package = "HSAUR")
 
 
 ###################################################
 ### chunk number 5: pre-vignette-source eval=FALSE
 ###################################################
+## #line 275 "preface.Rnw"
 ## edit(vignette("Ch_introduction_to_R", package = "HSAUR"))
 
 
 ###################################################
 ### chunk number 6: pre-vignette-source eval=FALSE
 ###################################################
+## #line 280 "preface.Rnw"
 ## vignette(package = "HSAUR")
 
 

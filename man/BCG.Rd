@@ -54,9 +54,24 @@
 \examples{
 
   data("BCG", package = "HSAUR2")
-  boxplot(BCG$BCGTB/BCG$BCGVacc, BCG$NoVaccTB/BCG$NoVacc,
-          names = c("BCG Vaccination", "No Vaccination"), 
-          ylab = "Percent BCG cases")
+
+  ### sort studies w.r.t. sample size
+  BCG <- BCG[order(rowSums(BCG[,2:5])),]
+
+  ### to long format
+  BCGlong <- with(BCG, data.frame(Freq = c(BCGTB, BCGVacc - BCGTB, 
+                                           NoVaccTB, NoVacc - NoVaccTB),
+                  infected = rep(rep(factor(c("yes", "no")), 
+                                 rep(nrow(BCG), 2)), 2),
+                  vaccined = rep(factor(c("yes", "no")), 
+                                 rep(nrow(BCG) * 2, 2)),
+                  study = rep(factor(Study, levels = as.character(Study)), 
+                              4)))
+
+  ### doubledecker plot
+  library("vcd")
+  doubledecker(xtabs(Freq ~ study + vaccined + infected, 
+                     data = BCGlong))
 
 }
 \keyword{datasets}

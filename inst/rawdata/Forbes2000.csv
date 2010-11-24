@@ -30,7 +30,7 @@
 "29",  29,"General Motors","United States","Consumer durables",185.52,  3.82, 450.00, 27.47
 "30",  30,"Nippon Tel & Tel","Japan","Telecommunications services", 92.41,  2.17, 150.87, 73.00
 "31",  31,"Microsoft","United States","Software & services", 34.27,  8.88,  85.94,287.02
-"32",  32,"NestlÃ©","Switzerland","Food drink & tobacco", 64.56,  5.48,  62.15,106.55
+"32",  32,"Nestlé","Switzerland","Food drink & tobacco", 64.56,  5.48,  62.15,106.55
 "33",  33,"SBC Communications","United States","Telecommunications services", 39.16,  5.97, 100.17, 82.93
 "34",  34,"Deutsche Bank Group","Germany","Diversified financials", 58.85,  1.53, 792.49, 50.23
 "35",  35,"Siemens Group","Germany","Conglomerates", 86.62,  2.81,  85.47, 75.77
@@ -52,7 +52,7 @@
 "51",  51,"Nissan Motor","Japan","Consumer durables", 57.77,  4.19,  60.56, 41.71
 "52",  52,"Bank One","United States","Banking", 21.04,  3.40, 290.01, 58.38
 "53",  53,"AXA Group","France","Insurance", 90.10,  1.00, 456.13, 41.39
-"54",  54,"SociÃ©tÃ© GÃ©nÃ©rale Group","France","Banking", 35.52,  1.61, 526.54, 40.61
+"54",  54,"Société Générale Group","France","Banking", 35.52,  1.61, 526.54, 40.61
 "55",  55,"PetroChina","China","Oil & gas operations", 29.53,  5.67,  58.36, 90.49
 "56",  56,"Goldman Sachs Group","United States","Diversified financials", 22.84,  2.54, 394.14, 50.12
 "57",  57,"BBVA-Banco Bilbao Vizcaya","Spain","Banking", 24.10,  2.81, 288.80, 44.67
@@ -66,7 +66,7 @@
 "65",  65,"ENEL","Italy","Utilities", 38.99,  2.11,  71.36, 46.84
 "66",  66,"Unilever","Netherlands/ United Kingdom","Food drink & tobacco", 50.70,  2.24,  45.49, 72.19
 "67",  67,"Washington Mutual","United States","Banking", 18.01,  3.88, 275.18, 39.69
-"68",  68,"CrÃ©dit Agricole","France","Banking", 31.77,  1.12, 531.01, 38.80
+"68",  68,"Crédit Agricole","France","Banking", 31.77,  1.12, 531.01, 38.80
 "69",  69,"Deutsche Post","Germany","Transportation", 41.23,  1.64, 169.33, 26.83
 "70",  70,"Comcast","United States","Media", 18.35,  3.24, 109.16, 67.30
 "71",  71,"Volkswagen Group","Germany","Consumer durables", 91.33,  2.71, 112.87, 17.42
@@ -184,7 +184,7 @@
 "183", 183,"Kroger","United States","Food markets", 53.23,  1.04,  20.61, 14.09
 "184", 184,"Lukoil Holding","Russia","Oil & gas operations", 15.25,  1.83,  21.68, 21.65
 "185", 185,"SunTrust Banks","United States","Banking",  7.07,  1.33, 125.39, 20.80
-"186", 186,"L`OrÃ©al Group","France","Household & personal products", 17.65,  1.89,  14.13, 56.46
+"186", 186,"L`Oréal Group","France","Household & personal products", 17.65,  1.89,  14.13, 56.46
 "187", 187,"AT&T Wireless","United States","Telecommunications services", 16.70,  0.44,  47.80, 27.28
 "188", 188,"Rio Tinto","United Kingdom/ Australia","Materials", 10.01,  1.64,  24.08, 43.52
 "189", 189,"Iberdrola","Spain","Utilities", 11.94,  1.33,  30.99, 18.78
@@ -276,7 +276,7 @@
 "275", 275,"Posco","South Korea","Materials", 12.10,  0.92,  16.04, 13.23
 "276", 276,"Archer Daniels","United States","Food drink & tobacco", 31.73,  0.49,  17.69, 10.93
 "277", 277,"Mitsui Sumitomo Ins","Japan","Insurance", 15.98,  0.28,  54.50, 12.49
-"278", 278,"Sanofi-SynthÃ©labo","France","Drugs & biotechnology", 10.12,  2.62,   8.77, 51.88
+"278", 278,"Sanofi-Synthélabo","France","Drugs & biotechnology", 10.12,  2.62,   8.77, 51.88
 "279", 279,"McKesson","United States","Health care equipment & services", 66.45,  0.61,  15.95,  8.33
 "280", 280,"CVS","United States","Retailing", 26.59,  0.85,  10.54, 14.81
 "281", 281,"Tohoku Electric Power","Japan","Utilities", 13.48,  0.52,  34.49,  8.67
@@ -322,7 +322,7 @@
 "321", 321,"Banco do Brasil","Brazil","Banking", 12.09,  0.57,  57.80,  5.77
 "322", 322,"Nortel Networks","Canada","Technology hardware & equipment", 10.49,  0.41,  13.72, 34.08
 "323", 323,"Schneider Electric","France","Capital goods", 11.04,  0.54,  14.37, 15.39
-"324", 324,"FÃ¶renings Sparbanken","Sweden","Banking",  6.24,  0.43, 108.47, 10.42
+"324", 324,"Förenings Sparbanken","Sweden","Banking",  6.24,  0.43, 108.47, 10.42
 "325", 325,"Aire Liquide Group","France","Chemicals", 10.55,  0.74,  11.51, 17.55
 "326", 326,"BOC Hong Kong","Hong Kong/China","Banking",  3.38,  0.86,  94.30, 21.22
 "327", 327,"XL Capital","Bermuda","Insurance",  8.02,  0.41,  40.76, 10.61
@@ -564,7 +564,7 @@
 "563", 563,"Resona Holdings","Japan","Banking",  8.97, -7.09, 358.44, 13.41
 "564", 564,"BAA","United Kingdom","Transportation",  3.00,  0.59,  14.77, 10.69
 "565", 565,"Bunge","Bermuda","Food drink & tobacco", 22.17,  0.41,   9.88,  3.69
-"566", 566,"TÃ¼rkiye Is Bankasi","Turkey","Banking",  4.23,  0.31,  23.73,  6.68
+"566", 566,"Türkiye Is Bankasi","Turkey","Banking",  4.23,  0.31,  23.73,  6.68
 "567", 567,"Canadian National","Canada","Transportation",  3.89,  0.36,  12.04, 11.74
 "568", 568,"American Electric","United States","Utilities", 15.58, -0.16,  36.08, 13.21
 "569", 569,"Pitney Bowes","United States","Business services & supplies",  4.58,  0.50,   8.89,  9.62
@@ -751,11 +751,11 @@
 "750", 750,"Aramark","United States","Business services & supplies",  9.45,  0.30,   4.47,  5.03
 "751", 751,"Fairfax Financial","Canada","Insurance",  5.21,  0.29,  24.05,  2.49
 "752", 752,"Sampo","Finland","Insurance",  1.83,  0.41,  26.36,  6.20
-"753", 753,"EstÃ©e Lauder Cos","United States","Household & personal products",  5.43,  0.31,   3.97,  9.47
+"753", 753,"Estée Lauder Cos","United States","Household & personal products",  5.43,  0.31,   3.97,  9.47
 "754", 754,"Sumitomo Trust & Banking","Japan","Banking",  4.16, -0.62, 131.13,  8.06
 "755", 755,"MTR","Hong Kong/China","Transportation",  0.99,  0.54,  12.96,  8.46
-"756", 756,"LagardÃ¨re SCA","France","Media",  7.62, -0.27,  19.09,  8.52
-"757", 757,"AmÃ©rica Telecom","Mexico","Telecommunications services",  5.54,  0.14,  10.92,  6.22
+"756", 756,"Lagardère SCA","France","Media",  7.62, -0.27,  19.09,  8.52
+"757", 757,"América Telecom","Mexico","Telecommunications services",  5.54,  0.14,  10.92,  6.22
 "758", 758,"UnumProvident","United States","Insurance", 10.22,  0.06,  49.34,  4.36
 "759", 759,"Tostem Inax","Japan","Construction",  7.98,  0.16,   7.83,  5.55
 "760", 760,"Lexmark International","United States","Business services & supplies",  4.75,  0.44,   3.45, 10.76
@@ -881,7 +881,7 @@
 "880", 880,"Nordstrom","United States","Retailing",  6.31,  0.20,   4.37,  5.42
 "881", 881,"Thomson","France","Consumer durables", 10.64,  0.03,  10.20,  5.74
 "882", 882,"Securitas","Sweden","Business services & supplies",  7.57,  0.17,   4.12,  6.08
-"883", 883,"KoÃ§ Group","Turkey","Diversified financials", 11.10,  0.04,  12.04,  4.80
+"883", 883,"Koç Group","Turkey","Diversified financials", 11.10,  0.04,  12.04,  4.80
 "884", 884,"Tatneft","Russia","Oil & gas operations",  4.55,  0.49,   7.14,  2.63
 "885", 885,"Wharf (Holdings) Hong","Kong/China","Diversified financials",  1.45,  0.30,  10.39,  7.90
 "886", 886,"Orkla","Norway","Food drink & tobacco",  3.48,  0.23,   7.67,  4.82
@@ -908,7 +908,7 @@
 "907", 907,"Scana","United States","Utilities",  3.34,  0.29,   7.79,  3.91
 "908", 908,"Sherwin-Williams","United States","Retailing",  5.28,  0.32,   3.64,  5.15
 "909", 909,"Allied Waste Inds","United States","Business services & supplies",  5.40,  0.16,  13.79,  2.74
-"910", 910,"SÃ¼dzucker","Germany","Food drink & tobacco",  4.73,  0.28,   6.28,  3.40
+"910", 910,"Südzucker","Germany","Food drink & tobacco",  4.73,  0.28,   6.28,  3.40
 "911", 911,"Yahoo","United States","Software & services",  1.63,  0.24,   5.93, 30.50
 "912", 912,"PacifiCare Health","United States","Health care equipment & services", 10.44,  0.24,   4.62,  2.98
 "913", 913,"Westfield Trust","Australia","Diversified financials",  0.78,  0.42,   9.49,  6.13
@@ -953,7 +953,7 @@
 "952", 952,"Corporation Mapfre","Spain","Insurance",  5.87,  0.12,  15.45,  2.73
 "953", 953,"Next","United Kingdom","Retailing",  3.63,  0.35,   1.56,  7.24
 "954", 954,"Fujisawa Pharmaceutical","Japan","Drugs & biotechnology",  3.23,  0.24,   4.17,  7.71
-"955", 955,"CrÃ©dit Foncier","France","Banking",  2.79,  0.14,  46.07,  2.93
+"955", 955,"Crédit Foncier","France","Banking",  2.79,  0.14,  46.07,  2.93
 "956", 956,"Archstone-Smith","United States","Diversified financials",  0.90,  0.44,   8.78,  5.26
 "957", 957,"Veritas Software","United States","Software & services",  1.77,  0.28,   5.40, 14.02
 "958", 958,"Newell Rubbermaid","United States","Household & personal products",  7.75, -0.05,   7.48,  6.94
@@ -1032,7 +1032,7 @@
 "1031",1031,"Bank Leumi Group","Israel","Banking",  3.41,  0.09,  51.90,  2.80
 "1032",1032,"Health Net","United States","Health care equipment & services", 10.93,  0.19,   3.45,  3.23
 "1033",1033,"BPER-Emilia Romagna","Italy","Banking",  2.44,  0.13,  37.76,  2.94
-"1034",1034,"W&W-WÃ¼stenrot","Germany","Diversified financials",  7.57, -0.08,  56.44,  1.89
+"1034",1034,"W&W-Wüstenrot","Germany","Diversified financials",  7.57, -0.08,  56.44,  1.89
 "1035",1035,"Nippon Mining","Japan","Oil & gas operations", 18.30,  0.03,  13.45,  2.34
 "1036",1036,"Acciona","Spain","Construction",  3.59,  0.17,   6.11,  4.13
 "1037",1037,"Pirelli & C","Italy","Diversified financials",  7.06, -0.06,  11.44,  3.57
@@ -1131,7 +1131,7 @@
 "1130",1130,"Ingram Micro","United States","Technology hardware & equipment", 21.74,  0.09,   4.87,  2.54
 "1131",1131,"Kasikornbank","Thailand","Banking",  1.02,  0.16,  17.64,  3.48
 "1132",1132,"Seibu Railway","Japan","Transportation",  3.55,  0.01,   9.88,  5.52
-"1133",1133,"TÃ¼rkiye Garanti Bankasi","Turkey","Banking",  3.87,  0.03,  21.81,  3.03
+"1133",1133,"Türkiye Garanti Bankasi","Turkey","Banking",  3.87,  0.03,  21.81,  3.03
 "1134",1134,"Apollo-Education Group","United States","Business services & supplies",  1.44,  0.27,   1.54, 13.63
 "1135",1135,"Rogers Communications","Canada","Telecommunications services",  3.74,  0.10,   6.53,  4.61
 "1136",1136,"Onex","Canada","Business services & supplies", 14.41, -0.09,  12.24,  1.87
@@ -1298,11 +1298,11 @@
 "1297",1297,"Kesa Electricals","United Kingdom","Retailing",  5.64,  0.16,   2.81,  2.72
 "1298",1298,"XTO Energy","United States","Oil & gas operations",  1.19,  0.29,   3.61,  5.22
 "1299",1299,"Petrol Ofisi","Turkey","Oil & gas operations",  6.36,  0.23,   3.23,  1.19
-"1300",1300,"HermÃ¨s International","France","Household & personal products",  1.30,  0.23,   1.64,  7.57
+"1300",1300,"Hermès International","France","Household & personal products",  1.30,  0.23,   1.64,  7.57
 "1301",1301,"Omron","Japan","Business services & supplies",  4.53,  0.00,   4.26,  5.44
 "1302",1302,"Jabil Circuit","United States","Technology hardware & equipment",  5.17,  0.08,   3.52,  5.72
 "1303",1303,"Lend Lease","Australia","Diversified financials",  6.35, -0.48,   4.79,  3.47
-"1304",1304,"TÃ¼pras-TÃ¼rkiye Petrol","Turkey","Oil & gas operations",  7.76,  0.17,   3.01,  2.26
+"1304",1304,"Tüpras-Türkiye Petrol","Turkey","Oil & gas operations",  7.76,  0.17,   3.01,  2.26
 "1305",1305,"LG Corp","South Korea","Chemicals",  4.15,  0.11,   7.48,  2.33
 "1306",1306,"Essilor International","France","Health care equipment & services",  2.25,  0.19,   2.27,  6.17
 "1307",1307,"Duke Realty","United States","Diversified financials",  0.74,  0.18,   5.55,  4.43
@@ -1475,7 +1475,7 @@
 "1474",1474,"Credito Emiliano","Italy","Banking",  1.36,  0.12,  19.99,  2.02
 "1475",1475,"Applera-Applied Biosys","United States","Health care equipment & services",  1.67,  0.20,   2.06,  4.82
 "1476",1476,"Genzyme-General","United States","Drugs & biotechnology",  1.54, -0.09,   4.33, 12.41
-"1477",1477,"NÃ¼rnberger Beteiligungs","Germany","Insurance",  3.00, -0.03,  15.97,  0.93
+"1477",1477,"Nürnberger Beteiligungs","Germany","Insurance",  3.00, -0.03,  15.97,  0.93
 "1478",1478,"Outback Steakhouse","United States","Hotels restaurants & leisure",  2.61,  0.17,   1.40,  3.41
 "1479",1479,"Westcorp","United States","Banking",  1.36,  0.12,  14.62,  2.16
 "1480",1480,"CH Robinson Worldwide","United States","Transportation",  3.61,  0.11,   0.91,  3.36
@@ -1574,7 +1574,7 @@
 "1573",1573,"USG","United States","Construction",  3.67,  0.14,   3.80,  0.83
 "1574",1574,"Hays","United Kingdom","Business services & supplies",  3.80, -0.86,   1.91,  4.40
 "1575",1575,"TransAlta","Canada","Utilities",  1.94,  0.18,   4.67,  2.58
-"1576",1576,"FinanciÃ¨re de l`Odet","France","Transportation",  5.75,  0.03,   5.06,  0.78
+"1576",1576,"Financière de l`Odet","France","Transportation",  5.75,  0.03,   5.06,  0.78
 "1577",1577,"Esprit Holdings","Hong Kong/China","Retailing",  1.59,  0.15,   0.92,  4.71
 "1578",1578,"Arch Capital Group","Bermuda","Insurance",  1.93,  0.24,   5.20,  1.19
 "1579",1579,"AMB Property","United States","Diversified financials",  0.62,  0.13,   5.42,  2.93
@@ -1713,7 +1713,7 @@
 "1712",1712,"Jean Coutu Group","Canada","Retailing",  2.96,  0.12,   1.24,  2.72
 "1713",1713,"Guoco Group","Hong Kong/China","Diversified financials",  0.25,  0.16,   4.63,  2.51
 "1714",1714,"Allete","United States","Conglomerates",  1.62,  0.24,   3.10,  2.74
-"1715",1715,"Dassault SystÃ¨mes","France","Software & services",  0.81,  0.11,   0.90,  5.35
+"1715",1715,"Dassault Systèmes","France","Software & services",  0.81,  0.11,   0.90,  5.35
 "1716",1716,"Dow Jones","United States","Media",  1.52,  0.14,   1.30,  3.99
 "1717",1717,"City Developments","Singapore","Diversified financials",  1.32,  0.09,   6.49,  3.26
 "1718",1718,"Isetan","Japan","Retailing",  5.09,  0.07,   3.47,  2.58
@@ -1763,7 +1763,7 @@
 "1762",1762,"Buderus","Germany","Construction",  1.95,  0.25,   1.51,  2.46
 "1763",1763,"SEI Investments","United States","Diversified financials",  0.64,  0.14,   0.59,  3.67
 "1764",1764,"Oita Bank","Japan","Banking",  0.53, -0.09,  20.96,  0.68
-"1765",1765,"KÃ¼hne & Nagel Intl","Switzerland","Transportation",  4.46,  0.00,   1.91,  2.91
+"1765",1765,"Kühne & Nagel Intl","Switzerland","Transportation",  4.46,  0.00,   1.91,  2.91
 "1766",1766,"Hyundai Eng & Const","South Korea","Construction",  4.62, -0.01,   4.55,  0.57
 "1767",1767,"Puget Energy","United States","Utilities",  2.15,  0.13,   5.53,  2.09
 "1768",1768,"Shikoku Bank","Japan","Banking",  0.46, -0.26,  20.84,  1.34
@@ -1896,7 +1896,7 @@
 "1895",1895,"Samsung Heavy Industries","South Korea","Capital goods",  3.60,  0.09,   3.90,  1.17
 "1896",1896,"Balfour Beatty","United Kingdom","Construction",  4.99,  0.09,   2.57,  1.92
 "1897",1897,"Towa Bank","Japan","Banking",  0.30, -0.11,  14.70,  0.42
-"1898",1898,"Red EÃ©ctrica de Espaqa","Spain","Utilities",  1.14,  0.15,   4.28,  2.36
+"1898",1898,"Red Eéctrica de Espaqa","Spain","Utilities",  1.14,  0.15,   4.28,  2.36
 "1899",1899,"China Motor","Taiwan","Consumer durables",  1.58,  0.17,   1.52,  2.77
 "1900",1900,"Daio Paper","Japan","Materials",  3.26,  0.01,   5.51,  0.94
 "1901",1901,"Old National Bncp","United States","Banking",  0.68,  0.09,   9.52,  1.44
@@ -1911,7 +1911,7 @@
 "1910",1910,"Higashi-Nippon Bank","Japan","Banking",  0.36, -0.06,  14.24,  0.41
 "1911",1911,"Tokyo Broadcasting System","Japan","Media",  2.49,  0.09,   3.74,  2.84
 "1912",1912,"Investkredit Bank","Austria","Banking",  1.22,  0.03,  14.16,  0.57
-"1913",1913,"CBD-Brasil DistribuiÃ§co","Brazil","Trading companies",  3.74,  0.08,   2.99,  2.64
+"1913",1913,"CBD-Brasil Distribuiçco","Brazil","Trading companies",  3.74,  0.08,   2.99,  2.64
 "1914",1914,"WMC Resources","Australia","Materials",  0.82, -0.02,   4.08,  4.94
 "1915",1915,"Brasil Telecom","Brazil","Telecommunications services",  2.00,  0.12,   4.22,  2.45
 "1916",1916,"BEKB-BCBE","Switzerland","Banking",  0.57,  0.05,  13.99,  1.08

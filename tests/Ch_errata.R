@@ -1,8 +1,10 @@
 ###################################################
 ### chunk number 1: setup
 ###################################################
+#line 182 "Ch_errata.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
     width = 63, # digits = 4,
@@ -41,6 +43,7 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 ###################################################
 ### chunk number 2: singlebook
 ###################################################
+#line 221 "Ch_errata.Rnw"
 book <- FALSE
 
 

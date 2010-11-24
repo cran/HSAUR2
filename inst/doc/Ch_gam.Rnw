@@ -1,11 +1,10 @@
 
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
 
 %%% keeps `sweave' from adding `\usepackage{Sweave}': DO NOT REMOVE
-%\usepackage{Sweave} 
+%\usepackage{Sweave}
 
 
 \RequirePackage[T1]{fontenc}
@@ -34,7 +33,7 @@
   \renewenvironment{Schunk}{\begin{figure}[ht] }{\caption{\nextcaption}
   \end{figure} }
   \DefineVerbatimEnvironment{Sinput}{Verbatim}{frame = topline}
-  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline, 
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline,
                                                 samepage = true,
                                                 fontfamily=courier,
                                                 fontshape=it,
@@ -46,7 +45,7 @@
 \DefineVerbatimEnvironment{Sinput}
 {Verbatim}
 {
-%%  numbers=left
+%% numbers=left
 }
 
 \newcommand{\numberSinput}{
@@ -83,31 +82,31 @@
 
 %%% other symbols
 \newcommand{\file}[1]{\hbox{\rm\texttt{#1}}}
-%%\newcommand{\stress}[1]{\index{#1}\textit{#1}} 
-\newcommand{\stress}[1]{\textit{#1}} 
+%%\newcommand{\stress}[1]{\index{#1}\textit{#1}}
+\newcommand{\stress}[1]{\textit{#1}}
 \newcommand{\booktitle}[1]{\textit{#1}} %%'
 
 %%% Math symbols
 \usepackage{amstext}
 \usepackage{amsmath}
-\newcommand{\E}{\mathsf{E}}   
-\newcommand{\Var}{\mathsf{Var}}   
-\newcommand{\Cov}{\mathsf{Cov}}   
-\newcommand{\Cor}{\mathsf{Cor}}   
-\newcommand{\x}{\mathbf{x}}   
-\newcommand{\y}{\mathbf{y}}   
+\newcommand{\E}{\mathsf{E}}
+\newcommand{\Var}{\mathsf{Var}}
+\newcommand{\Cov}{\mathsf{Cov}}
+\newcommand{\Cor}{\mathsf{Cor}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
 \renewcommand{\a}{\mathbf{a}}
-\newcommand{\W}{\mathbf{W}}   
-\newcommand{\C}{\mathbf{C}}   
-\renewcommand{\H}{\mathbf{H}}   
-\newcommand{\X}{\mathbf{X}}   
-\newcommand{\B}{\mathbf{B}}   
-\newcommand{\V}{\mathbf{V}}   
-\newcommand{\I}{\mathbf{I}}   
-\newcommand{\D}{\mathbf{D}}   
-\newcommand{\bS}{\mathbf{S}}   
-\newcommand{\N}{\mathcal{N}}   
-\renewcommand{\P}{\mathsf{P}}   
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\C}{\mathbf{C}}
+\renewcommand{\H}{\mathbf{H}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\N}{\mathcal{N}}
+\renewcommand{\P}{\mathsf{P}}
 \newcommand{\K}{\mathbf{K}}
 \newcommand{\m}{\mathbf{m}}
 \newcommand{\argmin}{\operatorname{argmin}\displaylimits}
@@ -169,32 +168,25 @@
 \hyphenation{drop-out}
 \hyphenation{mar-gi-nal}
 
-%%% new bidirectional quotes need 
+%%% new bidirectional quotes need
 \usepackage[utf8]{inputenc}
 \begin{document}
-
 %% Title page
-
 \title{A Handbook of Statistical Analyses Using \R{} --- 2nd Edition}
-
 \author{Brian S. Everitt and Torsten Hothorn}
-
 \maketitle
 %%\VignetteIndexEntry{Generalised Additive Models}
 \setcounter{chapter}{9}
-
-
-
-\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
-
+\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE}
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
-    width = 63, # digits = 4, 
+    width = 63, # digits = 4,
     show.signif.stars = FALSE,
-    SweaveHooks = list(leftpar = function() 
+    SweaveHooks = list(leftpar = function()
         par(mai = par("mai") * c(1, 1.05, 1, 1)),
         bigleftpar = function()
         par(mai = par("mai") * c(1, 1.7, 1, 1))))
@@ -205,8 +197,8 @@ rm(HSAURpkg)
 a <- Sys.setlocale("LC_ALL", "C")
  ### </FIXME>
 book <- TRUE
-refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM", 
-                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA", 
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
                 "MDS", "CA"), 1:18)
 ch <- function(x) {
     ch <- refs[which(refs[,1] == x),]
@@ -218,72 +210,57 @@ ch <- function(x) {
 }
 if (file.exists("deparse.R"))
     source("deparse.R")
-
 setHook(packageEvent("lattice", "attach"), function(...) {
-    lattice.options(default.theme = 
+    lattice.options(default.theme =
         function()
             standard.theme("pdf", color = FALSE))
     })
 @
-
 \pagestyle{headings}
 <<singlebook, echo = FALSE, results = hide>>=
 book <- FALSE
 @
-
 <<packages, echo = FALSE, results = hide>>=
 library("mgcv")
 library("mboost")
 library("rpart")
 @
-
-\chapter[Scatterplot Smoothers and Generalised Additive Models]{Scatterplot 
-  Smoothers and Generalised Additive Models: The Men’s Olympic 1500m, 
+\chapter[Scatterplot Smoothers and Generalised Additive Models]{Scatterplot
+  Smoothers and Generalised Additive Models: The Men’s Olympic 1500m,
   Air Pollution in the USA, and Risk Factors for Kyphosis
   \label{GAM}}
-
 \section{Introduction}
-
-
 \section{Scatterplot Smoothers and Generalised Additive Models}
-
-
 \section{Analysis Using \R{}}
-
 \subsection{Olympic 1500m Times}
-
-To begin we will construct a scatterplot of winning time 
-against year the games were held. The \R{} code and the resulting plot 
-are shown in Figure~\ref{GAM-men1500m-plot}.  There is very clear downward trend in 
-the times over the years, and, in addition there is a very clear 
-outlier namely the winning time for 1896. We shall remove this 
-time from the data set and now concentrate on the remaining times. 
-First we will fit a simple linear regression to the data and 
-plot the fit onto the scatterplot. The code and the resulting 
-plot are shown in Figure~\ref{GAM-men1500m-lm}. Clearly the linear regression 
-model captures in general terms the downward trend in the times. 
-Now we can add the fits given by the lowess smoother and by a 
-cubic spline smoother; the resulting graph and the extra \R{} code 
-needed are shown in Figure~\ref{GAM-men1500m-smooth}. 
-
-
-Both non-parametric fits suggest some distinct departure from 
-linearity, and clearly point to a quadratic model being more 
-sensible than a linear model here. And fitting a parametric model 
-that includes both a linear and a quadratic effect for year gives a 
+To begin we will construct a scatterplot of winning time
+against year the games were held. The \R{} code and the resulting plot
+are shown in Figure~\ref{GAM-men1500m-plot}. There is very clear downward trend in
+the times over the years, and, in addition there is a very clear
+outlier namely the winning time for 1896. We shall remove this
+time from the data set and now concentrate on the remaining times.
+First we will fit a simple linear regression to the data and
+plot the fit onto the scatterplot. The code and the resulting
+plot are shown in Figure~\ref{GAM-men1500m-lm}. Clearly the linear regression
+model captures in general terms the downward trend in the times.
+Now we can add the fits given by the lowess smoother and by a
+cubic spline smoother; the resulting graph and the extra \R{} code
+needed are shown in Figure~\ref{GAM-men1500m-smooth}.
+Both non-parametric fits suggest some distinct departure from
+linearity, and clearly point to a quadratic model being more
+sensible than a linear model here. And fitting a parametric model
+that includes both a linear and a quadratic effect for year gives a
 prediction curve very similar to the non-parametric curves; see Figure~\ref{GAM-men1500m-quad}.
-
-Here use of the non-parametric smoothers has effectively diagnosed 
-our linear model and pointed the way to using a more suitable 
-parametric model; this is often how such non-parametric models can be used most 
-effectively. For these data, of course, it is clear that the simple linear 
-model cannot be suitable if the investigator is interested in predicting 
-future times since even the most basic knowledge of human physiology 
-will tell us that times cannot continue to go down. There must be some 
-lower limit to the time man can run 1500m. But in other situations 
-use of the non-parametric smoothers may point to a parametric model 
-that could not have been identified \emph{a priori}. 
-
+Here use of the non-parametric smoothers has effectively diagnosed
+our linear model and pointed the way to using a more suitable
+parametric model; this is often how such non-parametric models can be used most
+effectively. For these data, of course, it is clear that the simple linear
+model cannot be suitable if the investigator is interested in predicting
+future times since even the most basic knowledge of human physiology
+will tell us that times cannot continue to go down. There must be some
+lower limit to the time man can run 1500m. But in other situations
+use of the non-parametric smoothers may point to a parametric model
+that could not have been identified \emph{a priori}.
 \begin{figure}
 \begin{center}
 <<GAM-men1500m-plot, echo = TRUE, fig = TRUE, height = 5>>=
@@ -292,7 +269,6 @@ plot(time ~ year, data = men1500m)
 \caption{Scatterplot of year and winning time. \label{GAM-men1500m-plot}}
 \end{center}
 \end{figure}
-
 \begin{figure}
 \begin{center}
 <<GAM-men1500m-lm, echo = TRUE, fig = TRUE, height = 5>>=
@@ -305,7 +281,6 @@ abline(men1500m_lm)
          a simple linear model. \label{GAM-men1500m-lm}}
 \end{center}
 \end{figure}
-
 \begin{figure}
 \begin{center}
 <<GAM-men1500m-smooth, echo = TRUE, fig = TRUE, height = 5>>=
@@ -321,64 +296,56 @@ lines(x, predict(men1500m_cubic), lty = 3)
          non-parametric model. \label{GAM-men1500m-smooth}}
 \end{center}
 \end{figure}
-
-
 \begin{figure}
 \begin{center}
 <<GAM-men1500m-quad, echo = TRUE, fig = TRUE, height = 5>>=
-men1500m_lm2 <- lm(time ~ year + I(year^2), 
+men1500m_lm2 <- lm(time ~ year + I(year^2),
                    data = men1500m1900)
 plot(time ~ year, data = men1500m1900)
 lines(men1500m1900$year, predict(men1500m_lm2))
 @
-\caption{Scatterplot of year and winning time with fitted values from a 
+\caption{Scatterplot of year and winning time with fitted values from a
          quadratic model. \label{GAM-men1500m-quad}}
 \end{center}
 \end{figure}
-
-
-It is of some interest to look at the predictions of winning 
-times in future Olympics from both the linear and quadratic models. 
-For example, for 2008 and 2012 the predicted times and their $95\%$ 
+It is of some interest to look at the predictions of winning
+times in future Olympics from both the linear and quadratic models.
+For example, for 2008 and 2012 the predicted times and their $95\%$
 confidence intervals can be found using the following code
 <<GAM-men1500m-pred, echo = TRUE>>=
-predict(men1500m_lm, 
-        newdata = data.frame(year = c(2008, 2012)), 
+predict(men1500m_lm,
+        newdata = data.frame(year = c(2008, 2012)),
         interval = "confidence")
-predict(men1500m_lm2, 
-        newdata = data.frame(year = c(2008, 2012)), 
+predict(men1500m_lm2,
+        newdata = data.frame(year = c(2008, 2012)),
         interval = "confidence")
 @
-For predictions far into the future both 
-the quadratic and the linear model fail; we leave readers to get 
+For predictions far into the future both
+the quadratic and the linear model fail; we leave readers to get
 some more predictions to see what happens. We can compare
 the first prediction with the time actually recorded by the winner
 of the men's 1500m in Beijing 2008, 
 Rashid Ramzi from Brunei, who won the event in $212.94$ seconds. The confidence
 interval obtained from the simple linear model does not include this value
-but the confidence interval for the prediction 
+but the confidence interval for the prediction
 derived from the quadratic model does.
-
-
 \subsection{Air Pollution in US Cities}
-
 Unfortunately, we cannot fit an additive model for
 describing the $\text{SO}_2$ concentration based on all six
-covariates because this leads to more parameters than cities, 
+covariates because this leads to more parameters than cities,
 i.e., more parameters than observations when using the
 default parameterisation of \Rpackage{mgcv}. Thus, before we can apply
 the \Rcmd{gam} function from package \Rpackage{mgcv}, we have
 to decide which covariates should enter the model and which
 subset of these covariates should be allowed to deviate from
 a linear regression relationship.
-
 As briefly discussed in Section~\ref{GAM:VS}, we can
 fit an additive model using the iterative boosting algorithm
 as described by \cite{HSAUR:BuehlmannHothorn2007}. The complexity
 of the model is determined by an AIC criterion, which can also be used
 to determine an appropriate number of boosting iterations to choose.
 The methodology is available
-from package \Rpackage{mboost} \citep{PKG:mboost}. We start 
+from package \Rpackage{mboost} \citep{PKG:mboost}. We start
 with a small number of boosting iterations ($100$ by default) and
 compute the AIC of the corresponding $100$ models:
 <<GAM-USairpollution-boost, echo = TRUE>>=
@@ -392,13 +359,12 @@ after $\Sexpr{mstop(USair_aic)}$ iterations. The partial contributions of each
 covariate to the predicted $\text{SO}_2$ concentration
 are given in Figure~\ref{GAM-USairpollution-boostplot}.
 The plot indicates that all six covariates enter the model and
-the selection of a subset of covariates for modelling 
+the selection of a subset of covariates for modelling
 isn't appropriate in this case. However, the number of manufacturing
 enterprises seems to add linearly to the $\text{SO}_2$ concentration, which
 simplifies the model. Moreover, the average annual precipitation
 contribution seems to deviate from zero only for some extreme observations
 and one might refrain from using the covariate at all.
-
 \begin{figure}
 \begin{center}
 <<GAM-USairpollution-boostplot, echo = TRUE, fig = TRUE, height = 4>>=
@@ -410,12 +376,11 @@ plot(USair_gam, ask = FALSE)
          to the predicted $\text{SO}_2$ concentration. \label{GAM-USairpollution-boostplot}}
 \end{center}
 \end{figure}
-
 As always, an inspection of the model fit via a residual plot
 is worth the effort. Here, we plot the fitted values against the residuals
 and label the points with the name of the corresponding city.
 Figure~\ref{GAM-USairpollution-residplot} shows at least two
-extreme observations. Chicago has a very large observed and fitted 
+extreme observations. Chicago has a very large observed and fitted
 $\text{SO}_2$ concentration, which is due to the huge number of inhabitants and
 manufacturing plants (see Figure~\ref{GAM-USairpollution-boostplot} also).
 One smaller city, Providence, is associated with a rather large
@@ -423,30 +388,26 @@ positive residual indicating that the actual $\text{SO}_2$ concentration
 is underestimated by the model. In fact, this small town has
 a rather high $\text{SO}_2$ concentration which is hardly explained
 by our model. Overall, the model doesn't fit the data very well,
-so we should avoid overinterpreting the model structure 
+so we should avoid overinterpreting the model structure
 too much. In addition, since each of the six covariates
 contributes to the model, we aren't able to select a smaller subset
 of the covariates for modelling and thus fitting a model using
 \Rcmd{gam} is still complicated (and will not add much knowledge anyway).
-
 \begin{figure}
 \begin{center}
 <<GAM-USairpollution-residplot, echo = TRUE, fig = TRUE>>=
 SO2hat <- predict(USair_gam)
 SO2 <- USairpollution$SO2
 plot(SO2hat, SO2 - SO2hat, type = "n", xlim = c(0, 110))
-text(SO2hat, SO2 - SO2hat, labels = rownames(USairpollution), 
+text(SO2hat, SO2 - SO2hat, labels = rownames(USairpollution),
      adj = 0)
 abline(h = 0, lty = 2, col = "grey")
 @
-\caption{Residual plot of $\text{SO}_2$ concentration. 
+\caption{Residual plot of $\text{SO}_2$ concentration.
          \label{GAM-USairpollution-residplot}}
 \end{center}
 \end{figure}
-
-
 \subsection{Risk Factors for Kyphosis}
-
 \index{Spinogram}
 Before modelling the relationship between kyphosis and
 the three exploratory variables age, starting vertebral level of
@@ -458,25 +419,23 @@ empirical relative frequencies are plotted against the
 conditional frequency of kyphosis in the corresponding
 group. Figure~\ref{GAM-kyphosis-plot} shows that kyphosis
 is absent in very young or very old children, children
-with a small starting vertebral level and high number of vertebrae 
+with a small starting vertebral level and high number of vertebrae
 involved.
-
 \begin{figure}
 \begin{center}
 <<GAM-kyphosis-plot, echo = TRUE, fig = TRUE, height = 4, width = 7>>=
 layout(matrix(1:3, nrow = 1))
-spineplot(Kyphosis ~ Age, data = kyphosis, 
+spineplot(Kyphosis ~ Age, data = kyphosis,
           ylevels = c("present", "absent"))
-spineplot(Kyphosis ~ Number, data = kyphosis, 
+spineplot(Kyphosis ~ Number, data = kyphosis,
           ylevels = c("present", "absent"))
-spineplot(Kyphosis ~ Start, data = kyphosis, 
+spineplot(Kyphosis ~ Start, data = kyphosis,
          ylevels = c("present", "absent"))
 @
 \caption{Spinograms of the three exploratory variables and response variable
          \Robject{kyphosis}. \label{GAM-kyphosis-plot}}
 \end{center}
 \end{figure}
-
 The logistic additive model needed to describe the conditional
 probability of kyphosis given the exploratory variables
 can be fitted using function \Rcmd{gam}. Here, the dimension
@@ -485,22 +444,23 @@ of the basis ($k$) has to be modified for \Robject{Number} and
 generalised linear models, the \Robject{family} argument determines
 the type of model to be fitted, a logistic model in our case:
 <<GAM-kyphosis-gam, echo = TRUE>>=
-kyphosis_gam <- gam(Kyphosis ~ s(Age, bs = "cr") + 
+kyphosis_gam <- gam(Kyphosis ~ s(Age, bs = "cr") +
     s(Number, bs = "cr", k = 3) + s(Start, bs = "cr", k = 3),
     family = binomial, data = kyphosis)
 kyphosis_gam
 @
 The partial contributions of each covariate to the conditional
-probability of kyphosis with confidence bands are shown in 
+probability of kyphosis with confidence bands are shown in
 Figure~\ref{GAM-kyphosis-gamplot}. In essence, the same conclusions
 as drawn from Figure~\ref{GAM-kyphosis-plot} can be stated here.
-The risk of kyphosis being present increases with higher
+The risk of kyphosis being present decreases with higher
 starting vertebral level and lower number of vertebrae involved.
-
+Children about $100$ months old are under higher risk compared
+to younger or older children.
 \begin{figure}
 \begin{center}
 <<GAM-kyphosis-gamplot, echo = TRUE, fig = TRUE, height = 4, width = 7>>=
-trans <- function(x) 
+trans <- function(x)
     binomial()$linkinv(x)
 layout(matrix(1:3, nrow = 1))
 plot(kyphosis_gam, select = 1, shade = TRUE, trans = trans)
@@ -511,9 +471,7 @@ plot(kyphosis_gam, select = 3, shade = TRUE, trans = trans)
          with confidence bands. \label{GAM-kyphosis-gamplot}}
 \end{center}
 \end{figure}
-
 \section*{Summary}
-
 Additive models offer flexible modelling tools for regression
 problems. They stand between generalised linear models, where
 the regression relationship is assumed to be linear, and
@@ -524,28 +482,21 @@ can be easily interpreted. Variable
 selection is a technically difficult problem in this class
 of models; boosting methods are one possibility to deal with this
 problem.
-
 \section*{Exercises}
-
 \begin{description}
-
-\exercise 
-Consider the body fat data introduced in \Sexpr{ch("RP")}, 
+\exercise
+Consider the body fat data introduced in \Sexpr{ch("RP")},
 Table~\ref{RP-bodyfat-tab}. First fit a generalised additive
-model assuming normal errors using function \Rcmd{gam}. Are 
+model assuming normal errors using function \Rcmd{gam}. Are
 all potential covariates informative? Check the results
 against a generalised additive model that underwent
 AIC-based variable selection (fitted using function \Rcmd{gamboost}).
-
 \exercise
 Try to fit a logistic additive model to the glaucoma data
 discussed in \Sexpr{ch("RP")}. Which covariates should enter the
-model and how is their influence on the probability of 
+model and how is their influence on the probability of
 suffering from glaucoma?
-
 \end{description}
-
-
 \bibliographystyle{LaTeXBibTeX/refstyle}
 \bibliography{LaTeXBibTeX/HSAUR}
 \end{document}

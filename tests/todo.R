@@ -1,8 +1,10 @@
 ###################################################
 ### chunk number 1: setup
 ###################################################
+#line 181 "todo.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
     width = 63, # digits = 4,

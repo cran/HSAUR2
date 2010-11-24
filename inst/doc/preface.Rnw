@@ -1,11 +1,10 @@
 
-
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
 
 %%% keeps `sweave' from adding `\usepackage{Sweave}': DO NOT REMOVE
-%\usepackage{Sweave} 
+%\usepackage{Sweave}
 
 
 \RequirePackage[T1]{fontenc}
@@ -34,7 +33,7 @@
   \renewenvironment{Schunk}{\begin{figure}[ht] }{\caption{\nextcaption}
   \end{figure} }
   \DefineVerbatimEnvironment{Sinput}{Verbatim}{frame = topline}
-  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline, 
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline,
                                                 samepage = true,
                                                 fontfamily=courier,
                                                 fontshape=it,
@@ -46,7 +45,7 @@
 \DefineVerbatimEnvironment{Sinput}
 {Verbatim}
 {
-%%  numbers=left
+%% numbers=left
 }
 
 \newcommand{\numberSinput}{
@@ -83,31 +82,31 @@
 
 %%% other symbols
 \newcommand{\file}[1]{\hbox{\rm\texttt{#1}}}
-%%\newcommand{\stress}[1]{\index{#1}\textit{#1}} 
-\newcommand{\stress}[1]{\textit{#1}} 
+%%\newcommand{\stress}[1]{\index{#1}\textit{#1}}
+\newcommand{\stress}[1]{\textit{#1}}
 \newcommand{\booktitle}[1]{\textit{#1}} %%'
 
 %%% Math symbols
 \usepackage{amstext}
 \usepackage{amsmath}
-\newcommand{\E}{\mathsf{E}}   
-\newcommand{\Var}{\mathsf{Var}}   
-\newcommand{\Cov}{\mathsf{Cov}}   
-\newcommand{\Cor}{\mathsf{Cor}}   
-\newcommand{\x}{\mathbf{x}}   
-\newcommand{\y}{\mathbf{y}}   
+\newcommand{\E}{\mathsf{E}}
+\newcommand{\Var}{\mathsf{Var}}
+\newcommand{\Cov}{\mathsf{Cov}}
+\newcommand{\Cor}{\mathsf{Cor}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
 \renewcommand{\a}{\mathbf{a}}
-\newcommand{\W}{\mathbf{W}}   
-\newcommand{\C}{\mathbf{C}}   
-\renewcommand{\H}{\mathbf{H}}   
-\newcommand{\X}{\mathbf{X}}   
-\newcommand{\B}{\mathbf{B}}   
-\newcommand{\V}{\mathbf{V}}   
-\newcommand{\I}{\mathbf{I}}   
-\newcommand{\D}{\mathbf{D}}   
-\newcommand{\bS}{\mathbf{S}}   
-\newcommand{\N}{\mathcal{N}}   
-\renewcommand{\P}{\mathsf{P}}   
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\C}{\mathbf{C}}
+\renewcommand{\H}{\mathbf{H}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\N}{\mathcal{N}}
+\renewcommand{\P}{\mathsf{P}}
 \newcommand{\K}{\mathbf{K}}
 \newcommand{\m}{\mathbf{m}}
 \newcommand{\argmin}{\operatorname{argmin}\displaylimits}
@@ -169,30 +168,24 @@
 \hyphenation{drop-out}
 \hyphenation{mar-gi-nal}
 
-%%% new bidirectional quotes need 
+%%% new bidirectional quotes need
 \usepackage[utf8]{inputenc}
 \begin{document}
-
 %% Title page
-
 \title{A Handbook of Statistical Analyses Using \R{} --- 2nd Edition}
-
 \author{Brian S. Everitt and Torsten Hothorn}
-
 \maketitle
 %%\VignetteIndexEntry{Chapter Preface}
-
-
-\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
-
+\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE}
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
+if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
-    width = 63, # digits = 4, 
+    width = 63, # digits = 4,
     show.signif.stars = FALSE,
-    SweaveHooks = list(leftpar = function() 
+    SweaveHooks = list(leftpar = function()
         par(mai = par("mai") * c(1, 1.05, 1, 1)),
         bigleftpar = function()
         par(mai = par("mai") * c(1, 1.7, 1, 1))))
@@ -203,8 +196,8 @@ rm(HSAURpkg)
 a <- Sys.setlocale("LC_ALL", "C")
  ### </FIXME>
 book <- TRUE
-refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM", 
-                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA", 
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
                 "MDS", "CA"), 1:18)
 ch <- function(x) {
     ch <- refs[which(refs[,1] == x),]
@@ -216,77 +209,69 @@ ch <- function(x) {
 }
 if (file.exists("deparse.R"))
     source("deparse.R")
-
 setHook(packageEvent("lattice", "attach"), function(...) {
-    lattice.options(default.theme = 
+    lattice.options(default.theme =
         function()
             standard.theme("pdf", color = FALSE))
     })
 @
-
 \pagestyle{headings}
-
-
 \pagestyle{empty}
-
 \chapter*{Preface to First Edition}
-
 This book is intended as a guide to data analysis with the \R{} system for
-statistical computing. \R{} is an environment incorporating an implementation 
-of the \S{} programming language, which is powerful and flexible and has excellent 
-graphical facilities \citep{HSAUR:R}. In the Handbook we aim to give   
+statistical computing. \R{} is an environment incorporating an implementation
+of the \S{} programming language, which is powerful and flexible and has excellent
+graphical facilities \citep{HSAUR:R}. In the Handbook we aim to give
 relatively brief and straightforward descriptions of how to conduct
 a range of statistical analyses using \R{}. Each chapter deals with
 the analysis appropriate for one or several data sets. A brief
 account of the relevant statistical background is included in
-each chapter along with appropriate references, but our prime    
-focus is on how to use \R{} and how to interpret results. We hope 
+each chapter along with appropriate references, but our prime
+focus is on how to use \R{} and how to interpret results. We hope
 the book will provide students and researchers in many disciplines
 with a self-contained means of using \R{} to analyse their data.
-
 \R{} is an open-source project developed by dozens of volunteers for more
-than ten years now and is available from the Internet under the General 
+than ten years now and is available from the Internet under the General
 Public Licence. \R{} has become the \stress{lingua franca} of statistical
-computing. Increasingly, implementations of new statistical methodology 
-first appear as \R{} add-on packages. In some communities, such as in bioinformatics, 
-\R{} already is the primary workhorse for statistical analyses. 
+computing. Increasingly, implementations of new statistical methodology
+first appear as \R{} add-on packages. In some communities, such as in bioinformatics,
+\R{} already is the primary workhorse for statistical analyses.
 Because the sources
 of the \R{} system are open and available to everyone without restrictions
 and because of its powerful language and graphical capabilities,
 \R{} has started to become the main computing engine for reproducible
 statistical research
 \citep{HSAUR:Leisch2002b,HSAUR:Leisch2002a,HSAUR:Leisch2003,HSAUR:LeischRossini2003,
-HSAUR:Gentleman2005}. For a reproducible piece of research, the original 
+HSAUR:Gentleman2005}. For a reproducible piece of research, the original
 observations, all data preprocessing steps, the statistical analysis as well
-as the scientific report form a unity and all need to be available for 
+as the scientific report form a unity and all need to be available for
 inspection, reproduction and modification by the readers.
-
 Reproducibility is a natural requirement for textbooks such as the
 \booktitle{Handbook of Statistical Analyses Using \R{}}
-and therefore this book is fully reproducible using an \R{} version 
-greater or equal to 2.2.1. 
-All analyses and results, including figures and tables, can be reproduced 
+and therefore this book is fully reproducible using an \R{} version
+greater or equal to 2.2.1.
+All analyses and results, including figures and tables, can be reproduced
 by the reader
 without having to retype a single line of \R{} code.
-The data sets presented in this book are collected in a dedicated add-on package called 
+The data sets presented in this book are collected in a dedicated add-on package called
 {\fontseries{b}\selectfont HSAUR} accompanying this book. The package can be installed
-from the Comprehensive \R{} Archive Network (CRAN) via 
+from the Comprehensive \R{} Archive Network (CRAN) via
 <<pre-HSAUR-install, eval = FALSE>>=
 install.packages("HSAUR")
 @
-and its functionality is attached by 
+and its functionality is attached by
 <<pre-HSAUR, echo = TRUE, eval = FALSE>>=
 library("HSAUR")
 @
 The relevant parts of each chapter are available as a \stress{vignette},
-basically a document including both the \R{} sources and the rendered output 
-of every analysis contained in the book. For example, the first chapter can 
+basically a document including both the \R{} sources and the rendered output
+of every analysis contained in the book. For example, the first chapter can
 be inspected by
-<<pre-vignette, echo = TRUE, eval = FALSE>>= 
+<<pre-vignette, echo = TRUE, eval = FALSE>>=
 vignette("Ch_introduction_to_R", package = "HSAUR")
 @
 and the \R{} sources are available for reproducing our analyses by
-<<pre-vignette-source, echo = TRUE, eval = FALSE>>= 
+<<pre-vignette-source, echo = TRUE, eval = FALSE>>=
 edit(vignette("Ch_introduction_to_R", package = "HSAUR"))
 @
 An overview on all chapter vignettes included in the package can be obtained
@@ -295,37 +280,32 @@ from
 vignette(package = "HSAUR")
 @
 We welcome comments on the \R{} package {\fontseries{b}\selectfont HSAUR}, and
-where we think these add to or improve our analysis of a data set 
-we will incorporate them into the package and, hopefully at a later stage, 
+where we think these add to or improve our analysis of a data set
+we will incorporate them into the package and, hopefully at a later stage,
 into a revised or second edition of the book.
-
-Plots and tables of results obtained from \R{} are all 
+Plots and tables of results obtained from \R{} are all
 labelled as `Figures' in the %%'
 text. For the graphical material, the corresponding figure also contains
 the `essence' of the \R{} code used to produce the figure, although this %%'
-code may differ a little from that given in the  {\fontseries{b}\selectfont HSAUR} package,
+code may differ a little from that given in the {\fontseries{b}\selectfont HSAUR} package,
 since the latter may include some features, for example thicker line widths,
-designed to make a basic plot more suitable for publication. 
-
+designed to make a basic plot more suitable for publication.
 We would like to thank the \R{} Development Core Team for the \R{} system,
 and authors of contributed add-on packages, particularly Uwe Ligges and Vince Carey
 for helpful advice on \Rpackage{scatterplot3d} and \Rpackage{gee}. Kurt
 Hornik, Ludwig A. Hothorn, Fritz Leisch and Rafael Wei{\ss}bach provided
-good advice with some statistical and technical problems. We are 
+good advice with some statistical and technical problems. We are
 also very grateful to Achim Zeileis for reading the entire manuscript,
-pointing out inconsistencies or even bugs and for 
+pointing out inconsistencies or even bugs and for
 making many suggestions which have led to improvements. Lastly we
 would like to thank the CRC Press staff, in particular Rob Calver, for
-their support during the preparation of the book. 
+their support during the preparation of the book.
 Any errors in the book are, of course, the joint
 responsibility of the two authors.
-
 \vspace*{1cm}
-
 \begin{flushright}
 \textbf{Brian S. Everitt and Torsten Hothorn} \\ London and Erlangen, December 2005
 \end{flushright}
-
 \bibliographystyle{LaTeXBibTeX/refstyle}
-\bibliography{LaTeXBibTeX/HSAUR}   
+\bibliography{LaTeXBibTeX/HSAUR}
 \end{document}
