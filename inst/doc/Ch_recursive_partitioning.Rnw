@@ -228,7 +228,8 @@ library("lattice")
 library("randomForest")
 library("party")
 if (!require("partykit"))
-    install.packages("partykit", repos = "http://R-forge.R-project.org")
+    install.packages("partykit", repos = "http://R-forge.R-project.org",
+                     INSTALL_opts = "--no-test-load")
 ltheme <- canonical.theme(color = FALSE) ## in-built B&W theme
 ltheme$strip.background$col <- "transparent" ## change strip bg
 lattice.options(default.theme = ltheme)
