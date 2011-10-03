@@ -1,7 +1,9 @@
+### R code from vignette source 'Ch_errata.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: setup
+### code chunk number 1: setup
 ###################################################
-#line 182 "Ch_errata.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
@@ -41,9 +43,8 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 
 
 ###################################################
-### chunk number 2: singlebook
+### code chunk number 2: singlebook
 ###################################################
-#line 221 "Ch_errata.Rnw"
 book <- FALSE
 
 

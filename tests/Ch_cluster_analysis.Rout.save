@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: thissetup
+R> ### code chunk number 3: thissetup
 R> ###################################################
 R> library("mclust")
 by using mclust, you accept the license agreement in the LICENSE file
@@ -77,7 +77,7 @@ R> options(SweaveHooks = list(rmai = function() { par(mai = mai * c(1,1,1,2))}))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: CA-pottery-dist
+R> ### code chunk number 4: CA-pottery-dist
 R> ###################################################
 R> pottery_dist <- dist(pottery[, colnames(pottery) != "kiln"])
 R> library("lattice")
@@ -86,14 +86,14 @@ R> levelplot(as.matrix(pottery_dist), xlab = "Pot Number",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: CA-pottery-distplot
+R> ### code chunk number 5: CA-pottery-distplot
 R> ###################################################
 R> trellis.par.set(standard.theme(color = FALSE))
 R> plot(levelplot(as.matrix(pottery_dist), xlab = "Pot Number", ylab = "Pot Number"))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: CA-pottery-hclust
+R> ### code chunk number 6: CA-pottery-hclust
 R> ###################################################
 R> pottery_single <- hclust(pottery_dist, method = "single")
 R> pottery_complete <- hclust(pottery_dist, method = "complete")
@@ -108,7 +108,7 @@ R> plot(pottery_average, main = "Average Linkage",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: pottery-cluster
+R> ### code chunk number 7: pottery-cluster
 R> ###################################################
 R> pottery_cluster <- cutree(pottery_average, h = 4)
 R> xtabs(~ pottery_cluster + kiln, data = pottery)
@@ -120,7 +120,7 @@ pottery_cluster  1  2  3  4  5
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: CA-planets-scatter
+R> ### code chunk number 8: CA-planets-scatter
 R> ###################################################
 R> data("planets", package = "HSAUR2")
 R> library("scatterplot3d")
@@ -131,7 +131,7 @@ R> scatterplot3d(log(planets$mass), log(planets$period),
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: CA-planet-ss
+R> ### code chunk number 9: CA-planet-ss
 R> ###################################################
 R> rge <- apply(planets, 2, max) - apply(planets, 2, min)
 R> planet.dat <- sweep(planets, 2, rge, FUN = "/")
@@ -146,7 +146,7 @@ R> plot(1:10, wss, type = "b", xlab = "Number of groups",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: CA-planets-kmeans3
+R> ### code chunk number 10: CA-planets-kmeans3
 R> ###################################################
 R> planet_kmeans3 <- kmeans(planet.dat, centers = 3)
 R> table(planet_kmeans3$cluster)
@@ -156,7 +156,7 @@ R> table(planet_kmeans3$cluster)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: CA-planets-ccent
+R> ### code chunk number 11: CA-planets-ccent
 R> ###################################################
 R> ccent <- function(cl) {
 +      f <- function(i) colMeans(planets[cl == i,])
@@ -167,7 +167,7 @@ R> ccent <- function(cl) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: CA-planets--kmeans3-ccent
+R> ### code chunk number 12: CA-planets--kmeans3-ccent
 R> ###################################################
 R> ccent(planet_kmeans3$cluster)
                 1           2           3
@@ -177,7 +177,7 @@ eccen     0.36650   0.1219491   0.4953529
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: CA-planets-kmeans5
+R> ### code chunk number 13: CA-planets-kmeans5
 R> ###################################################
 R> planet_kmeans5 <- kmeans(planet.dat, centers = 5)
 R> table(planet_kmeans5$cluster)
@@ -196,21 +196,21 @@ eccen    0.049310
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: CA-planets-mclust
+R> ### code chunk number 14: CA-planets-mclust
 R> ###################################################
 R> library("mclust")
 R> planet_mclust <- Mclust(planet.dat)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: CA-planets-mclust-plot
+R> ### code chunk number 15: CA-planets-mclust-plot
 R> ###################################################
 R> plot(planet_mclust, planet.dat, what = "BIC", col = "black",
 +       ylab = "-BIC", ylim = c(0, 350))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: CA-planets-mclust-print
+R> ### code chunk number 16: CA-planets-mclust-print
 R> ###################################################
 R> print(planet_mclust)
 
@@ -218,7 +218,7 @@ R> print(planet_mclust)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: CA-planets-mclust-scatter
+R> ### code chunk number 17: CA-planets-mclust-scatter
 R> ###################################################
 R> clPairs(planet.dat,
 +      classification = planet_mclust$classification,
@@ -226,7 +226,7 @@ R> clPairs(planet.dat,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: CA-planets-mclust-scatterclust
+R> ### code chunk number 18: CA-planets-mclust-scatterclust
 R> ###################################################
 R> scatterplot3d(log(planets$mass), log(planets$period),
 +      log(planets$eccen), type = "h", angle = 55,
@@ -235,7 +235,7 @@ R> scatterplot3d(log(planets$mass), log(planets$period),
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: CA-planets-mclust-mu
+R> ### code chunk number 19: CA-planets-mclust-mu
 R> ###################################################
 R> table(planet_mclust$classification)
 

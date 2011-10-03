@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: ANOVA-weightgain-mean-var
+R> ### code chunk number 3: ANOVA-weightgain-mean-var
 R> ###################################################
 R> data("weightgain", package = "HSAUR2")
 R> tapply(weightgain$weightgain,
@@ -82,19 +82,19 @@ Cereal 15.02184 15.70881
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: ANOVA-weightgain-plot
+R> ### code chunk number 4: ANOVA-weightgain-plot
 R> ###################################################
 R> plot.design(weightgain)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: ANOVA-weightgain-aov
+R> ### code chunk number 5: ANOVA-weightgain-aov
 R> ###################################################
 R> wg_aov <- aov(weightgain ~ source * type, data = weightgain)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: ANOVA-weightgain-aov-summary
+R> ### code chunk number 6: ANOVA-weightgain-aov-summary
 R> ###################################################
 R> summary(wg_aov)
             Df Sum Sq Mean Sq F value  Pr(>F)
@@ -105,14 +105,14 @@ Residuals   36 8049.4   223.6
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: ANOVA-weightgain-iplot eval=FALSE
+R> ### code chunk number 7: ANOVA-weightgain-iplot eval=FALSE
 R> ###################################################
 R> ## interaction.plot(weightgain$type, weightgain$source,
 R> ##                  weightgain$weightgain)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: ANOVA-weightgain-iplot-nice
+R> ### code chunk number 8: ANOVA-weightgain-iplot-nice
 R> ###################################################
 R> interaction.plot(weightgain$type, weightgain$source, weightgain$weightgain,
 +  legend = FALSE)
@@ -121,7 +121,7 @@ R> legend(1.5, 95, legend = levels(weightgain$source), title = "weightgain$sourc
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: ANOVA-weightgain-coef
+R> ### code chunk number 9: ANOVA-weightgain-coef
 R> ###################################################
 R> coef(wg_aov)
          (Intercept)         sourceCereal              typeLow 
@@ -131,7 +131,7 @@ sourceCereal:typeLow
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: ANOVA-weightgain-contrasts
+R> ### code chunk number 10: ANOVA-weightgain-contrasts
 R> ###################################################
 R> options("contrasts")
 $contrasts
@@ -141,7 +141,7 @@ $contrasts
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: ANOVA-weightgain-coef-sum
+R> ### code chunk number 11: ANOVA-weightgain-coef-sum
 R> ###################################################
 R> coef(aov(weightgain ~ source + type + source:type,
 +      data = weightgain, contrasts = list(source = contr.sum)))
@@ -152,25 +152,25 @@ source1:typeLow
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: ANOVA-foster
+R> ### code chunk number 12: ANOVA-foster
 R> ###################################################
 R> data("foster", package = "HSAUR2")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: ANOVA-foster-plot
+R> ### code chunk number 13: ANOVA-foster-plot
 R> ###################################################
 R> plot.design(foster)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: ANOVA-foster-aov-one eval=FALSE
+R> ### code chunk number 14: ANOVA-foster-aov-one eval=FALSE
 R> ###################################################
 R> ## summary(aov(weight ~ litgen * motgen, data = foster))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: ANOVA-foster-aov-one
+R> ### code chunk number 15: ANOVA-foster-aov-one
 R> ###################################################
 R> summary(aov(weight ~ litgen * motgen, data = foster))
               Df  Sum Sq Mean Sq F value   Pr(>F)
@@ -181,13 +181,13 @@ Residuals     45 2440.82   54.24
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: ANOVA-foster-aov-two eval=FALSE
+R> ### code chunk number 16: ANOVA-foster-aov-two eval=FALSE
 R> ###################################################
 R> ## summary(aov(weight ~ motgen * litgen, data = foster))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: ANOVA-foster-aov-two
+R> ### code chunk number 17: ANOVA-foster-aov-two
 R> ###################################################
 R> summary(aov(weight ~ motgen * litgen, data = foster))
               Df  Sum Sq Mean Sq F value   Pr(>F)
@@ -198,19 +198,19 @@ Residuals     45 2440.82   54.24
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: ANOVA-weightgain-again eval=FALSE
+R> ### code chunk number 18: ANOVA-weightgain-again eval=FALSE
 R> ###################################################
 R> ## summary(aov(weightgain ~ type * source, data = weightgain))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: ANOVA-foster-aov
+R> ### code chunk number 19: ANOVA-foster-aov
 R> ###################################################
 R> foster_aov <- aov(weight ~ litgen * motgen, data = foster)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: ANOVA-foster-tukeyHSD
+R> ### code chunk number 20: ANOVA-foster-tukeyHSD
 R> ###################################################
 R> foster_hsd <- TukeyHSD(foster_aov, "motgen")
 R> foster_hsd
@@ -231,13 +231,13 @@ J-I -4.670593 -11.731711  2.3905240 0.3035490
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 21: ANOVA-foster-tukeyHSDplot
+R> ### code chunk number 21: ANOVA-foster-tukeyHSDplot
 R> ###################################################
 R> plot(foster_hsd)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 22: ANOVA-water-manova
+R> ### code chunk number 22: ANOVA-water-manova
 R> ###################################################
 R> data("water", package = "HSAUR2")
 R> summary(manova(cbind(hardness, mortality) ~ location,
@@ -248,7 +248,7 @@ Residuals 59
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 23: ANOVA-water-means
+R> ### code chunk number 23: ANOVA-water-means
 R> ###################################################
 R> tapply(water$hardness, water$location, mean)
    North    South 
@@ -259,7 +259,7 @@ R> tapply(water$mortality, water$location, mean)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 24: ANOVA-skulls-data
+R> ### code chunk number 24: ANOVA-skulls-data
 R> ###################################################
 R> data("skulls", package = "HSAUR2")
 R> means <- aggregate(skulls[,c("mb", "bh", "bl", "nh")],
@@ -274,7 +274,7 @@ R> means
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 25: ANOVA-skulls-fig
+R> ### code chunk number 25: ANOVA-skulls-fig
 R> ###################################################
 R> pairs(means[,-1],
 +      panel = function(x, y) {
@@ -283,7 +283,7 @@ R> pairs(means[,-1],
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 26: ANOVA-skulls-manova
+R> ### code chunk number 26: ANOVA-skulls-manova
 R> ###################################################
 R> skulls_manova <- manova(cbind(mb, bh, bl, nh) ~ epoch,
 +                          data = skulls)
@@ -309,7 +309,7 @@ Residuals 145
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 27: ANOVA-skulls-manova2
+R> ### code chunk number 27: ANOVA-skulls-manova2
 R> ###################################################
 R> summary.aov(skulls_manova)
  Response mb :
@@ -335,7 +335,7 @@ Residuals   145 1472.13   10.15
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 28: ANOVA-skulls-manova3
+R> ### code chunk number 28: ANOVA-skulls-manova3
 R> ###################################################
 R> summary(manova(cbind(mb, bh, bl, nh) ~ epoch, data = skulls,
 +                 subset = epoch %in% c("c4000BC", "c3300BC")))

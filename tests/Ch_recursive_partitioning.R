@@ -1,7 +1,9 @@
+### R code from vignette source 'Ch_recursive_partitioning.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: setup
+### code chunk number 1: setup
 ###################################################
-#line 184 "Ch_recursive_partitioning.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
@@ -41,23 +43,19 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 
 
 ###################################################
-### chunk number 2: singlebook
+### code chunk number 2: singlebook
 ###################################################
-#line 223 "Ch_recursive_partitioning.Rnw"
 book <- FALSE
 
 
 ###################################################
-### chunk number 3: RP-setup
+### code chunk number 3: RP-setup
 ###################################################
-#line 226 "Ch_recursive_partitioning.Rnw"
 library("vcd")
 library("lattice")
 library("randomForest")
 library("party")
-if (!require("partykit"))
-    install.packages("partykit", repos = "http://R-forge.R-project.org",
-                     INSTALL_opts = "--no-test-load")
+library("partykit")
 ltheme <- canonical.theme(color = FALSE) ## in-built B&W theme
 ltheme$strip.background$col <- "transparent" ## change strip bg
 lattice.options(default.theme = ltheme)
@@ -69,9 +67,8 @@ numbers <- c("zero", "one", "two", "three", "four", "five", "six", "seven", "eig
 
 
 ###################################################
-### chunk number 4: RP-bodyfat-rpart
+### code chunk number 4: RP-bodyfat-rpart
 ###################################################
-#line 254 "Ch_recursive_partitioning.Rnw"
 library("rpart")
 data("bodyfat", package = "mboost")
 bodyfat_rpart <- rpart(DEXfat ~ age + waistcirc + hipcirc +
@@ -80,40 +77,35 @@ bodyfat_rpart <- rpart(DEXfat ~ age + waistcirc + hipcirc +
 
 
 ###################################################
-### chunk number 5: RP-bodyfat-plot
+### code chunk number 5: RP-bodyfat-plot
 ###################################################
-#line 272 "Ch_recursive_partitioning.Rnw"
 library("partykit")
 plot(as.party(bodyfat_rpart), tp_args = list(id = FALSE))
 
 
 ###################################################
-### chunk number 6: RP-bodyfat-cp
+### code chunk number 6: RP-bodyfat-cp
 ###################################################
-#line 284 "Ch_recursive_partitioning.Rnw"
 print(bodyfat_rpart$cptable)
 opt <- which.min(bodyfat_rpart$cptable[,"xerror"])
 
 
 ###################################################
-### chunk number 7: RP-bodyfat-prune
+### code chunk number 7: RP-bodyfat-prune
 ###################################################
-#line 292 "Ch_recursive_partitioning.Rnw"
 cp <- bodyfat_rpart$cptable[opt, "CP"]
 bodyfat_prune <- prune(bodyfat_rpart, cp = cp)
 
 
 ###################################################
-### chunk number 8: RP-bodyfat-pruneplot
+### code chunk number 8: RP-bodyfat-pruneplot
 ###################################################
-#line 301 "Ch_recursive_partitioning.Rnw"
 plot(as.party(bodyfat_prune), tp_args = list(id = FALSE))
 
 
 ###################################################
-### chunk number 9: RP-bodyfat-predict
+### code chunk number 9: RP-bodyfat-predict
 ###################################################
-#line 316 "Ch_recursive_partitioning.Rnw"
 DEXfat_pred <- predict(bodyfat_prune, newdata = bodyfat)
 xlim <- range(bodyfat$DEXfat)
 plot(DEXfat_pred ~ DEXfat, data = bodyfat, xlab = "Observed",
@@ -122,16 +114,14 @@ abline(a = 0, b = 1)
 
 
 ###################################################
-### chunk number 10: RP-seed-again
+### code chunk number 10: RP-seed-again
 ###################################################
-#line 328 "Ch_recursive_partitioning.Rnw"
 set.seed(290875)
 
 
 ###################################################
-### chunk number 11: RP-glaucoma-rpart
+### code chunk number 11: RP-glaucoma-rpart
 ###################################################
-#line 331 "Ch_recursive_partitioning.Rnw"
 data("GlaucomaM", package = "ipred")
 glaucoma_rpart <- rpart(Class ~ ., data = GlaucomaM,
     control = rpart.control(xval = 100))
@@ -142,16 +132,14 @@ glaucoma_prune <- prune(glaucoma_rpart, cp = cp)
 
 
 ###################################################
-### chunk number 12: RP-glaucoma-plot
+### code chunk number 12: RP-glaucoma-plot
 ###################################################
-#line 343 "Ch_recursive_partitioning.Rnw"
 plot(as.party(glaucoma_prune), tp_args = list(id = FALSE))
 
 
 ###################################################
-### chunk number 13: RP-glaucoma-cp
+### code chunk number 13: RP-glaucoma-cp
 ###################################################
-#line 358 "Ch_recursive_partitioning.Rnw"
 nsplitopt <- vector(mode = "integer", length = 25)
 for (i in 1:length(nsplitopt)) {
     cp <- rpart(Class ~ ., data = GlaucomaM)$cptable
@@ -161,9 +149,8 @@ table(nsplitopt)
 
 
 ###################################################
-### chunk number 14: RP-glaucoma-bagg
+### code chunk number 14: RP-glaucoma-bagg
 ###################################################
-#line 379 "Ch_recursive_partitioning.Rnw"
 trees <- vector(mode = "list", length = 25)
 n <- nrow(GlaucomaM)
 bootsamples <- rmultinom(length(trees), n, rep(1, n)/n)
@@ -174,16 +161,14 @@ for (i in 1:length(trees))
 
 
 ###################################################
-### chunk number 15: RP-glaucoma-splits
+### code chunk number 15: RP-glaucoma-splits
 ###################################################
-#line 394 "Ch_recursive_partitioning.Rnw"
 table(sapply(trees, function(x) as.character(x$frame$var[1])))
 
 
 ###################################################
-### chunk number 16: RP-glaucoma-baggpred
+### code chunk number 16: RP-glaucoma-baggpred
 ###################################################
-#line 405 "Ch_recursive_partitioning.Rnw"
 classprob <- matrix(0, nrow = n, ncol = length(trees))
 for (i in 1:length(trees)) {
     classprob[,i] <- predict(trees[[i]],
@@ -193,9 +178,8 @@ for (i in 1:length(trees)) {
 
 
 ###################################################
-### chunk number 17: RP-glaucoma-avg
+### code chunk number 17: RP-glaucoma-avg
 ###################################################
-#line 424 "Ch_recursive_partitioning.Rnw"
 avg <- rowMeans(classprob, na.rm = TRUE)
 predictions <- factor(ifelse(avg > 0.5, "glaucoma",
                                         "normal"))
@@ -204,23 +188,20 @@ predtab
 
 
 ###################################################
-### chunk number 18: RP-glaucoma-sens
+### code chunk number 18: RP-glaucoma-sens
 ###################################################
-#line 433 "Ch_recursive_partitioning.Rnw"
 round(predtab[1,1] / colSums(predtab)[1] * 100)
 
 
 ###################################################
-### chunk number 19: RP-glaucoma-spez
+### code chunk number 19: RP-glaucoma-spez
 ###################################################
-#line 437 "Ch_recursive_partitioning.Rnw"
 round(predtab[2,2] / colSums(predtab)[2] * 100)
 
 
 ###################################################
-### chunk number 20: RP-glaucoma-baggplot
+### code chunk number 20: RP-glaucoma-baggplot
 ###################################################
-#line 444 "Ch_recursive_partitioning.Rnw"
 library("lattice")
 gdata <- data.frame(avg = rep(avg, 2),
     class = rep(as.numeric(GlaucomaM$Class), 2),
@@ -238,54 +219,47 @@ print(xyplot(avg ~ obs | var, data = gdata,
 
 
 ###################################################
-### chunk number 21: RP-glaucoma-rf
+### code chunk number 21: RP-glaucoma-rf
 ###################################################
-#line 471 "Ch_recursive_partitioning.Rnw"
 library("randomForest")
 rf <- randomForest(Class ~ ., data = GlaucomaM)
 
 
 ###################################################
-### chunk number 22: RP-glaucoma-rf-oob
+### code chunk number 22: RP-glaucoma-rf-oob
 ###################################################
-#line 476 "Ch_recursive_partitioning.Rnw"
 table(predict(rf), GlaucomaM$Class)
 
 
 ###################################################
-### chunk number 23: RP-detach
+### code chunk number 23: RP-detach
 ###################################################
-#line 480 "Ch_recursive_partitioning.Rnw"
 detach("package:partykit")
 
 
 ###################################################
-### chunk number 24: RP-bodyfat-ctree
+### code chunk number 24: RP-bodyfat-ctree
 ###################################################
-#line 487 "Ch_recursive_partitioning.Rnw"
 library("party")
 bodyfat_ctree <- ctree(DEXfat ~ age + waistcirc + hipcirc +
     elbowbreadth + kneebreadth, data = bodyfat)
 
 
 ###################################################
-### chunk number 25: RP-bodyfat-ctree-plot
+### code chunk number 25: RP-bodyfat-ctree-plot
 ###################################################
-#line 500 "Ch_recursive_partitioning.Rnw"
 plot(bodyfat_ctree)
 
 
 ###################################################
-### chunk number 26: RP-glaucoma-ctree
+### code chunk number 26: RP-glaucoma-ctree
 ###################################################
-#line 509 "Ch_recursive_partitioning.Rnw"
 glaucoma_ctree <- ctree(Class ~ ., data = GlaucomaM)
 
 
 ###################################################
-### chunk number 27: RP-glaucoma-ctree-plot
+### code chunk number 27: RP-glaucoma-ctree-plot
 ###################################################
-#line 519 "Ch_recursive_partitioning.Rnw"
 plot(glaucoma_ctree)
 
 

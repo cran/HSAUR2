@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: ALDI-setup
+R> ### code chunk number 3: ALDI-setup
 R> ###################################################
 R> library("Matrix")
 
@@ -92,7 +92,7 @@ R> residuals <- function(object) object@y - fitted(object)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: ALDI-plot-BtheB
+R> ### code chunk number 4: ALDI-plot-BtheB
 R> ###################################################
 R> data("BtheB", package = "HSAUR2")
 R> layout(matrix(1:2, nrow = 1))
@@ -111,7 +111,7 @@ R> boxplot(btheb, main = "Beat the Blues", ylab = "BDI",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: ALDI-long-BtheB
+R> ### code chunk number 5: ALDI-long-BtheB
 R> ###################################################
 R> data("BtheB", package = "HSAUR2")
 R> BtheB$subject <- factor(rownames(BtheB))
@@ -123,7 +123,7 @@ R> BtheB_long$time <- rep(c(2, 3, 5, 8), rep(nobs, 4))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: ALDI-showlong-BtheB
+R> ### code chunk number 6: ALDI-showlong-BtheB
 R> ###################################################
 R> subset(BtheB_long, subject %in% c("1", "2", "3"))
      drug length treatment bdi.pre subject time bdi
@@ -142,7 +142,7 @@ R> subset(BtheB_long, subject %in% c("1", "2", "3"))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: ALDI-fit-BtheB
+R> ### code chunk number 7: ALDI-fit-BtheB
 R> ###################################################
 R> library("lme4")
 R> BtheB_lmer1 <- lmer(bdi ~ bdi.pre + time + treatment + drug +
@@ -165,7 +165,7 @@ BtheB_lmer2     0.7969
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: ALDI-summary-BtheB
+R> ### code chunk number 8: ALDI-summary-BtheB
 R> ###################################################
 R> summary(BtheB_lmer1)
 Linear mixed model fit by maximum likelihood 
@@ -198,7 +198,7 @@ length>6m   -0.243 -0.242 -0.036  0.002  0.157
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: ALDI-summary-BtheB-p
+R> ### code chunk number 9: ALDI-summary-BtheB-p
 R> ###################################################
 R> cftest(BtheB_lmer1)
 
@@ -220,7 +220,7 @@ length>6m == 0       0.19712    1.63823   0.120   0.9042
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: ALDI-qqnorm-BtheB
+R> ### code chunk number 10: ALDI-qqnorm-BtheB
 R> ###################################################
 R> layout(matrix(1:2, ncol = 2))
 R> qint <- ranef(BtheB_lmer1)$subject[["(Intercept)"]]

@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,19 +60,19 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: MDS-setup
+R> ### code chunk number 3: MDS-setup
 R> ###################################################
 R> x <- library("ape")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: MDS-voles-cmdscale
+R> ### code chunk number 4: MDS-voles-cmdscale
 R> ###################################################
 R> data("watervoles", package = "HSAUR2")
 R> voles_mds <- cmdscale(watervoles, k = 13, eig = TRUE)
@@ -88,21 +88,21 @@ R> voles_mds$eig
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: MDS-voles-criterion1
+R> ### code chunk number 5: MDS-voles-criterion1
 R> ###################################################
 R> sum(abs(voles_mds$eig[1:2]))/sum(abs(voles_mds$eig))
 [1] 0.6708889
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: MDS-voles-criterion2
+R> ### code chunk number 6: MDS-voles-criterion2
 R> ###################################################
 R> sum((voles_mds$eig[1:2])^2)/sum((voles_mds$eig)^2)
 [1] 0.9391378
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: MDS-watervoles-plot
+R> ### code chunk number 7: MDS-watervoles-plot
 R> ###################################################
 R> x <- voles_mds$points[,1]
 R> y <- voles_mds$points[,2]
@@ -112,7 +112,7 @@ R> text(x, y, labels = colnames(watervoles))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: MDS-watervoles-mst
+R> ### code chunk number 8: MDS-watervoles-mst
 R> ###################################################
 R> library("ape")
 R> st <- mst(watervoles)
@@ -126,7 +126,7 @@ R> text(x, y, labels = colnames(watervoles))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: MDS-voting
+R> ### code chunk number 9: MDS-voting
 R> ###################################################
 R> library("MASS")
 R> data("voting", package = "HSAUR2")
@@ -138,7 +138,7 @@ converged
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: MDS-voting-plot
+R> ### code chunk number 10: MDS-voting-plot
 R> ###################################################
 R> x <- voting_mds$points[,1]
 R> y <- voting_mds$points[,2]
@@ -150,7 +150,7 @@ R> voting_sh <- Shepard(voting[lower.tri(voting)],
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: MDS-voting-Shepard
+R> ### code chunk number 11: MDS-voting-Shepard
 R> ###################################################
 R> plot(voting_sh, pch = ".", xlab = "Dissimilarity",
 +       ylab = "Distance", xlim = range(voting_sh$x),

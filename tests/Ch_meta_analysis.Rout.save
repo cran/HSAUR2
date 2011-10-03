@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: MA-smoking-OR-hand
+R> ### code chunk number 3: MA-smoking-OR-hand
 R> ###################################################
 R> data("smoking", package = "HSAUR2")
 R> odds <- function(x) (x[1] * (x[4] - x[3])) /
@@ -79,7 +79,7 @@ R> sum(W * Y) / sum(W)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: MA-smoking-OR
+R> ### code chunk number 4: MA-smoking-OR
 R> ###################################################
 R> library("rmeta")
 Loading required package: grid
@@ -89,7 +89,7 @@ R> smokingOR <- meta.MH(smoking[["tt"]], smoking[["tc"]],
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: MA-smoking-OR-summary
+R> ### code chunk number 5: MA-smoking-OR-summary
 R> ###################################################
 R> summary(smokingOR)
 Fixed effects ( Mantel-Haenszel ) meta-analysis
@@ -129,13 +129,13 @@ Test for heterogeneity: X^2( 25 ) = 34.9 ( p-value 0.09 )
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: MA-smoking-OR-plot
+R> ### code chunk number 6: MA-smoking-OR-plot
 R> ###################################################
 R> plot(smokingOR, ylab = "")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: MA-smoking-random
+R> ### code chunk number 7: MA-smoking-random
 R> ###################################################
 R> smokingDSL <- meta.DSL(smoking[["tt"]], smoking[["tc"]],
 +                       smoking[["qt"]], smoking[["qc"]],
@@ -149,7 +149,7 @@ Estimated random effects variance: 0.05
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: MA-BCG-odds
+R> ### code chunk number 8: MA-BCG-odds
 R> ###################################################
 R> data("BCG", package = "HSAUR2")
 R> BCG_OR <- meta.MH(BCG[["BCGVacc"]], BCG[["NoVacc"]],
@@ -161,7 +161,7 @@ R> BCG_DSL <- meta.DSL(BCG[["BCGVacc"]], BCG[["NoVacc"]],
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: MA-BCGOR-summary
+R> ### code chunk number 9: MA-BCGOR-summary
 R> ###################################################
 R> summary(BCG_OR)
 Fixed effects ( Mantel-Haenszel ) meta-analysis
@@ -188,7 +188,7 @@ Test for heterogeneity: X^2( 12 ) = 163.94 ( p-value 0 )
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: MA-BCGDSL-summary
+R> ### code chunk number 10: MA-BCGDSL-summary
 R> ###################################################
 R> summary(BCG_DSL)
 Random effects ( DerSimonian-Laird ) meta-analysis
@@ -216,7 +216,7 @@ Estimated random effects variance: 0.37
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: BCG-studyweights
+R> ### code chunk number 11: BCG-studyweights
 R> ###################################################
 R> studyweights <- 1 / (BCG_DSL$tau2 + BCG_DSL$selogs^2)
 R> y <- BCG_DSL$logs
@@ -225,7 +225,7 @@ R> BCG_mod <- lm(y ~ Latitude + Year, data = BCG,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: MA-mod-summary
+R> ### code chunk number 12: MA-mod-summary
 R> ###################################################
 R> summary(BCG_mod)
 
@@ -249,14 +249,14 @@ F-statistic: 3.909 on 2 and 10 DF,  p-value: 0.05569
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: BCG-Latitude-plot
+R> ### code chunk number 13: BCG-Latitude-plot
 R> ###################################################
 R> plot(y ~ Latitude, data = BCG, ylab = "Estimated log-OR")
 R> abline(lm(y ~ Latitude, data = BCG, weights = studyweights))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: MA-funnel-ex
+R> ### code chunk number 14: MA-funnel-ex
 R> ###################################################
 R> set.seed(290875)
 R> sigma <- seq(from = 1/10, to = 1, length.out = 35)
@@ -269,7 +269,7 @@ R> plot(y[gr], 1/(sigma[gr]), xlim = range(y),
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: MA-smoking-funnel
+R> ### code chunk number 15: MA-smoking-funnel
 R> ###################################################
 R> funnelplot(smokingDSL$logs, smokingDSL$selogs,
 +             summ = smokingDSL$logDSL, xlim = c(-1.7, 1.7))

@@ -1,7 +1,9 @@
+### R code from vignette source 'Ch_analysing_longitudinal_dataII.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: setup
+### code chunk number 1: setup
 ###################################################
-#line 183 "Ch_analysing_longitudinal_dataII.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
@@ -41,16 +43,14 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 
 
 ###################################################
-### chunk number 2: singlebook
+### code chunk number 2: singlebook
 ###################################################
-#line 222 "Ch_analysing_longitudinal_dataII.Rnw"
 book <- FALSE
 
 
 ###################################################
-### chunk number 3: setup
+### code chunk number 3: setup
 ###################################################
-#line 225 "Ch_analysing_longitudinal_dataII.Rnw"
 options(digits = 3)
 if (!interactive()) {
 print.summary.gee <- function (x, digits = NULL, quote = FALSE, prefix = "", ...)
@@ -82,16 +82,14 @@ print.summary.gee <- function (x, digits = NULL, quote = FALSE, prefix = "", ...
 
 
 ###################################################
-### chunk number 4: ALDII-gee
+### code chunk number 4: ALDII-gee
 ###################################################
-#line 265 "Ch_analysing_longitudinal_dataII.Rnw"
 library("gee")
 
 
 ###################################################
-### chunk number 5: ALDII-BtheB-data
+### code chunk number 5: ALDII-BtheB-data
 ###################################################
-#line 279 "Ch_analysing_longitudinal_dataII.Rnw"
 data("BtheB", package = "HSAUR2")
 BtheB$subject <- factor(rownames(BtheB))
 nobs <- nrow(BtheB)
@@ -103,9 +101,8 @@ names(BtheB_long)[names(BtheB_long) == "treatment"] <- "trt"
 
 
 ###################################################
-### chunk number 6: ALDII-BtheB-geefit-indep
+### code chunk number 6: ALDII-BtheB-geefit-indep
 ###################################################
-#line 289 "Ch_analysing_longitudinal_dataII.Rnw"
 osub <- order(as.integer(BtheB_long$subject))
 BtheB_long <- BtheB_long[osub,]
 btb_gee <- gee(bdi ~ bdi.pre + trt + length + drug,
@@ -114,32 +111,28 @@ btb_gee <- gee(bdi ~ bdi.pre + trt + length + drug,
 
 
 ###################################################
-### chunk number 7: ALDII-BtheB-geefit-ex
+### code chunk number 7: ALDII-BtheB-geefit-ex
 ###################################################
-#line 297 "Ch_analysing_longitudinal_dataII.Rnw"
 btb_gee1 <- gee(bdi ~ bdi.pre + trt + length + drug,
     data = BtheB_long, id = subject, family = gaussian,
     corstr = "exchangeable")
 
 
 ###################################################
-### chunk number 8: ALDII-BtheB-geesummary
+### code chunk number 8: ALDII-BtheB-geesummary
 ###################################################
-#line 309 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(btb_gee)
 
 
 ###################################################
-### chunk number 9: ALDII-BtheB-gee1summary
+### code chunk number 9: ALDII-BtheB-gee1summary
 ###################################################
-#line 317 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(btb_gee1)
 
 
 ###################################################
-### chunk number 10: ALDII-respiratory-data
+### code chunk number 10: ALDII-respiratory-data
 ###################################################
-#line 326 "Ch_analysing_longitudinal_dataII.Rnw"
 data("respiratory", package = "HSAUR2")
 resp <- subset(respiratory, month > "0")
 resp$baseline <- rep(subset(respiratory, month == "0")$status,
@@ -149,17 +142,15 @@ resp$month <- resp$month[, drop = TRUE]
 
 
 ###################################################
-### chunk number 11: ALDII-respiratory-names
+### code chunk number 11: ALDII-respiratory-names
 ###################################################
-#line 334 "Ch_analysing_longitudinal_dataII.Rnw"
 names(resp)[names(resp) == "treatment"] <- "trt"
 levels(resp$trt)[2] <- "trt"
 
 
 ###################################################
-### chunk number 12: ALDII-respiratory-fit
+### code chunk number 12: ALDII-respiratory-fit
 ###################################################
-#line 342 "Ch_analysing_longitudinal_dataII.Rnw"
 resp_glm <- glm(status ~ centre + trt + gender + baseline
     + age, data = resp, family = "binomial")
 resp_gee1 <- gee(nstat ~ centre + trt + gender + baseline
@@ -173,30 +164,26 @@ resp_gee2 <- gee(nstat ~ centre + trt + gender + baseline
 
 
 ###################################################
-### chunk number 13: ALDII-resp-glm-summary
+### code chunk number 13: ALDII-resp-glm-summary
 ###################################################
-#line 358 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(resp_glm)
 
 
 ###################################################
-### chunk number 14: ALDII-resp-gee1summary
+### code chunk number 14: ALDII-resp-gee1summary
 ###################################################
-#line 366 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(resp_gee1)
 
 
 ###################################################
-### chunk number 15: ALDII-resp-gee2-summary
+### code chunk number 15: ALDII-resp-gee2-summary
 ###################################################
-#line 374 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(resp_gee2)
 
 
 ###################################################
-### chunk number 16: ALDII-resp-confint
+### code chunk number 16: ALDII-resp-confint
 ###################################################
-#line 382 "Ch_analysing_longitudinal_dataII.Rnw"
 se <- summary(resp_gee2)$coefficients["trttrt",
                                       "Robust S.E."]
 coef(resp_gee2)["trttrt"] +
@@ -204,17 +191,15 @@ coef(resp_gee2)["trttrt"] +
 
 
 ###################################################
-### chunk number 17: ALDII-resp-confint-exp
+### code chunk number 17: ALDII-resp-confint-exp
 ###################################################
-#line 393 "Ch_analysing_longitudinal_dataII.Rnw"
 exp(coef(resp_gee2)["trttrt"] +
     c(-1, 1) * se * qnorm(0.975))
 
 
 ###################################################
-### chunk number 18: ALDII-epilepsy
+### code chunk number 18: ALDII-epilepsy
 ###################################################
-#line 404 "Ch_analysing_longitudinal_dataII.Rnw"
 data("epilepsy", package = "HSAUR2")
 itp <- interaction(epilepsy$treatment, epilepsy$period)
 tapply(epilepsy$seizure.rate, itp, mean)
@@ -222,9 +207,8 @@ tapply(epilepsy$seizure.rate, itp, var)
 
 
 ###################################################
-### chunk number 19: ALDII-plot1
+### code chunk number 19: ALDII-plot1
 ###################################################
-#line 415 "Ch_analysing_longitudinal_dataII.Rnw"
 layout(matrix(1:2, nrow = 1))
 ylim <- range(epilepsy$seizure.rate)
 placebo <- subset(epilepsy, treatment == "placebo")
@@ -238,9 +222,8 @@ boxplot(seizure.rate ~ period, data = progabide,
 
 
 ###################################################
-### chunk number 20: ALDII-plot2
+### code chunk number 20: ALDII-plot2
 ###################################################
-#line 434 "Ch_analysing_longitudinal_dataII.Rnw"
 layout(matrix(1:2, nrow = 1))
 ylim <- range(log(epilepsy$seizure.rate + 1))
 boxplot(log(seizure.rate + 1) ~ period, data = placebo,
@@ -252,9 +235,8 @@ boxplot(log(seizure.rate + 1) ~ period, data = progabide,
 
 
 ###################################################
-### chunk number 21: ALDII-epilepsy-gee
+### code chunk number 21: ALDII-epilepsy-gee
 ###################################################
-#line 454 "Ch_analysing_longitudinal_dataII.Rnw"
 per <- rep(log(2),nrow(epilepsy))
 epilepsy$period <- as.numeric(epilepsy$period)
 names(epilepsy)[names(epilepsy) == "treatment"] <- "trt"
@@ -272,37 +254,32 @@ epilepsy_gee3 <- gee(fm, data = epilepsy, family = "poisson",
 
 
 ###################################################
-### chunk number 22: ALDII-espilepsy-glm-summary
+### code chunk number 22: ALDII-espilepsy-glm-summary
 ###################################################
-#line 478 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(epilepsy_glm)
 
 
 ###################################################
-### chunk number 23: ALDII-espilepsy-gee1-summary
+### code chunk number 23: ALDII-espilepsy-gee1-summary
 ###################################################
-#line 486 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(epilepsy_gee1)
 
 
 ###################################################
-### chunk number 24: ALDII-espilepsy-gee2-summary
+### code chunk number 24: ALDII-espilepsy-gee2-summary
 ###################################################
-#line 494 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(epilepsy_gee2)
 
 
 ###################################################
-### chunk number 25: ALDII-espilepsy-gee3-summary
+### code chunk number 25: ALDII-espilepsy-gee3-summary
 ###################################################
-#line 502 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(epilepsy_gee3)
 
 
 ###################################################
-### chunk number 26: ALDII-respiratory-lmer
+### code chunk number 26: ALDII-respiratory-lmer
 ###################################################
-#line 520 "Ch_analysing_longitudinal_dataII.Rnw"
 library("lme4")
 resp_lmer <- lmer(status ~ baseline + month +
     trt + gender + age + centre + (1 | subject),
@@ -311,9 +288,8 @@ exp(fixef(resp_lmer))
 
 
 ###################################################
-### chunk number 27: ALDII-resp-lmer-dirty
+### code chunk number 27: ALDII-resp-lmer-dirty
 ###################################################
-#line 546 "Ch_analysing_longitudinal_dataII.Rnw"
 su <- summary(resp_lmer)
 if (!interactive()) {
     summary <- function(x) {
@@ -326,9 +302,8 @@ if (!interactive()) {
 
 
 ###################################################
-### chunk number 28: ALDII-resp-lmer-summary
+### code chunk number 28: ALDII-resp-lmer-summary
 ###################################################
-#line 561 "Ch_analysing_longitudinal_dataII.Rnw"
 summary(resp_lmer)
 
 

@@ -1,7 +1,9 @@
+### R code from vignette source 'Ch_multidimensional_scaling.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: setup
+### code chunk number 1: setup
 ###################################################
-#line 183 "Ch_multidimensional_scaling.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
@@ -41,46 +43,40 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 
 
 ###################################################
-### chunk number 2: singlebook
+### code chunk number 2: singlebook
 ###################################################
-#line 222 "Ch_multidimensional_scaling.Rnw"
 book <- FALSE
 
 
 ###################################################
-### chunk number 3: MDS-setup
+### code chunk number 3: MDS-setup
 ###################################################
-#line 225 "Ch_multidimensional_scaling.Rnw"
 x <- library("ape")
 
 
 ###################################################
-### chunk number 4: MDS-voles-cmdscale
+### code chunk number 4: MDS-voles-cmdscale
 ###################################################
-#line 238 "Ch_multidimensional_scaling.Rnw"
 data("watervoles", package = "HSAUR2")
 voles_mds <- cmdscale(watervoles, k = 13, eig = TRUE)
 voles_mds$eig
 
 
 ###################################################
-### chunk number 5: MDS-voles-criterion1
+### code chunk number 5: MDS-voles-criterion1
 ###################################################
-#line 245 "Ch_multidimensional_scaling.Rnw"
 sum(abs(voles_mds$eig[1:2]))/sum(abs(voles_mds$eig))
 
 
 ###################################################
-### chunk number 6: MDS-voles-criterion2
+### code chunk number 6: MDS-voles-criterion2
 ###################################################
-#line 249 "Ch_multidimensional_scaling.Rnw"
 sum((voles_mds$eig[1:2])^2)/sum((voles_mds$eig)^2)
 
 
 ###################################################
-### chunk number 7: MDS-watervoles-plot
+### code chunk number 7: MDS-watervoles-plot
 ###################################################
-#line 260 "Ch_multidimensional_scaling.Rnw"
 x <- voles_mds$points[,1]
 y <- voles_mds$points[,2]
 plot(x, y, xlab = "Coordinate 1", ylab = "Coordinate 2",
@@ -89,9 +85,8 @@ text(x, y, labels = colnames(watervoles))
 
 
 ###################################################
-### chunk number 8: MDS-watervoles-mst
+### code chunk number 8: MDS-watervoles-mst
 ###################################################
-#line 273 "Ch_multidimensional_scaling.Rnw"
 library("ape")
 st <- mst(watervoles)
 plot(x, y, xlab = "Coordinate 1", ylab = "Coordinate 2",
@@ -104,18 +99,16 @@ text(x, y, labels = colnames(watervoles))
 
 
 ###################################################
-### chunk number 9: MDS-voting
+### code chunk number 9: MDS-voting
 ###################################################
-#line 292 "Ch_multidimensional_scaling.Rnw"
 library("MASS")
 data("voting", package = "HSAUR2")
 voting_mds <- isoMDS(voting)
 
 
 ###################################################
-### chunk number 10: MDS-voting-plot
+### code chunk number 10: MDS-voting-plot
 ###################################################
-#line 305 "Ch_multidimensional_scaling.Rnw"
 x <- voting_mds$points[,1]
 y <- voting_mds$points[,2]
 plot(x, y, xlab = "Coordinate 1", ylab = "Coordinate 2",
@@ -126,9 +119,8 @@ voting_sh <- Shepard(voting[lower.tri(voting)],
 
 
 ###################################################
-### chunk number 11: MDS-voting-Shepard
+### code chunk number 11: MDS-voting-Shepard
 ###################################################
-#line 320 "Ch_multidimensional_scaling.Rnw"
 plot(voting_sh, pch = ".", xlab = "Dissimilarity",
      ylab = "Distance", xlim = range(voting_sh$x),
      ylim = range(voting_sh$x))

@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: DAGD-USmelanoma-histbox
+R> ### code chunk number 3: DAGD-USmelanoma-histbox
 R> ###################################################
 R> xr <- range(USmelanoma$mortality) * c(0.9, 1.1)
 R> xr
@@ -74,7 +74,7 @@ R> xr
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: DAGD-USmelanoma-histbox
+R> ### code chunk number 4: DAGD-USmelanoma-histbox
 R> ###################################################
 R> layout(matrix(1:2, nrow = 2))
 R> par(mar = par("mar") * c(0.8, 1, 1, 1))
@@ -86,14 +86,14 @@ R> axis(1)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: DAGD-USmelanoma-boxocean
+R> ### code chunk number 5: DAGD-USmelanoma-boxocean
 R> ###################################################
 R> plot(mortality ~ ocean, data = USmelanoma,
 +       xlab = "Contiguity to an ocean", ylab = "Mortality")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: DAGD-USmelanoma-dens
+R> ### code chunk number 6: DAGD-USmelanoma-dens
 R> ###################################################
 R> dyes <- with(USmelanoma, density(mortality[ocean == "yes"]))
 R> dno <- with(USmelanoma, density(mortality[ocean == "no"]))
@@ -104,7 +104,7 @@ R> legend("topleft", lty = 1:2, legend = c("Coastal State",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: DAGD-USmelanoma-xy
+R> ### code chunk number 7: DAGD-USmelanoma-xy
 R> ###################################################
 R> layout(matrix(1:2, ncol = 2))
 R> plot(mortality ~ longitude, data = USmelanoma)
@@ -112,7 +112,7 @@ R> plot(mortality ~ latitude, data = USmelanoma)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: DAGD-USmelanoma-lat
+R> ### code chunk number 8: DAGD-USmelanoma-lat
 R> ###################################################
 R> plot(mortality ~ latitude, data = USmelanoma,
 +       pch = as.integer(USmelanoma$ocean))
@@ -121,7 +121,7 @@ R> legend("topright", legend = c("Land state", "Coast state"),
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: DAGD-USmelanoma-south
+R> ### code chunk number 9: DAGD-USmelanoma-south
 R> ###################################################
 R> subset(USmelanoma, latitude < 32)
           mortality latitude longitude ocean
@@ -131,13 +131,13 @@ Texas           229     31.5      98.0   yes
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: DAGD-CHFLS-happy
+R> ### code chunk number 10: DAGD-CHFLS-happy
 R> ###################################################
 R> barplot(xtabs(~ R_happy, data = CHFLS))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: DAGD-CHFLS-health_happy_xtabs
+R> ### code chunk number 11: DAGD-CHFLS-health_happy_xtabs
 R> ###################################################
 R> xtabs(~ R_happy + R_health, data = CHFLS)
                 R_health
@@ -149,19 +149,19 @@ R_happy          Poor Not good Fair Good Excellent
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: DAGD-CHFLS-health_happy_xtabs2
+R> ### code chunk number 12: DAGD-CHFLS-health_happy_xtabs2
 R> ###################################################
 R> hh <- xtabs(~ R_health + R_happy, data = CHFLS)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: DAGD-CHFLS-health_happy
+R> ### code chunk number 13: DAGD-CHFLS-health_happy
 R> ###################################################
 R> plot(R_happy ~ R_health, data = CHFLS)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: DAGD-CHFLS-happy_income
+R> ### code chunk number 14: DAGD-CHFLS-happy_income
 R> ###################################################
 R> layout(matrix(1:2, ncol = 2))
 R> plot(R_happy ~ log(R_income + 1), data = CHFLS)
@@ -169,14 +169,14 @@ R> cdplot(R_happy ~ log(R_income + 1), data = CHFLS)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: DAGD-CHFLS-RAincome3 eval=FALSE
+R> ### code chunk number 15: DAGD-CHFLS-RAincome3 eval=FALSE
 R> ###################################################
 R> ## xyplot(jitter(log(A_income + 0.5)) ~
 R> ##        jitter(log(R_income + 0.5)) | R_edu, data = CHFLS)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: DAGD-CHFLS-RAincome3
+R> ### code chunk number 16: DAGD-CHFLS-RAincome3
 R> ###################################################
 R> lattice.options(default.theme =
 +          function()
@@ -185,7 +185,7 @@ R> print(xyplot(jitter(log(A_income + 0.5)) ~ jitter(log(R_income + 0.5)) | R_ed
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: DAGD-household-tab
+R> ### code chunk number 17: DAGD-household-tab
 R> ###################################################
 R> data("household", package = "HSAUR2")
 R> toLatex(HSAURtable(household),
@@ -249,7 +249,7 @@ R> toLatex(HSAURtable(household),
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: DAGD-USstates-tab
+R> ### code chunk number 18: DAGD-USstates-tab
 R> ###################################################
 R> data("USstates", package = "HSAUR2")
 R> toLatex(HSAURtable(USstates),
@@ -283,7 +283,7 @@ R> toLatex(HSAURtable(USstates),
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: DAGD-suicides2-tab
+R> ### code chunk number 19: DAGD-suicides2-tab
 R> ###################################################
 R> data("suicides2", package = "HSAUR2")
 R> toLatex(HSAURtable(suicides2),
@@ -322,7 +322,7 @@ USA   &  20 & 22 & 28 & 33 & 37 \\
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: DAGD-banknote-tab
+R> ### code chunk number 20: DAGD-banknote-tab
 R> ###################################################
 R> data("banknote", package = "alr3")
 R> banknote$Y <- NULL

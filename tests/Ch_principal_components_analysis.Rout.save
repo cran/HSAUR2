@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: PCA-heptathlon-recode
+R> ### code chunk number 3: PCA-heptathlon-recode
 R> ###################################################
 R> data("heptathlon", package = "HSAUR2")
 R> heptathlon$hurdles <- max(heptathlon$hurdles) -
@@ -78,21 +78,21 @@ R> heptathlon$run800m <- max(heptathlon$run800m) -
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: PCA-heptathlon-scatter
+R> ### code chunk number 4: PCA-heptathlon-scatter
 R> ###################################################
 R> score <- which(colnames(heptathlon) == "score")
 R> plot(heptathlon[,-score])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: PCA-options65
+R> ### code chunk number 5: PCA-options65
 R> ###################################################
 R> w <- options("width")
 R> options(width = 65)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: PCA-heptathlon-cor
+R> ### code chunk number 6: PCA-heptathlon-cor
 R> ###################################################
 R> round(cor(heptathlon[,-score]), 2)
          hurdles highjump shot run200m longjump javelin run800m
@@ -106,33 +106,33 @@ run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: PCA-optionsw
+R> ### code chunk number 7: PCA-optionsw
 R> ###################################################
 R> options(width = w$width)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: PCA-heptathlon-PNG
+R> ### code chunk number 8: PCA-heptathlon-PNG
 R> ###################################################
 R> heptathlon <- heptathlon[-grep("PNG", rownames(heptathlon)),]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: PCA-heptathlon-scatter2
+R> ### code chunk number 9: PCA-heptathlon-scatter2
 R> ###################################################
 R> score <- which(colnames(heptathlon) == "score")
 R> plot(heptathlon[,-score])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: PCA-options65
+R> ### code chunk number 10: PCA-options65
 R> ###################################################
 R> w <- options("width")
 R> options(width = 65)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: PCA-heptathlon-cor2
+R> ### code chunk number 11: PCA-heptathlon-cor2
 R> ###################################################
 R> round(cor(heptathlon[,-score]), 2)
          hurdles highjump shot run200m longjump javelin run800m
@@ -146,20 +146,20 @@ run800m     0.56     0.15 0.41    0.57     0.52    0.26    1.00
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: PCA-optionsw
+R> ### code chunk number 12: PCA-optionsw
 R> ###################################################
 R> options(width = w$width)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: PCA-options65
+R> ### code chunk number 13: PCA-options65
 R> ###################################################
 R> w <- options("digits")
 R> options(digits = 4)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: PCA-heptathlon-pca
+R> ### code chunk number 14: PCA-heptathlon-pca
 R> ###################################################
 R> heptathlon_pca <- prcomp(heptathlon[, -score], scale = TRUE)
 R> print(heptathlon_pca)
@@ -186,7 +186,7 @@ run800m   0.07719
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: PCA-heptathlon-summary
+R> ### code chunk number 15: PCA-heptathlon-summary
 R> ###################################################
 R> summary(heptathlon_pca)
 Importance of components:
@@ -197,13 +197,13 @@ Cumulative Proportion  0.6 0.7 0.9 0.93 0.97 0.99 1.00
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: PCA-optionsw
+R> ### code chunk number 16: PCA-optionsw
 R> ###################################################
 R> options(digits = w$digits)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: PCA-heptathlon-a1
+R> ### code chunk number 17: PCA-heptathlon-a1
 R> ###################################################
 R> a1 <- heptathlon_pca$rotation[,1]
 R> a1
@@ -214,14 +214,14 @@ R> a1
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: PCA-heptathlon-scaling
+R> ### code chunk number 18: PCA-heptathlon-scaling
 R> ###################################################
 R> center <- heptathlon_pca$center
 R> scale <- heptathlon_pca$scale
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: PCA-heptathlon-s1
+R> ### code chunk number 19: PCA-heptathlon-s1
 R> ###################################################
 R> hm <- as.matrix(heptathlon[,-score])
 R> drop(scale(hm, center = center, scale = scale) %*%
@@ -245,7 +245,7 @@ Joyner-Kersee (USA)          John (GDR)        Behmer (GDR)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: PCA-heptathlon-s1
+R> ### code chunk number 20: PCA-heptathlon-s1
 R> ###################################################
 R> predict(heptathlon_pca)[,1]
 Joyner-Kersee (USA)          John (GDR)        Behmer (GDR) 
@@ -267,26 +267,26 @@ Joyner-Kersee (USA)          John (GDR)        Behmer (GDR)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 21: PCA-heptathlon-pca-plot
+R> ### code chunk number 21: PCA-heptathlon-pca-plot
 R> ###################################################
 R> plot(heptathlon_pca)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 22: PCA-heptathlon-sdev
+R> ### code chunk number 22: PCA-heptathlon-sdev
 R> ###################################################
 R> sdev <- heptathlon_pca$sdev
 R> prop12 <- round(sum(sdev[1:2]^2)/sum(sdev^2)*100, 0)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 23: PCA-heptathlon-biplot eval=FALSE
+R> ### code chunk number 23: PCA-heptathlon-biplot eval=FALSE
 R> ###################################################
 R> ## biplot(heptathlon_pca, col = c("gray", "black"))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 24: PCA-heptathlon-biplot
+R> ### code chunk number 24: PCA-heptathlon-biplot
 R> ###################################################
 R> tmp <- heptathlon[, -score]
 R> rownames(tmp) <- abbreviate(gsub(" \\(.*", "", rownames(tmp)))
@@ -295,14 +295,14 @@ R> biplot(prcomp(tmp, scale = TRUE), col = c("black", "lightgray"), xlim =
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 25: PCA-scorecor
+R> ### code chunk number 25: PCA-scorecor
 R> ###################################################
 R> cor(heptathlon$score, heptathlon_pca$x[,1])
 [1] -0.9931168
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 26: PCA-heptathlonscore
+R> ### code chunk number 26: PCA-heptathlonscore
 R> ###################################################
 R> plot(heptathlon$score, heptathlon_pca$x[,1])
 R> 

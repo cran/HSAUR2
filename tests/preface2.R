@@ -1,7 +1,9 @@
+### R code from vignette source 'preface2.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: setup
+### code chunk number 1: setup
 ###################################################
-#line 181 "preface2.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")

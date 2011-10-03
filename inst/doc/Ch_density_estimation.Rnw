@@ -1,10 +1,12 @@
 
+
+
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
 
 %%% keeps `sweave' from adding `\usepackage{Sweave}': DO NOT REMOVE
-%\usepackage{Sweave}
+%\usepackage{Sweave} 
 
 
 \RequirePackage[T1]{fontenc}
@@ -33,7 +35,7 @@
   \renewenvironment{Schunk}{\begin{figure}[ht] }{\caption{\nextcaption}
   \end{figure} }
   \DefineVerbatimEnvironment{Sinput}{Verbatim}{frame = topline}
-  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline,
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline, 
                                                 samepage = true,
                                                 fontfamily=courier,
                                                 fontshape=it,
@@ -45,7 +47,7 @@
 \DefineVerbatimEnvironment{Sinput}
 {Verbatim}
 {
-%% numbers=left
+%%  numbers=left
 }
 
 \newcommand{\numberSinput}{
@@ -82,31 +84,31 @@
 
 %%% other symbols
 \newcommand{\file}[1]{\hbox{\rm\texttt{#1}}}
-%%\newcommand{\stress}[1]{\index{#1}\textit{#1}}
-\newcommand{\stress}[1]{\textit{#1}}
+%%\newcommand{\stress}[1]{\index{#1}\textit{#1}} 
+\newcommand{\stress}[1]{\textit{#1}} 
 \newcommand{\booktitle}[1]{\textit{#1}} %%'
 
 %%% Math symbols
 \usepackage{amstext}
 \usepackage{amsmath}
-\newcommand{\E}{\mathsf{E}}
-\newcommand{\Var}{\mathsf{Var}}
-\newcommand{\Cov}{\mathsf{Cov}}
-\newcommand{\Cor}{\mathsf{Cor}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\y}{\mathbf{y}}
+\newcommand{\E}{\mathsf{E}}   
+\newcommand{\Var}{\mathsf{Var}}   
+\newcommand{\Cov}{\mathsf{Cov}}   
+\newcommand{\Cor}{\mathsf{Cor}}   
+\newcommand{\x}{\mathbf{x}}   
+\newcommand{\y}{\mathbf{y}}   
 \renewcommand{\a}{\mathbf{a}}
-\newcommand{\W}{\mathbf{W}}
-\newcommand{\C}{\mathbf{C}}
-\renewcommand{\H}{\mathbf{H}}
-\newcommand{\X}{\mathbf{X}}
-\newcommand{\B}{\mathbf{B}}
-\newcommand{\V}{\mathbf{V}}
-\newcommand{\I}{\mathbf{I}}
-\newcommand{\D}{\mathbf{D}}
-\newcommand{\bS}{\mathbf{S}}
-\newcommand{\N}{\mathcal{N}}
-\renewcommand{\P}{\mathsf{P}}
+\newcommand{\W}{\mathbf{W}}   
+\newcommand{\C}{\mathbf{C}}   
+\renewcommand{\H}{\mathbf{H}}   
+\newcommand{\X}{\mathbf{X}}   
+\newcommand{\B}{\mathbf{B}}   
+\newcommand{\V}{\mathbf{V}}   
+\newcommand{\I}{\mathbf{I}}   
+\newcommand{\D}{\mathbf{D}}   
+\newcommand{\bS}{\mathbf{S}}   
+\newcommand{\N}{\mathcal{N}}   
+\renewcommand{\P}{\mathsf{P}}   
 \newcommand{\K}{\mathbf{K}}
 \newcommand{\m}{\mathbf{m}}
 \newcommand{\argmin}{\operatorname{argmin}\displaylimits}
@@ -168,26 +170,33 @@
 \hyphenation{drop-out}
 \hyphenation{mar-gi-nal}
 
-%%% new bidirectional quotes need
+%%% new bidirectional quotes need 
 \usepackage[utf8]{inputenc}
 \begin{document}
+
 %% Title page
+
 \title{A Handbook of Statistical Analyses Using \R{} --- 2nd Edition}
+
 \author{Brian S. Everitt and Torsten Hothorn}
+
 \maketitle
 %%\VignetteIndexEntry{Chapter Density Estimation}
 %%\VignetteDepends{flexmix}
 \setcounter{chapter}{7}
-\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE}
+
+
+\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
+
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
-    width = 63, # digits = 4,
+    width = 63, # digits = 4, 
     show.signif.stars = FALSE,
-    SweaveHooks = list(leftpar = function()
+    SweaveHooks = list(leftpar = function() 
         par(mai = par("mai") * c(1, 1.05, 1, 1)),
         bigleftpar = function()
         par(mai = par("mai") * c(1, 1.7, 1, 1))))
@@ -198,8 +207,8 @@ rm(HSAURpkg)
 a <- Sys.setlocale("LC_ALL", "C")
  ### </FIXME>
 book <- TRUE
-refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
-                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM", 
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA", 
                 "MDS", "CA"), 1:18)
 ch <- function(x) {
     ch <- refs[which(refs[,1] == x),]
@@ -211,28 +220,39 @@ ch <- function(x) {
 }
 if (file.exists("deparse.R"))
     source("deparse.R")
+
 setHook(packageEvent("lattice", "attach"), function(...) {
-    lattice.options(default.theme =
+    lattice.options(default.theme = 
         function()
             standard.theme("pdf", color = FALSE))
     })
 @
+
 \pagestyle{headings}
 <<singlebook, echo = FALSE>>=
 book <- FALSE
 @
+
 <<DE-setup, echo = FALSE, results = hide>>=
 x <- library("KernSmooth")
 x <- library("flexmix")
 x <- library("boot")
 @
+
+
 \chapter[Density Estimation]{Density Estimation: Erupting Geysers and Star
 Clusters \label{DE}}
+
 \section{Introduction}
+
+
 \section{Density Estimation}
-The three kernel functions are implemented in \R{} as shown in lines 1--3 of
+
+
+The three kernel functions are implemented in \R{} as shown in lines 1--3 of 
 Figure~\ref{DE-kernel-fig}. For some grid \Robject{x}, the kernel functions
 are plotted using the \R{} statements in lines 5--11 (Figure~\ref{DE-kernel-fig}).
+
 \numberSinput
 \begin{figure}
 \begin{center}
@@ -241,27 +261,29 @@ rec <- function(x) (abs(x) < 1) * 0.5
 tri <- function(x) (abs(x) < 1) * (1 - abs(x))
 gauss <- function(x) 1/sqrt(2*pi) * exp(-(x^2)/2)
 x <- seq(from = -3, to = 3, by = 0.001)
-plot(x, rec(x), type = "l", ylim = c(0,1), lty = 1,
+plot(x, rec(x), type = "l", ylim = c(0,1), lty = 1, 
      ylab = expression(K(x)))
 lines(x, tri(x), lty = 2)
 lines(x, gauss(x), lty = 3)
-legend(-3, 0.8, legend = c("Rectangular", "Triangular",
-       "Gaussian"), lty = 1:3, title = "kernel functions",
+legend(-3, 0.8, legend = c("Rectangular", "Triangular", 
+       "Gaussian"), lty = 1:3, title = "kernel functions", 
        bty = "n")
 @
 \caption{Three commonly used kernel functions. \label{DE-kernel-fig}}
 \end{center}
 \end{figure}
 \rawSinput
+
 <<DE-options, echo = FALSE, results = hide>>=
 w <- options("width")$w
 options(width = 66)
 @
+
 The kernel estimator $\hat{f}$ is a sum of `bumps' placed at the observations. %'
-The kernel function determines the shape of the bumps while the
-window width $h$ determines their width.
+The kernel function determines the shape of the bumps while the 
+window width $h$ determines their width.  
 \index{Windows, in kernel density estimation}
-Figure~\ref{DE-bumps} \citep[redrawn from a similar plot in][]{HSAUR:Silverman1986}
+Figure~\ref{DE-bumps} \citep[redrawn from a similar plot in][]{HSAUR:Silverman1986} 
 shows the individual bumps $n^{-1}h^{-1} K((x - x_i) / h)$, as well as the estimate $\hat{f}$
 obtained by adding them up for an artificial set of data points
 <<DE-x-bumps-data, echo = TRUE>>=
@@ -270,10 +292,10 @@ n <- length(x)
 @
 For a grid
 <<DE-x-bumps-gaussian, echo = TRUE>>=
-xgrid <- seq(from = min(x) - 1, to = max(x) + 1, by = 0.01)
+xgrid <- seq(from = min(x) - 1, to = max(x) + 1, by = 0.01) 
 @
 on the real line, we can compute the contribution of each measurement in
-\Robject{x}, with $h = 0.4$, by the Gaussian kernel (defined in
+\Robject{x}, with $h = 0.4$, by the Gaussian kernel (defined in 
 Figure~\ref{DE-kernel-fig}, line 3) as follows;
 <<DE-x-bumps-bumps, echo = TRUE>>=
 h <- 0.4
@@ -281,9 +303,11 @@ bumps <- sapply(x, function(a) gauss((xgrid - a)/h)/(n * h))
 @
 A plot of the individual bumps and their sum, the kernel density estimate
 $\hat{f}$, is shown in Figure~\ref{DE-bumps}.
+
 <<DE-reoptions, echo = FALSE, results = hide>>=
 options(width = w)
 @
+
 \numberSinput
 \begin{figure}
 \begin{center}
@@ -293,28 +317,34 @@ plot(xgrid, rowSums(bumps), ylab = expression(hat(f)(x)),
 rug(x, lwd = 2)
 out <- apply(bumps, 2, function(b) lines(xgrid, b))
 @
-\caption{Kernel estimate showing the contributions of Gaussian
+\caption{Kernel estimate showing the contributions of Gaussian 
          kernels evaluated for the individual observations with bandwidth $h =
          0.4$. \label{DE-bumps}}
 \end{center}
 \end{figure}
 \rawSinput
+
+
 \begin{figure}
 \begin{center}
 <<DE-epakernel-fig, echo = TRUE, fig = TRUE>>=
-epa <- function(x, y)
+epa <- function(x, y) 
     ((x^2 + y^2) < 1) * 2/pi * (1 - x^2 - y^2)
 x <- seq(from = -1.1, to = 1.1, by = 0.05)
 epavals <- sapply(x, function(a) epa(a, x))
-persp(x = x, y = x, z = epavals, xlab = "x", ylab = "y",
-      zlab = expression(K(x, y)), theta = -35, axes = TRUE,
+persp(x = x, y = x, z = epavals, xlab = "x", ylab = "y", 
+      zlab = expression(K(x, y)), theta = -35, axes = TRUE, 
       box = TRUE)
 @
-\caption{Epanechnikov kernel for a grid between $(-1.1, -1.1)$ and $(1.1, 1.1)$.
+\caption{Epanechnikov kernel for a grid between $(-1.1, -1.1)$ and $(1.1, 1.1)$. 
          \label{DE-epakernel-fig}}
 \end{center}
 \end{figure}
+
+
 \section{Analysis Using \R{}}
+
+
 \numberSinput
 \begin{figure}
 \begin{center}
@@ -323,17 +353,17 @@ data("faithful", package = "datasets")
 x <- faithful$waiting
 layout(matrix(1:3, ncol = 3))
 hist(x, xlab = "Waiting times (in min.)", ylab = "Frequency",
-     probability = TRUE, main = "Gaussian kernel",
+     probability = TRUE, main = "Gaussian kernel", 
      border = "gray")
 lines(density(x, width = 12), lwd = 2)
 rug(x)
 hist(x, xlab = "Waiting times (in min.)", ylab = "Frequency",
-     probability = TRUE, main = "Rectangular kernel",
+     probability = TRUE, main = "Rectangular kernel", 
      border = "gray")
 lines(density(x, width = 12, window = "rectangular"), lwd = 2)
 rug(x)
 hist(x, xlab = "Waiting times (in min.)", ylab = "Frequency",
-     probability = TRUE, main = "Triangular kernel",
+     probability = TRUE, main = "Triangular kernel", 
      border = "gray")
 lines(density(x, width = 12, window = "triangular"), lwd = 2)
 rug(x)
@@ -343,6 +373,8 @@ of the data. \label{DE:faithfuldens}}
 \end{center}
 \end{figure}
 \rawSinput
+
+
 \begin{figure}
 \begin{center}
 <<DE-CYGOB1-contour, echo = TRUE, fig = TRUE>>=
@@ -350,7 +382,7 @@ library("KernSmooth")
 data("CYGOB1", package = "HSAUR2")
 CYGOB1d <- bkde2D(CYGOB1, bandwidth = sapply(CYGOB1, dpik))
 contour(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
-        xlab = "log surface temperature",
+        xlab = "log surface temperature", 
         ylab = "log light intensity")
 @
 \caption{A contour plot of the bivariate density estimate of the \Robject{CYGOB1} data,
@@ -358,13 +390,14 @@ contour(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
          \label{DE:CYGOB12Dcontour}}
 \end{center}
 \end{figure}
+
 \begin{figure}
 \begin{center}
 <<DE-CYGOB1-persp, echo = TRUE, fig = TRUE>>=
 persp(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
-      xlab = "log surface temperature",
+      xlab = "log surface temperature", 
       ylab = "log light intensity",
-      zlab = "estimated density",
+      zlab = "estimated density", 
       theta = -35, axes = TRUE, box = TRUE)
 @
 \caption{The bivariate density estimate of the \Robject{CYGOB1} data, here shown in a
@@ -372,16 +405,20 @@ persp(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
          \label{DE:CYGOB12Dpersp}}
 \end{center}
 \end{figure}
+
 \subsection{A Parametric Density Estimate for the Old Faithful Data
 \label{DE-waiting}}
+
+
 <<DE-faithful-optim, echo = TRUE, results = hide>>=
 logL <- function(param, x) {
     d1 <- dnorm(x, mean = param[2], sd = param[3])
     d2 <- dnorm(x, mean = param[4], sd = param[5])
     -sum(log(param[1] * d1 + (1 - param[1]) * d2))
 }
+
 startparam <- c(p = 0.5, mu1 = 50, sd1 = 3, mu2 = 80, sd2 = 3)
-opp <- optim(startparam, logL, x = faithful$waiting,
+opp <- optim(startparam, logL, x = faithful$waiting, 
              method = "L-BFGS-B",
              lower = c(0.01, rep(1, 4)),
              upper = c(0.99, rep(200, 4)))
@@ -390,6 +427,7 @@ opp
 <<DE-faithful-optim-print, echo = FALSE>>=
 print(opp[names(opp) != "message"])
 @
+
 Of course, optimising the appropriate likelihood `by hand' %'
 is not very convenient. In fact, (at least) two packages offer high-level
 functionality for estimating mixture models. The first one is package
@@ -415,7 +453,7 @@ sqrt(mc$parameters$variance$sigmasq)
 @
 The proportion is $\hat{p} = \Sexpr{round(mc$parameters$pro[1], 2)}$. The second package is called
 \Rpackage{flexmix} whose functionality is described by
-\cite{HSAUR:Leisch2004}.
+\cite{HSAUR:Leisch2004}. 
 A mixture of two normals can be fitted using
 <<DE-faithful-flexmix, echo = TRUE>>=
 library("flexmix")
@@ -426,6 +464,7 @@ with $\hat{p} = \Sexpr{round(fl@prior, 2)}$ and estimated parameters
 parameters(fl, component = 1)
 parameters(fl, component = 2)
 @
+
 \begin{figure}
 \begin{center}
 <<DE-faithful-2Dplot, echo = TRUE, fig = TRUE>>=
@@ -435,10 +474,10 @@ d1 <- dnorm(rx, mean = opar$mu1, sd = opar$sd1)
 d2 <- dnorm(rx, mean = opar$mu2, sd = opar$sd2)
 f <- opar$p * d1 + (1 - opar$p) * d2
 hist(x, probability = TRUE, xlab = "Waiting times (in min.)",
-     border = "gray", xlim = range(rx), ylim = c(0, 0.06),
+     border = "gray", xlim = range(rx), ylim = c(0, 0.06), 
      main = "")
 lines(rx, f, lwd = 2)
-lines(rx, dnorm(rx, mean = mean(x), sd = sd(x)), lty = 2,
+lines(rx, dnorm(rx, mean = mean(x), sd = sd(x)), lty = 2, 
       lwd = 2)
 legend(50, 0.06, lty = 1:2, bty = "n",
        legend = c("Fitted two-component mixture density",
@@ -448,39 +487,43 @@ legend(50, 0.06, lty = 1:2, bty = "n",
 eruption data. \label{DE:2Dplot}}
 \end{center}
 \end{figure}
+
+
+
 \index{Bootstrap approach|(}
-We can get standard errors for the five parameter estimates
+We can get standard errors for the five parameter estimates 
 by using a bootstrap approach \citep[see][]{HSAUR:EfronTibshirani1993}.
 The original data are slightly perturbed by drawing $n$ out of $n$
 observations \stress{with replacement} and those artificial replications of
 the original data are called \stress{bootstrap samples}. Now, we can fit the
 mixture for each bootstrap sample and assess the variability of the
-estimates, for example using confidence intervals.
+estimates, for example using confidence intervals. 
 \index{Confidence interval!derived from bootstrap samples}
-Some suitable \R{} code based on the \Rcmd{Mclust}
+Some suitable \R{} code based on the \Rcmd{Mclust} 
 function follows. First, we define a function that,
-for a bootstrap sample \Robject{indx}, fits a two-component mixture
+for a bootstrap sample \Robject{indx}, fits a two-component mixture 
 model and returns $\hat{p}$ and the estimated means (note that we need to make
 sure that we always get an estimate of $p$, not $1 - p$):
 <<DE-faithful-boot, echo = TRUE>>=
 library("boot")
 fit <- function(x, indx) {
-    a <- Mclust(x[indx], minG = 2, maxG = 2,
+    a <- Mclust(x[indx], minG = 2, maxG = 2, 
                 modelNames="E")$parameters
     if (a$pro[1] < 0.5)
-        return(c(p = a$pro[1], mu1 = a$mean[1],
+        return(c(p = a$pro[1], mu1 = a$mean[1], 
                                mu2 = a$mean[2]))
-    return(c(p = 1 - a$pro[1], mu1 = a$mean[2],
+    return(c(p = 1 - a$pro[1], mu1 = a$mean[2], 
                                mu2 = a$mean[1]))
 }
 @
-The function \Rcmd{fit} can now be fed into the \Rcmd{boot} function \citep{PKG:boot}
+The function \Rcmd{fit} can now be fed into the \Rcmd{boot} function \citep{PKG:boot} 
 for bootstrapping (here $1000$ bootstrap samples are drawn)
 \begin{Schunk}
 \begin{Sinput}
 R> bootpara <- boot(faithful$waiting, fit, R = 1000)
 \end{Sinput}
 \end{Schunk}
+
 <<DE-faithful-bootrun, echo = FALSE>>=
 bootparafile <- file.path(.find.package("HSAUR2"), "cache", "DE-bootpara.rda")
 if (file.exists(bootparafile)) {
@@ -489,6 +532,7 @@ if (file.exists(bootparafile)) {
     bootpara <- boot(faithful$waiting, fit, R = 1000)
 }
 @
+
 We assess the variability of our estimates $\hat{p}$ by
 means of adjusted bootstrap percentile (BCa) confidence intervals, which for
 $\hat{p}$ can be obtained from
@@ -527,6 +571,7 @@ First, we plot a simple density estimate and then construct a line
 representing the confidence interval.
 We apply this function to the bootstrap distributions of our estimates
 $\hat{\mu}_1$ and $\hat{\mu}_2$ in Figure~\ref{DE-bootplot}.
+
 \begin{figure}
 \begin{center}
 <<DE-faithful-boot-plot, echo = TRUE, fig = TRUE, height = 4>>=
@@ -539,6 +584,8 @@ bootplot(bootpara, 3, main = expression(mu[2]))
 \end{center}
 \end{figure}
 \index{Bootstrap approach|)}
+
+
 \bibliographystyle{LaTeXBibTeX/refstyle}
-\bibliography{LaTeXBibTeX/HSAUR}
+\bibliography{LaTeXBibTeX/HSAUR}   
 \end{document}

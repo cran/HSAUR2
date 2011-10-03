@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: setup
+R> ### code chunk number 3: setup
 R> ###################################################
 R> options(digits = 3)
 R> if (!interactive()) {
@@ -99,13 +99,13 @@ R> if (!interactive()) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: ALDII-gee
+R> ### code chunk number 4: ALDII-gee
 R> ###################################################
 R> library("gee")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: ALDII-BtheB-data
+R> ### code chunk number 5: ALDII-BtheB-data
 R> ###################################################
 R> data("BtheB", package = "HSAUR2")
 R> BtheB$subject <- factor(rownames(BtheB))
@@ -118,7 +118,7 @@ R> names(BtheB_long)[names(BtheB_long) == "treatment"] <- "trt"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: ALDII-BtheB-geefit-indep
+R> ### code chunk number 6: ALDII-BtheB-geefit-indep
 R> ###################################################
 R> osub <- order(as.integer(BtheB_long$subject))
 R> BtheB_long <- BtheB_long[osub,]
@@ -132,7 +132,7 @@ running glm to get initial regression estimate
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: ALDII-BtheB-geefit-ex
+R> ### code chunk number 7: ALDII-BtheB-geefit-ex
 R> ###################################################
 R> btb_gee1 <- gee(bdi ~ bdi.pre + trt + length + drug,
 +      data = BtheB_long, id = subject, family = gaussian,
@@ -144,7 +144,7 @@ running glm to get initial regression estimate
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: ALDII-BtheB-geesummary
+R> ### code chunk number 8: ALDII-BtheB-geesummary
 R> ###################################################
 R> summary(btb_gee)
 ...
@@ -168,7 +168,7 @@ Estimated Scale Parameter:  79.3
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: ALDII-BtheB-gee1summary
+R> ### code chunk number 9: ALDII-BtheB-gee1summary
 R> ###################################################
 R> summary(btb_gee1)
 ...
@@ -192,7 +192,7 @@ Estimated Scale Parameter:  81.7
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: ALDII-respiratory-data
+R> ### code chunk number 10: ALDII-respiratory-data
 R> ###################################################
 R> data("respiratory", package = "HSAUR2")
 R> resp <- subset(respiratory, month > "0")
@@ -203,14 +203,14 @@ R> resp$month <- resp$month[, drop = TRUE]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: ALDII-respiratory-names
+R> ### code chunk number 11: ALDII-respiratory-names
 R> ###################################################
 R> names(resp)[names(resp) == "treatment"] <- "trt"
 R> levels(resp$trt)[2] <- "trt"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: ALDII-respiratory-fit
+R> ### code chunk number 12: ALDII-respiratory-fit
 R> ###################################################
 R> resp_glm <- glm(status ~ centre + trt + gender + baseline
 +      + age, data = resp, family = "binomial")
@@ -237,7 +237,7 @@ baselinegood          age
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: ALDII-resp-glm-summary
+R> ### code chunk number 13: ALDII-resp-glm-summary
 R> ###################################################
 R> summary(resp_glm)
 
@@ -269,7 +269,7 @@ Number of Fisher Scoring iterations: 4
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: ALDII-resp-gee1summary
+R> ### code chunk number 14: ALDII-resp-gee1summary
 R> ###################################################
 R> summary(resp_gee1)
 ...
@@ -294,7 +294,7 @@ Estimated Scale Parameter:  1
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: ALDII-resp-gee2-summary
+R> ### code chunk number 15: ALDII-resp-gee2-summary
 R> ###################################################
 R> summary(resp_gee2)
 ...
@@ -319,7 +319,7 @@ Estimated Scale Parameter:  1
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: ALDII-resp-confint
+R> ### code chunk number 16: ALDII-resp-confint
 R> ###################################################
 R> se <- summary(resp_gee2)$coefficients["trttrt",
 +                                        "Robust S.E."]
@@ -329,7 +329,7 @@ R> coef(resp_gee2)["trttrt"] +
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: ALDII-resp-confint-exp
+R> ### code chunk number 17: ALDII-resp-confint-exp
 R> ###################################################
 R> exp(coef(resp_gee2)["trttrt"] +
 +      c(-1, 1) * se * qnorm(0.975))
@@ -337,7 +337,7 @@ R> exp(coef(resp_gee2)["trttrt"] +
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: ALDII-epilepsy
+R> ### code chunk number 18: ALDII-epilepsy
 R> ###################################################
 R> data("epilepsy", package = "HSAUR2")
 R> itp <- interaction(epilepsy$treatment, epilepsy$period)
@@ -354,7 +354,7 @@ Progabide.3   placebo.4 Progabide.4
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: ALDII-plot1
+R> ### code chunk number 19: ALDII-plot1
 R> ###################################################
 R> layout(matrix(1:2, nrow = 1))
 R> ylim <- range(epilepsy$seizure.rate)
@@ -369,7 +369,7 @@ R> boxplot(seizure.rate ~ period, data = progabide,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: ALDII-plot2
+R> ### code chunk number 20: ALDII-plot2
 R> ###################################################
 R> layout(matrix(1:2, nrow = 1))
 R> ylim <- range(log(epilepsy$seizure.rate + 1))
@@ -382,7 +382,7 @@ R> boxplot(log(seizure.rate + 1) ~ period, data = progabide,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 21: ALDII-epilepsy-gee
+R> ### code chunk number 21: ALDII-epilepsy-gee
 R> ###################################################
 R> per <- rep(log(2),nrow(epilepsy))
 R> epilepsy$period <- as.numeric(epilepsy$period)
@@ -413,7 +413,7 @@ running glm to get initial regression estimate
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 22: ALDII-espilepsy-glm-summary
+R> ### code chunk number 22: ALDII-espilepsy-glm-summary
 R> ###################################################
 R> summary(epilepsy_glm)
 
@@ -442,7 +442,7 @@ Number of Fisher Scoring iterations: 5
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 23: ALDII-espilepsy-gee1-summary
+R> ### code chunk number 23: ALDII-espilepsy-gee1-summary
 R> ###################################################
 R> summary(epilepsy_gee1)
 ...
@@ -465,7 +465,7 @@ Estimated Scale Parameter:  1
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 24: ALDII-espilepsy-gee2-summary
+R> ### code chunk number 24: ALDII-espilepsy-gee2-summary
 R> ###################################################
 R> summary(epilepsy_gee2)
 ...
@@ -488,7 +488,7 @@ Estimated Scale Parameter:  1
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 25: ALDII-espilepsy-gee3-summary
+R> ### code chunk number 25: ALDII-espilepsy-gee3-summary
 R> ###################################################
 R> summary(epilepsy_gee3)
 ...

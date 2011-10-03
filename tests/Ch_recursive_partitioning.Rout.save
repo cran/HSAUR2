@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: RP-setup
+R> ### code chunk number 3: RP-setup
 R> ###################################################
 R> library("vcd")
 Loading required package: grid
@@ -124,7 +124,7 @@ R> numbers <- c("zero", "one", "two", "three", "four", "five", "six", "seven", "
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: RP-bodyfat-rpart
+R> ### code chunk number 4: RP-bodyfat-rpart
 R> ###################################################
 R> library("rpart")
 R> data("bodyfat", package = "mboost")
@@ -134,14 +134,14 @@ R> bodyfat_rpart <- rpart(DEXfat ~ age + waistcirc + hipcirc +
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: RP-bodyfat-plot
+R> ### code chunk number 5: RP-bodyfat-plot
 R> ###################################################
 R> library("partykit")
 R> plot(as.party(bodyfat_rpart), tp_args = list(id = FALSE))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: RP-bodyfat-cp
+R> ### code chunk number 6: RP-bodyfat-cp
 R> ###################################################
 R> print(bodyfat_rpart$cptable)
           CP nsplit  rel error    xerror       xstd
@@ -156,20 +156,20 @@ R> opt <- which.min(bodyfat_rpart$cptable[,"xerror"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: RP-bodyfat-prune
+R> ### code chunk number 7: RP-bodyfat-prune
 R> ###################################################
 R> cp <- bodyfat_rpart$cptable[opt, "CP"]
 R> bodyfat_prune <- prune(bodyfat_rpart, cp = cp)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: RP-bodyfat-pruneplot
+R> ### code chunk number 8: RP-bodyfat-pruneplot
 R> ###################################################
 R> plot(as.party(bodyfat_prune), tp_args = list(id = FALSE))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: RP-bodyfat-predict
+R> ### code chunk number 9: RP-bodyfat-predict
 R> ###################################################
 R> DEXfat_pred <- predict(bodyfat_prune, newdata = bodyfat)
 R> xlim <- range(bodyfat$DEXfat)
@@ -179,13 +179,13 @@ R> abline(a = 0, b = 1)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: RP-seed-again
+R> ### code chunk number 10: RP-seed-again
 R> ###################################################
 R> set.seed(290875)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: RP-glaucoma-rpart
+R> ### code chunk number 11: RP-glaucoma-rpart
 R> ###################################################
 R> data("GlaucomaM", package = "ipred")
 R> glaucoma_rpart <- rpart(Class ~ ., data = GlaucomaM,
@@ -202,13 +202,13 @@ R> glaucoma_prune <- prune(glaucoma_rpart, cp = cp)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: RP-glaucoma-plot
+R> ### code chunk number 12: RP-glaucoma-plot
 R> ###################################################
 R> plot(as.party(glaucoma_prune), tp_args = list(id = FALSE))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: RP-glaucoma-cp
+R> ### code chunk number 13: RP-glaucoma-cp
 R> ###################################################
 R> nsplitopt <- vector(mode = "integer", length = 25)
 R> for (i in 1:length(nsplitopt)) {
@@ -222,7 +222,7 @@ nsplitopt
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: RP-glaucoma-bagg
+R> ### code chunk number 14: RP-glaucoma-bagg
 R> ###################################################
 R> trees <- vector(mode = "list", length = 25)
 R> n <- nrow(GlaucomaM)
@@ -234,7 +234,7 @@ R> for (i in 1:length(trees))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: RP-glaucoma-splits
+R> ### code chunk number 15: RP-glaucoma-splits
 R> ###################################################
 R> table(sapply(trees, function(x) as.character(x$frame$var[1])))
 
@@ -243,7 +243,7 @@ phcg varg vari vars
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: RP-glaucoma-baggpred
+R> ### code chunk number 16: RP-glaucoma-baggpred
 R> ###################################################
 R> classprob <- matrix(0, nrow = n, ncol = length(trees))
 R> for (i in 1:length(trees)) {
@@ -254,7 +254,7 @@ R> for (i in 1:length(trees)) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: RP-glaucoma-avg
+R> ### code chunk number 17: RP-glaucoma-avg
 R> ###################################################
 R> avg <- rowMeans(classprob, na.rm = TRUE)
 R> predictions <- factor(ifelse(avg > 0.5, "glaucoma",
@@ -268,7 +268,7 @@ predictions glaucoma normal
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: RP-glaucoma-sens
+R> ### code chunk number 18: RP-glaucoma-sens
 R> ###################################################
 R> round(predtab[1,1] / colSums(predtab)[1] * 100)
 glaucoma 
@@ -276,7 +276,7 @@ glaucoma
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: RP-glaucoma-spez
+R> ### code chunk number 19: RP-glaucoma-spez
 R> ###################################################
 R> round(predtab[2,2] / colSums(predtab)[2] * 100)
 normal 
@@ -284,7 +284,7 @@ normal
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: RP-glaucoma-baggplot
+R> ### code chunk number 20: RP-glaucoma-baggplot
 R> ###################################################
 R> library("lattice")
 R> gdata <- data.frame(avg = rep(avg, 2),
@@ -303,14 +303,14 @@ R> print(xyplot(avg ~ obs | var, data = gdata,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 21: RP-glaucoma-rf
+R> ### code chunk number 21: RP-glaucoma-rf
 R> ###################################################
 R> library("randomForest")
 R> rf <- randomForest(Class ~ ., data = GlaucomaM)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 22: RP-glaucoma-rf-oob
+R> ### code chunk number 22: RP-glaucoma-rf-oob
 R> ###################################################
 R> table(predict(rf), GlaucomaM$Class)
           
@@ -320,13 +320,13 @@ R> table(predict(rf), GlaucomaM$Class)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 23: RP-detach
+R> ### code chunk number 23: RP-detach
 R> ###################################################
 R> detach("package:partykit")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 24: RP-bodyfat-ctree
+R> ### code chunk number 24: RP-bodyfat-ctree
 R> ###################################################
 R> library("party")
 R> bodyfat_ctree <- ctree(DEXfat ~ age + waistcirc + hipcirc +
@@ -334,19 +334,19 @@ R> bodyfat_ctree <- ctree(DEXfat ~ age + waistcirc + hipcirc +
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 25: RP-bodyfat-ctree-plot
+R> ### code chunk number 25: RP-bodyfat-ctree-plot
 R> ###################################################
 R> plot(bodyfat_ctree)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 26: RP-glaucoma-ctree
+R> ### code chunk number 26: RP-glaucoma-ctree
 R> ###################################################
 R> glaucoma_ctree <- ctree(Class ~ ., data = GlaucomaM)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 27: RP-glaucoma-ctree-plot
+R> ### code chunk number 27: RP-glaucoma-ctree-plot
 R> ###################################################
 R> plot(glaucoma_ctree)
 R> 

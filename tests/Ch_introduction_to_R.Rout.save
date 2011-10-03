@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: AItR-welcome
+R> ### code chunk number 3: AItR-welcome
 R> ###################################################
 R> HSAUR2:::Rwelcome()
 R : Copyright 2009 The R Foundation for Statistical Computing
@@ -86,39 +86,39 @@ Type 'q()' to quit R.
 >R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: AItR-promt
+R> ### code chunk number 4: AItR-promt
 R> ###################################################
 R> options(prompt = "> ")
 > 
 > 
 > ###################################################
-> ### chunk number 5: AItR-welcome
+> ### code chunk number 5: AItR-welcome
 > ###################################################
 > options(prompt = "R> ")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: AItR-firstex
+R> ### code chunk number 6: AItR-firstex
 R> ###################################################
 R> x <- sqrt(25) + 2
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: AItR-firstex-print
+R> ### code chunk number 7: AItR-firstex-print
 R> ###################################################
 R> x
 [1] 7
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: AItR-firstex-print
+R> ### code chunk number 8: AItR-firstex-print
 R> ###################################################
 R> print(x)
 [1] 7
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: AItR-recommended
+R> ### code chunk number 9: AItR-recommended
 R> ###################################################
 R> colwidth <- 4
 R> ip <- installed.packages(priority = "high")
@@ -137,7 +137,7 @@ R> rm(ip, nrows)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: AItR-CRAN
+R> ### code chunk number 10: AItR-CRAN
 R> ###################################################
 R> cp <- available.packages(contriburl = "http://CRAN.r-project.org/src/contrib")
 R> ncp <- sum(!rownames(cp) %in% pkgs)
@@ -145,43 +145,43 @@ R> rm(cp, pkgs)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: AItR-rm
+R> ### code chunk number 11: AItR-rm
 R> ###################################################
 R> rm(ncp, colwidth, i)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: AItR-install-packages eval=FALSE
+R> ### code chunk number 12: AItR-install-packages eval=FALSE
 R> ###################################################
 R> ## install.packages("sandwich")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: AItR-library eval=FALSE
+R> ### code chunk number 13: AItR-library eval=FALSE
 R> ###################################################
 R> ## library("sandwich")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: AItR-help eval=FALSE
+R> ### code chunk number 14: AItR-help eval=FALSE
 R> ###################################################
 R> ## help("mean")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: AItR-help-lib eval=FALSE
+R> ### code chunk number 15: AItR-help-lib eval=FALSE
 R> ###################################################
 R> ## help(package = "sandwich")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: AItR-help-lib eval=FALSE
+R> ### code chunk number 16: AItR-help-lib eval=FALSE
 R> ###################################################
 R> ## vignette("sandwich", package = "sandwich")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: AItR-Forbes2000
+R> ### code chunk number 17: AItR-Forbes2000
 R> ###################################################
 R> data("Forbes2000", package = "HSAUR2")
 R> ls()
@@ -190,7 +190,7 @@ R> ls()
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: AItR-Forbes2000-ls
+R> ### code chunk number 18: AItR-Forbes2000-ls
 R> ###################################################
 R> x <- c("x", "Forbes2000")
 R> print(x)
@@ -198,13 +198,13 @@ R> print(x)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: AItR-Forbes2000-print eval=FALSE
+R> ### code chunk number 19: AItR-Forbes2000-print eval=FALSE
 R> ###################################################
 R> ## print(Forbes2000)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: AItR-Forbes2000-print
+R> ### code chunk number 20: AItR-Forbes2000-print
 R> ###################################################
 R> print(Forbes2000[1:3,])
   rank                name       country      category  sales
@@ -220,13 +220,13 @@ R> cat("...\n")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 21: AItR-Forbes2000-str eval=FALSE
+R> ### code chunk number 21: AItR-Forbes2000-str eval=FALSE
 R> ###################################################
 R> ## str(Forbes2000)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 22: AItR-Forbes2000-str
+R> ### code chunk number 22: AItR-Forbes2000-str
 R> ###################################################
 R> str(Forbes2000, vec.len = 2, strict.width = "cut", width = 60)
 'data.frame':	2000 obs. of  8 variables:
@@ -241,27 +241,27 @@ R> str(Forbes2000, vec.len = 2, strict.width = "cut", width = 60)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 23: AItR-Forbes2000-help eval=FALSE
+R> ### code chunk number 23: AItR-Forbes2000-help eval=FALSE
 R> ###################################################
 R> ## help("Forbes2000")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 24: AItR-Forbes2000-df
+R> ### code chunk number 24: AItR-Forbes2000-df
 R> ###################################################
 R> class(Forbes2000)
 [1] "data.frame"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 25: AItR-Forbes2000-dim
+R> ### code chunk number 25: AItR-Forbes2000-dim
 R> ###################################################
 R> dim(Forbes2000)
 [1] 2000    8
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 26: AItR-Forbes2000-nrow-ncol
+R> ### code chunk number 26: AItR-Forbes2000-nrow-ncol
 R> ###################################################
 R> nrow(Forbes2000)
 [1] 2000
@@ -270,7 +270,7 @@ R> ncol(Forbes2000)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 27: AItR-Forbes2000-names
+R> ### code chunk number 27: AItR-Forbes2000-names
 R> ###################################################
 R> names(Forbes2000)
 [1] "rank"        "name"        "country"     "category"   
@@ -278,21 +278,21 @@ R> names(Forbes2000)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 28: AItR-Forbes2000-rank
+R> ### code chunk number 28: AItR-Forbes2000-rank
 R> ###################################################
 R> class(Forbes2000[,"rank"])
 [1] "integer"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 29: AItR-Forbes2000-length
+R> ### code chunk number 29: AItR-Forbes2000-length
 R> ###################################################
 R> length(Forbes2000[,"rank"])
 [1] 2000
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 30: AItR-Forbes2000-one-to-three
+R> ### code chunk number 30: AItR-Forbes2000-one-to-three
 R> ###################################################
 R> 1:3
 [1] 1 2 3
@@ -303,7 +303,7 @@ R> seq(from = 1, to = 3, by = 1)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 31: AItR-Forbes2000-name
+R> ### code chunk number 31: AItR-Forbes2000-name
 R> ###################################################
 R> class(Forbes2000[,"name"])
 [1] "character"
@@ -312,34 +312,34 @@ R> length(Forbes2000[,"name"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 32: AItR-Forbes2000-first
+R> ### code chunk number 32: AItR-Forbes2000-first
 R> ###################################################
 R> Forbes2000[,"name"][1]
 [1] "Citigroup"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 33: AItR-Forbes2000-category
+R> ### code chunk number 33: AItR-Forbes2000-category
 R> ###################################################
 R> class(Forbes2000[,"category"])
 [1] "factor"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 34: AItR-Forbes2000-nlevels
+R> ### code chunk number 34: AItR-Forbes2000-nlevels
 R> ###################################################
 R> nlevels(Forbes2000[,"category"])
 [1] 27
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 35: AItR-Forbes2000-levels eval=FALSE
+R> ### code chunk number 35: AItR-Forbes2000-levels eval=FALSE
 R> ###################################################
 R> ## levels(Forbes2000[,"category"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 36: AItR-Forbes2000-levels
+R> ### code chunk number 36: AItR-Forbes2000-levels
 R> ###################################################
 R> levels(Forbes2000[,"category"])[1:3]
 [1] "Aerospace & defense"         
@@ -350,13 +350,13 @@ R> cat("...\n")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 37: AItR-Forbes2000-table eval=FALSE
+R> ### code chunk number 37: AItR-Forbes2000-table eval=FALSE
 R> ###################################################
 R> ## table(Forbes2000[,"category"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 38: AItR-Forbes2000-table
+R> ### code chunk number 38: AItR-Forbes2000-table
 R> ###################################################
 R> table(Forbes2000[,"category"])[1:3]
 
@@ -369,14 +369,14 @@ R> cat("...\n")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 39: AItR-Forbes2000-sales
+R> ### code chunk number 39: AItR-Forbes2000-sales
 R> ###################################################
 R> class(Forbes2000[,"sales"])
 [1] "numeric"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 40: AItR-Forbes2000-numsum
+R> ### code chunk number 40: AItR-Forbes2000-numsum
 R> ###################################################
 R> median(Forbes2000[,"sales"])
 [1] 4.365
@@ -387,7 +387,7 @@ R> range(Forbes2000[,"sales"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 41: AItR-Forbes2000-summary
+R> ### code chunk number 41: AItR-Forbes2000-summary
 R> ###################################################
 R> summary(Forbes2000[,"sales"])
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -395,7 +395,7 @@ R> summary(Forbes2000[,"sales"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 42: AItR-Forbes2000-files
+R> ### code chunk number 42: AItR-Forbes2000-files
 R> ###################################################
 R> pkgpath <- system.file(package = "HSAUR2")
 R> mywd <- getwd()
@@ -404,21 +404,21 @@ R> setwd(filep)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 43: AItR-Forbes2000-read.table
+R> ### code chunk number 43: AItR-Forbes2000-read.table
 R> ###################################################
 R> csvForbes2000 <- read.table("Forbes2000.csv",
 +      header = TRUE, sep = ",", row.names = 1)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 44: AItR-Forbes2000-csv-names
+R> ### code chunk number 44: AItR-Forbes2000-csv-names
 R> ###################################################
 R> class(csvForbes2000[,"name"])
 [1] "factor"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 45: AItR-Forbes2000-read.table2
+R> ### code chunk number 45: AItR-Forbes2000-read.table2
 R> ###################################################
 R> csvForbes2000 <- read.table("Forbes2000.csv",
 +      header = TRUE, sep = ",", row.names = 1,
@@ -430,14 +430,14 @@ R> class(csvForbes2000[,"name"])
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 46: AItR-Forbes2000-all.equal
+R> ### code chunk number 46: AItR-Forbes2000-all.equal
 R> ###################################################
 R> all.equal(csvForbes2000, Forbes2000)
 [1] TRUE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 47: AItR-Forbes2000-classes
+R> ### code chunk number 47: AItR-Forbes2000-classes
 R> ###################################################
 R> classes <- c("character", "integer", "character", "factor",
 +      "factor", "numeric", "numeric", "numeric", "numeric")
@@ -448,7 +448,7 @@ R> class(classes)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 48: AItR-Forbes2000-RODBC eval=FALSE
+R> ### code chunk number 48: AItR-Forbes2000-RODBC eval=FALSE
 R> ###################################################
 R> ## library("RODBC")
 R> ## cnct <- odbcConnectExcel("Forbes2000.xls")
@@ -456,52 +456,52 @@ R> ## sqlQuery(cnct, "select * from \"Forbes2000\\$\"")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 49: AItR-Forbes2000-RODBC
+R> ### code chunk number 49: AItR-Forbes2000-RODBC
 R> ###################################################
 R> setwd(mywd)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 50: AItR-Forbes2000-write.table
+R> ### code chunk number 50: AItR-Forbes2000-write.table
 R> ###################################################
 R> write.table(Forbes2000, file = "Forbes2000.csv", sep = ",",
 +              col.names = NA)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 51: AItR-Forbes2000-save
+R> ### code chunk number 51: AItR-Forbes2000-save
 R> ###################################################
 R> save(Forbes2000, file = "Forbes2000.rda")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 52: AItR-Forbes2000-list
+R> ### code chunk number 52: AItR-Forbes2000-list
 R> ###################################################
 R> list.files(pattern = "\\.rda")
 [1] "Forbes2000.rda"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 53: AItR-Forbes2000-load
+R> ### code chunk number 53: AItR-Forbes2000-load
 R> ###################################################
 R> load("Forbes2000.rda")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 54: AItR-Forbes2000-vector-companies
+R> ### code chunk number 54: AItR-Forbes2000-vector-companies
 R> ###################################################
 R> companies <- Forbes2000[,"name"]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 55: AItR-Forbes2000-vector-indexing
+R> ### code chunk number 55: AItR-Forbes2000-vector-indexing
 R> ###################################################
 R> companies[1]
 [1] "Citigroup"
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 56: AItR-Forbes2000-vector-indexing
+R> ### code chunk number 56: AItR-Forbes2000-vector-indexing
 R> ###################################################
 R> 1:3
 [1] 1 2 3
@@ -511,7 +511,7 @@ R> companies[1:3]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 57: AItR-Forbes2000-vector-negative-indexing
+R> ### code chunk number 57: AItR-Forbes2000-vector-negative-indexing
 R> ###################################################
 R> companies[-(4:2000)]
 [1] "Citigroup"           "General Electric"   
@@ -519,7 +519,7 @@ R> companies[-(4:2000)]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 58: AItR-Forbes2000-top-three
+R> ### code chunk number 58: AItR-Forbes2000-top-three
 R> ###################################################
 R> Forbes2000[1:3, c("name", "sales", "profits", "assets")]
                  name  sales profits  assets
@@ -529,25 +529,25 @@ R> Forbes2000[1:3, c("name", "sales", "profits", "assets")]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 59: AItR-Forbes2000-list-extract
+R> ### code chunk number 59: AItR-Forbes2000-list-extract
 R> ###################################################
 R> companies <- Forbes2000$name
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 60: AItR-Forbes2000-vector-companies
+R> ### code chunk number 60: AItR-Forbes2000-vector-companies
 R> ###################################################
 R> companies <- Forbes2000[,"name"]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 61: AItR-Forbes2000-sales
+R> ### code chunk number 61: AItR-Forbes2000-sales
 R> ###################################################
 R> order_sales <- order(Forbes2000$sales)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 62: AItR-Forbes2000-sales-small
+R> ### code chunk number 62: AItR-Forbes2000-sales-small
 R> ###################################################
 R> companies[order_sales[1:3]]
 [1] "Custodia Holding"       "Central European Media"
@@ -555,7 +555,7 @@ R> companies[order_sales[1:3]]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 63: AItR-Forbes2000-order
+R> ### code chunk number 63: AItR-Forbes2000-order
 R> ###################################################
 R> Forbes2000[order_sales[c(2000, 1999, 1998)],
 +             c("name", "sales", "profits", "assets")]
@@ -566,7 +566,7 @@ R> Forbes2000[order_sales[c(2000, 1999, 1998)],
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 64: AItR-Forbes2000-logical
+R> ### code chunk number 64: AItR-Forbes2000-logical
 R> ###################################################
 R> Forbes2000[Forbes2000$assets > 1000,
 +             c("name", "sales", "profits", "assets")]
@@ -577,7 +577,7 @@ R> Forbes2000[Forbes2000$assets > 1000,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 65: AItR-Forbes2000-logical2
+R> ### code chunk number 65: AItR-Forbes2000-logical2
 R> ###################################################
 R> table(Forbes2000$assets > 1000)
 
@@ -586,7 +586,7 @@ FALSE  TRUE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 66: AItR-Forbes2000-NA
+R> ### code chunk number 66: AItR-Forbes2000-NA
 R> ###################################################
 R> na_profits <- is.na(Forbes2000$profits)
 R> table(na_profits)
@@ -604,7 +604,7 @@ R> Forbes2000[na_profits,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 67: AItR-Forbes2000-complete-cases
+R> ### code chunk number 67: AItR-Forbes2000-complete-cases
 R> ###################################################
 R> table(complete.cases(Forbes2000))
 
@@ -613,7 +613,7 @@ FALSE  TRUE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 68: AItR-Forbes2000-UK
+R> ### code chunk number 68: AItR-Forbes2000-UK
 R> ###################################################
 R> UKcomp <- subset(Forbes2000, country == "United Kingdom")
 R> dim(UKcomp)
@@ -621,7 +621,7 @@ R> dim(UKcomp)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 69: AItR-Forbes2000-summary
+R> ### code chunk number 69: AItR-Forbes2000-summary
 R> ###################################################
 R> summary(Forbes2000)
       rank            name                     country   
@@ -651,7 +651,7 @@ R> summary(Forbes2000)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 70: AItR-Forbes2000-summary-output
+R> ### code chunk number 70: AItR-Forbes2000-summary-output
 R> ###################################################
 R> summary(Forbes2000)
       rank            name                     country   
@@ -681,27 +681,27 @@ R> summary(Forbes2000)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 71: AItR-Forbes2000-lapply eval=FALSE
+R> ### code chunk number 71: AItR-Forbes2000-lapply eval=FALSE
 R> ###################################################
 R> ## lapply(Forbes2000, summary)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 72: AItR-Forbes2000-tapply-category
+R> ### code chunk number 72: AItR-Forbes2000-tapply-category
 R> ###################################################
 R> mprofits <- tapply(Forbes2000$profits,
 +                     Forbes2000$category, median, na.rm = TRUE)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 73: AItR-Forbes2000-medianNA
+R> ### code chunk number 73: AItR-Forbes2000-medianNA
 R> ###################################################
 R> median(Forbes2000$profits)
 [1] NA
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 74: AItR-Forbes2000-mprofits
+R> ### code chunk number 74: AItR-Forbes2000-mprofits
 R> ###################################################
 R> rev(sort(mprofits))[1:3]
          Oil & gas operations         Drugs & biotechnology 
@@ -711,14 +711,14 @@ Household & personal products
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 75: AItR-Forbes2000-medianNA
+R> ### code chunk number 75: AItR-Forbes2000-medianNA
 R> ###################################################
 R> median(Forbes2000$profits, na.rm = TRUE)
 [1] 0.2
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 76: AItR-iqr
+R> ### code chunk number 76: AItR-iqr
 R> ###################################################
 R> iqr <- function(x) {
 +      q <- quantile(x, prob = c(0.25, 0.75), names = FALSE)
@@ -727,7 +727,7 @@ R> iqr <- function(x) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 77: AItR-iqr-test
+R> ### code chunk number 77: AItR-iqr-test
 R> ###################################################
 R> xdata <- rnorm(100)
 R> iqr(xdata)
@@ -737,14 +737,14 @@ R> IQR(xdata)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 78: AItR-iqr-test eval=FALSE
+R> ### code chunk number 78: AItR-iqr-test eval=FALSE
 R> ###################################################
 R> ## xdata[1] <- NA
 R> ## iqr(xdata)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 79: AItR-iqr-test-results
+R> ### code chunk number 79: AItR-iqr-test-results
 R> ###################################################
 R> xdata[1] <- NA
 R> cat(try(iqr(xdata)))
@@ -755,7 +755,7 @@ Error in quantile.default(x, prob = c(0.25, 0.75), names = FALSE) :
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 80: AItR-iqr
+R> ### code chunk number 80: AItR-iqr
 R> ###################################################
 R> iqr <- function(x, ...) {
 +      q <- quantile(x, prob = c(0.25, 0.75), names = FALSE,
@@ -769,21 +769,21 @@ R> IQR(xdata, na.rm = TRUE)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 81: AItR-Forbes2000-iqr
+R> ### code chunk number 81: AItR-Forbes2000-iqr
 R> ###################################################
 R> iqr(Forbes2000$profits, na.rm = TRUE)
 [1] 0.36
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 82: AItR-Forbes2000-tapply-category-iqr
+R> ### code chunk number 82: AItR-Forbes2000-tapply-category-iqr
 R> ###################################################
 R> iqr_profits <- tapply(Forbes2000$profits,
 +                        Forbes2000$category, iqr, na.rm = TRUE)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 83: AItR-Forbes2000-variability
+R> ### code chunk number 83: AItR-Forbes2000-variability
 R> ###################################################
 R> levels(Forbes2000$category)[which.min(iqr_profits)]
 [1] "Hotels restaurants & leisure"
@@ -792,7 +792,7 @@ R> levels(Forbes2000$category)[which.max(iqr_profits)]
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 84: AItR-Forbes2000-for
+R> ### code chunk number 84: AItR-Forbes2000-for
 R> ###################################################
 R> bcat <- Forbes2000$category
 R> iqr_profits2 <- numeric(nlevels(bcat))
@@ -805,7 +805,7 @@ R> for (cat in levels(bcat)) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 85: AItR-Forbes2000-marketvalue
+R> ### code chunk number 85: AItR-Forbes2000-marketvalue
 R> ###################################################
 R> layout(matrix(1:2, nrow = 2))
 R> hist(Forbes2000$marketvalue)
@@ -813,7 +813,7 @@ R> hist(log(Forbes2000$marketvalue))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 86: AItR-Forbes2000-formula
+R> ### code chunk number 86: AItR-Forbes2000-formula
 R> ###################################################
 R> fm <- marketvalue ~ sales
 R> class(fm)
@@ -821,21 +821,21 @@ R> class(fm)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 87: AItR-Forbes2000-marketvalue-sales
+R> ### code chunk number 87: AItR-Forbes2000-marketvalue-sales
 R> ###################################################
 R> plot(log(marketvalue) ~ log(sales), data = Forbes2000,
 +       pch = ".")
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 88: AItR-Forbes2000-marketvalue-sales-shading
+R> ### code chunk number 88: AItR-Forbes2000-marketvalue-sales-shading
 R> ###################################################
 R> plot(log(marketvalue) ~ log(sales), data = Forbes2000,
 +       col = rgb(0,0,0,0.1), pch = 16)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 89: AItR-Forbes2000-country-plot
+R> ### code chunk number 89: AItR-Forbes2000-country-plot
 R> ###################################################
 R> tmp <- subset(Forbes2000,
 +      country %in% c("United Kingdom", "Germany",
@@ -846,20 +846,20 @@ R> plot(log(marketvalue) ~ country, data = tmp,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 90: AItR-analysis1
+R> ### code chunk number 90: AItR-analysis1
 R> ###################################################
 R> file.create("analysis.R")
 [1] TRUE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 91: AItR-analysis2 eval=FALSE
+R> ### code chunk number 91: AItR-analysis2 eval=FALSE
 R> ###################################################
 R> ## source("analysis.R", echo = TRUE)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 92: AItR-analysis3
+R> ### code chunk number 92: AItR-analysis3
 R> ###################################################
 R> file.remove("analysis.R")
 [1] TRUE

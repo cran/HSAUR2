@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ###################################################
-> ### chunk number 1: setup
+> ### code chunk number 1: setup
 > ###################################################
 > rm(list = ls())
 > if (!file.exists("tables")) dir.create("tables")
@@ -60,13 +60,13 @@ R> setHook(packageEvent("lattice", "attach"), function(...) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 2: singlebook
+R> ### code chunk number 2: singlebook
 R> ###################################################
 R> book <- FALSE
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 3: DE-setup
+R> ### code chunk number 3: DE-setup
 R> ###################################################
 R> x <- library("KernSmooth")
 KernSmooth 2.22 installed
@@ -95,7 +95,7 @@ Attaching package: 'boot'
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 4: DE-kernel-figs
+R> ### code chunk number 4: DE-kernel-figs
 R> ###################################################
 R> rec <- function(x) (abs(x) < 1) * 0.5
 R> tri <- function(x) (abs(x) < 1) * (1 - abs(x))
@@ -111,40 +111,40 @@ R> legend(-3, 0.8, legend = c("Rectangular", "Triangular",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 5: DE-options
+R> ### code chunk number 5: DE-options
 R> ###################################################
 R> w <- options("width")$w
 R> options(width = 66)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 6: DE-x-bumps-data
+R> ### code chunk number 6: DE-x-bumps-data
 R> ###################################################
 R> x <- c(0, 1, 1.1, 1.5, 1.9, 2.8, 2.9, 3.5)
 R> n <- length(x)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 7: DE-x-bumps-gaussian
+R> ### code chunk number 7: DE-x-bumps-gaussian
 R> ###################################################
 R> xgrid <- seq(from = min(x) - 1, to = max(x) + 1, by = 0.01)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 8: DE-x-bumps-bumps
+R> ### code chunk number 8: DE-x-bumps-bumps
 R> ###################################################
 R> h <- 0.4
 R> bumps <- sapply(x, function(a) gauss((xgrid - a)/h)/(n * h))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 9: DE-reoptions
+R> ### code chunk number 9: DE-reoptions
 R> ###################################################
 R> options(width = w)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 10: DE-x-bumps
+R> ### code chunk number 10: DE-x-bumps
 R> ###################################################
 R> plot(xgrid, rowSums(bumps), ylab = expression(hat(f)(x)),
 +       type = "l", xlab = "x", lwd = 2)
@@ -153,7 +153,7 @@ R> out <- apply(bumps, 2, function(b) lines(xgrid, b))
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 11: DE-epakernel-fig
+R> ### code chunk number 11: DE-epakernel-fig
 R> ###################################################
 R> epa <- function(x, y)
 +      ((x^2 + y^2) < 1) * 2/pi * (1 - x^2 - y^2)
@@ -165,7 +165,7 @@ R> persp(x = x, y = x, z = epavals, xlab = "x", ylab = "y",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 12: DE-faithful-density
+R> ### code chunk number 12: DE-faithful-density
 R> ###################################################
 R> data("faithful", package = "datasets")
 R> x <- faithful$waiting
@@ -188,7 +188,7 @@ R> rug(x)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 13: DE-CYGOB1-contour
+R> ### code chunk number 13: DE-CYGOB1-contour
 R> ###################################################
 R> library("KernSmooth")
 R> data("CYGOB1", package = "HSAUR2")
@@ -199,7 +199,7 @@ R> contour(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 14: DE-CYGOB1-persp
+R> ### code chunk number 14: DE-CYGOB1-persp
 R> ###################################################
 R> persp(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
 +        xlab = "log surface temperature",
@@ -209,7 +209,7 @@ R> persp(x = CYGOB1d$x1, y = CYGOB1d$x2, z = CYGOB1d$fhat,
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 15: DE-faithful-optim
+R> ### code chunk number 15: DE-faithful-optim
 R> ###################################################
 R> logL <- function(param, x) {
 +      d1 <- dnorm(x, mean = param[2], sd = param[3])
@@ -242,7 +242,7 @@ $message
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 16: DE-faithful-optim-print
+R> ### code chunk number 16: DE-faithful-optim-print
 R> ###################################################
 R> print(opp[names(opp) != "message"])
 $par
@@ -262,7 +262,7 @@ $convergence
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 17: DE-attach-mclust
+R> ### code chunk number 17: DE-attach-mclust
 R> ###################################################
 R> library("mclust")
 by using mclust, you accept the license agreement in the LICENSE file
@@ -270,7 +270,7 @@ and at http://www.stat.washington.edu/mclust/license.txt
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 18: DE-faithful-mclust
+R> ### code chunk number 18: DE-faithful-mclust
 R> ###################################################
 R> library("mclust")
 R> mc <- Mclust(faithful$waiting)
@@ -280,7 +280,7 @@ R> mc
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 19: DE-faithful-mclust-mu
+R> ### code chunk number 19: DE-faithful-mclust-mu
 R> ###################################################
 R> mc$parameters$mean
        1        2 
@@ -288,21 +288,21 @@ R> mc$parameters$mean
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 20: DE-faithful-mclust-para
+R> ### code chunk number 20: DE-faithful-mclust-para
 R> ###################################################
 R> sqrt(mc$parameters$variance$sigmasq)
 [1] 5.86848
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 21: DE-faithful-flexmix
+R> ### code chunk number 21: DE-faithful-flexmix
 R> ###################################################
 R> library("flexmix")
 R> fl <- flexmix(waiting ~ 1, data = faithful, k = 2)
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 22: DE-faithful-flexmix-parameters
+R> ### code chunk number 22: DE-faithful-flexmix-parameters
 R> ###################################################
 R> parameters(fl, component = 1)
                     Comp.1
@@ -315,7 +315,7 @@ sigma             5.871749
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 23: DE-faithful-2Dplot
+R> ### code chunk number 23: DE-faithful-2Dplot
 R> ###################################################
 R> opar <- as.list(opp$par)
 R> rx <- seq(from = 40, to = 110, by = 0.1)
@@ -334,7 +334,7 @@ R> legend(50, 0.06, lty = 1:2, bty = "n",
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 24: DE-faithful-boot
+R> ### code chunk number 24: DE-faithful-boot
 R> ###################################################
 R> library("boot")
 R> fit <- function(x, indx) {
@@ -348,7 +348,7 @@ R> fit <- function(x, indx) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 25: DE-faithful-bootrun
+R> ### code chunk number 25: DE-faithful-bootrun
 R> ###################################################
 R> bootparafile <- file.path(.find.package("HSAUR2"), "cache", "DE-bootpara.rda")
 R> if (file.exists(bootparafile)) {
@@ -359,7 +359,7 @@ R> if (file.exists(bootparafile)) {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 26: DE-faithful-p-ci
+R> ### code chunk number 26: DE-faithful-p-ci
 R> ###################################################
 R> boot.ci(bootpara, type = "bca", index = 1)
 BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -375,7 +375,7 @@ Calculations and Intervals on Original Scale
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 27: DE-faithful-mu1-ci
+R> ### code chunk number 27: DE-faithful-mu1-ci
 R> ###################################################
 R> boot.ci(bootpara, type = "bca", index = 2)
 BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -391,7 +391,7 @@ Calculations and Intervals on Original Scale
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 28: DE-faithful-mu2-ci
+R> ### code chunk number 28: DE-faithful-mu2-ci
 R> ###################################################
 R> boot.ci(bootpara, type = "bca", index = 3)
 BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -407,7 +407,7 @@ Calculations and Intervals on Original Scale
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 29: DE-bootplot
+R> ### code chunk number 29: DE-bootplot
 R> ###################################################
 R> bootplot <- function(b, index, main = "") {
 +      dens <- density(b$t[,index])
@@ -423,7 +423,7 @@ R> bootplot <- function(b, index, main = "") {
 R> 
 R> 
 R> ###################################################
-R> ### chunk number 30: DE-faithful-boot-plot
+R> ### code chunk number 30: DE-faithful-boot-plot
 R> ###################################################
 R> layout(matrix(1:2, ncol = 2))
 R> bootplot(bootpara, 2, main = expression(mu[1]))

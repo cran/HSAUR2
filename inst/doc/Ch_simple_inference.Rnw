@@ -1,10 +1,12 @@
 
+
+
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
 
 %%% keeps `sweave' from adding `\usepackage{Sweave}': DO NOT REMOVE
-%\usepackage{Sweave}
+%\usepackage{Sweave} 
 
 
 \RequirePackage[T1]{fontenc}
@@ -33,7 +35,7 @@
   \renewenvironment{Schunk}{\begin{figure}[ht] }{\caption{\nextcaption}
   \end{figure} }
   \DefineVerbatimEnvironment{Sinput}{Verbatim}{frame = topline}
-  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline,
+  \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame = bottomline, 
                                                 samepage = true,
                                                 fontfamily=courier,
                                                 fontshape=it,
@@ -45,7 +47,7 @@
 \DefineVerbatimEnvironment{Sinput}
 {Verbatim}
 {
-%% numbers=left
+%%  numbers=left
 }
 
 \newcommand{\numberSinput}{
@@ -82,31 +84,31 @@
 
 %%% other symbols
 \newcommand{\file}[1]{\hbox{\rm\texttt{#1}}}
-%%\newcommand{\stress}[1]{\index{#1}\textit{#1}}
-\newcommand{\stress}[1]{\textit{#1}}
+%%\newcommand{\stress}[1]{\index{#1}\textit{#1}} 
+\newcommand{\stress}[1]{\textit{#1}} 
 \newcommand{\booktitle}[1]{\textit{#1}} %%'
 
 %%% Math symbols
 \usepackage{amstext}
 \usepackage{amsmath}
-\newcommand{\E}{\mathsf{E}}
-\newcommand{\Var}{\mathsf{Var}}
-\newcommand{\Cov}{\mathsf{Cov}}
-\newcommand{\Cor}{\mathsf{Cor}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\y}{\mathbf{y}}
+\newcommand{\E}{\mathsf{E}}   
+\newcommand{\Var}{\mathsf{Var}}   
+\newcommand{\Cov}{\mathsf{Cov}}   
+\newcommand{\Cor}{\mathsf{Cor}}   
+\newcommand{\x}{\mathbf{x}}   
+\newcommand{\y}{\mathbf{y}}   
 \renewcommand{\a}{\mathbf{a}}
-\newcommand{\W}{\mathbf{W}}
-\newcommand{\C}{\mathbf{C}}
-\renewcommand{\H}{\mathbf{H}}
-\newcommand{\X}{\mathbf{X}}
-\newcommand{\B}{\mathbf{B}}
-\newcommand{\V}{\mathbf{V}}
-\newcommand{\I}{\mathbf{I}}
-\newcommand{\D}{\mathbf{D}}
-\newcommand{\bS}{\mathbf{S}}
-\newcommand{\N}{\mathcal{N}}
-\renewcommand{\P}{\mathsf{P}}
+\newcommand{\W}{\mathbf{W}}   
+\newcommand{\C}{\mathbf{C}}   
+\renewcommand{\H}{\mathbf{H}}   
+\newcommand{\X}{\mathbf{X}}   
+\newcommand{\B}{\mathbf{B}}   
+\newcommand{\V}{\mathbf{V}}   
+\newcommand{\I}{\mathbf{I}}   
+\newcommand{\D}{\mathbf{D}}   
+\newcommand{\bS}{\mathbf{S}}   
+\newcommand{\N}{\mathcal{N}}   
+\renewcommand{\P}{\mathsf{P}}   
 \newcommand{\K}{\mathbf{K}}
 \newcommand{\m}{\mathbf{m}}
 \newcommand{\argmin}{\operatorname{argmin}\displaylimits}
@@ -168,25 +170,32 @@
 \hyphenation{drop-out}
 \hyphenation{mar-gi-nal}
 
-%%% new bidirectional quotes need
+%%% new bidirectional quotes need 
 \usepackage[utf8]{inputenc}
 \begin{document}
+
 %% Title page
+
 \title{A Handbook of Statistical Analyses Using \R{} --- 2nd Edition}
+
 \author{Brian S. Everitt and Torsten Hothorn}
+
 \maketitle
 %%\VignetteIndexEntry{Chapter Simple Inference}
 \setcounter{chapter}{2}
-\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE}
+
+
+\SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
+
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
 options(prompt = "R> ", continue = "+  ",
-    width = 63, # digits = 4,
+    width = 63, # digits = 4, 
     show.signif.stars = FALSE,
-    SweaveHooks = list(leftpar = function()
+    SweaveHooks = list(leftpar = function() 
         par(mai = par("mai") * c(1, 1.05, 1, 1)),
         bigleftpar = function()
         par(mai = par("mai") * c(1, 1.7, 1, 1))))
@@ -197,8 +206,8 @@ rm(HSAURpkg)
 a <- Sys.setlocale("LC_ALL", "C")
  ### </FIXME>
 book <- TRUE
-refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM",
-                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA",
+refs <- cbind(c("AItR", "DAGD", "SI", "CI", "ANOVA", "MLR", "GLM", 
+                "DE", "RP", "GAM", "SA", "ALDI", "ALDII", "SIMC", "MA", "PCA", 
                 "MDS", "CA"), 1:18)
 ch <- function(x) {
     ch <- refs[which(refs[,1] == x),]
@@ -210,44 +219,50 @@ ch <- function(x) {
 }
 if (file.exists("deparse.R"))
     source("deparse.R")
+
 setHook(packageEvent("lattice", "attach"), function(...) {
-    lattice.options(default.theme =
+    lattice.options(default.theme = 
         function()
             standard.theme("pdf", color = FALSE))
     })
 @
+
 \pagestyle{headings}
 <<singlebook, echo = FALSE>>=
 book <- FALSE
 @
-\chapter[Simple Inference]{Simple Inference: Guessing Lengths,
-                           Wave Energy, Water Hardness, Piston Rings,
+
+\chapter[Simple Inference]{Simple Inference: Guessing Lengths, 
+                           Wave Energy, Water Hardness, Piston Rings, 
                            and Rearrests of Juveniles \label{SI}}
+
 \section{Introduction}
+
 <<SI-setup, echo = FALSE, results = hide>>=
 library("vcd")
+
 if (!interactive()) {
-print.htest <- function (x, digits = 4, quote = TRUE, prefix = "", ...)
+print.htest <- function (x, digits = 4, quote = TRUE, prefix = "", ...) 
 {
     cat("\n")
     cat(strwrap(x$method, prefix = "\t"), sep = "\n")
     cat("\n")
     cat("data: ", x$data.name, "\n")
     out <- character()
-    if (!is.null(x$statistic))
-        out <- c(out, paste(names(x$statistic), "=", format(round(x$statistic,
+    if (!is.null(x$statistic)) 
+        out <- c(out, paste(names(x$statistic), "=", format(round(x$statistic, 
             4))))
-    if (!is.null(x$parameter))
-        out <- c(out, paste(names(x$parameter), "=", format(round(x$parameter,
+    if (!is.null(x$parameter)) 
+        out <- c(out, paste(names(x$parameter), "=", format(round(x$parameter, 
             3))))
     if (!is.null(x$p.value)) {
         fp <- format.pval(x$p.value, digits = digits)
-        out <- c(out, paste("p-value", if (substr(fp, 1, 1) ==
+        out <- c(out, paste("p-value", if (substr(fp, 1, 1) == 
             "<") fp else paste("=", fp)))
     }
     cat(strwrap(paste(out, collapse = ", ")), sep = "\n")
     if (!is.null(x$conf.int)) {
-        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n",
+        cat(format(100 * attr(x$conf.int, "conf.level")), "percent confidence interval:\n", 
             format(c(x$conf.int[1], x$conf.int[2])), "\n")
     }
     if (!is.null(x$estimate)) {
@@ -258,31 +273,39 @@ print.htest <- function (x, digits = 4, quote = TRUE, prefix = "", ...)
     invisible(x)
 }
 }
+
 @
+
+
+
 \section{Statistical Tests}
+
+
 \section{Analysis Using \R{}}
+
 \subsection{Estimating the Width of a Room}
+
 The data shown in Table~\ref{SI-rw-tab} are available as \Robject{roomwidth}
 \Rclass{data.frame} from the \Rpackage{HSAUR2} package and can be attached by
 using
 <<SI-roomwidth-data, echo = TRUE>>=
 data("roomwidth", package = "HSAUR2")
 @
-If we convert the estimates of the room width in metres into feet by
+If we convert the estimates of the room width in metres into feet by 
 multiplying each by $3.28$ then we would like to test the hypothesis that the mean
 of the population of `metre' estimates is equal to the mean  %'
 of the population of `feet' estimates. We shall do this first %'
 by using an independent samples $t$-test, but first it is good
 practise to check, informally at least, the normality and equal
 variance assumptions. Here we can use a combination of numerical
-and graphical approaches. The first step should be to
+and graphical approaches. The first step should be to 
 convert the metre estimates into feet by a factor
 <<SI-roomwidth-convert, echo = TRUE>>=
 convert <- ifelse(roomwidth$unit == "feet", 1, 3.28)
 @
 which equals one for all feet measurements and $3.28$ for the measurements
-in metres. Now, we get the usual summary statistics and standard deviations
-of each set of estimates using
+in metres. Now, we get the usual summary statistics and standard deviations 
+of each set of estimates using 
 <<SI-roomwidth-summary, echo = TRUE>>=
 tapply(roomwidth$width * convert, roomwidth$unit, summary)
 tapply(roomwidth$width * convert, roomwidth$unit, sd)
@@ -297,6 +320,7 @@ in the upper part and the two \Rcmd{qqnorm} statements in lines 7 and 10
 set up the normal probability plots that can be
 used to assess the normality assumption of the $t$-test.
 \index{Normal probability plot}
+
 \numberSinput
 \begin{figure}
 \begin{center}
@@ -307,19 +331,20 @@ boxplot(I(width * convert) ~ unit, data = roomwidth,
         varwidth = TRUE, names = c("Estimates in feet",
         "Estimates in metres (converted to feet)"))
 feet <- roomwidth$unit == "feet"
-qqnorm(roomwidth$width[feet],
+qqnorm(roomwidth$width[feet], 
        ylab = "Estimated width (feet)")
 qqline(roomwidth$width[feet])
-qqnorm(roomwidth$width[!feet],
+qqnorm(roomwidth$width[!feet], 
        ylab = "Estimated width (metres)")
 qqline(roomwidth$width[!feet])
 @
 \caption{Boxplots of estimates of room width in feet and metres (after
 conversion to feet) and normal probability plots of estimates of room width
-made in feet and in metres. \label{SI-rw-bxp}}
+made in feet and in metres.  \label{SI-rw-bxp}}
 \end{center}
 \end{figure}
 \rawSinput
+
 The boxplots indicate that both sets of estimates contain a number
 of outliers and also that the estimates made in metres are skewed and more
 variable than those made in feet, a point underlined by the numerical
@@ -327,9 +352,10 @@ summary statistics above. Both normal probability plots depart from
 linearity, suggesting that the distributions of both sets of estimates
 are not normal. The presence of outliers, the apparently different
 variances and the evidence of non-normality all suggest caution
-in applying the $t$-test, but for the moment we shall apply the
+in applying the $t$-test, but for the moment we shall apply the 
 usual version of the test using the \Rcmd{t.test} function in \R{}.
-The two-sample test problem is specified by a \Rclass{formula}, here by
+
+The two-sample test problem is specified by a \Rclass{formula}, here by 
 <<SI-roomwidth-formula, echo = FALSE>>=
 I(width * convert) ~ unit
 @
@@ -338,31 +364,37 @@ the left hand side needs to be converted first and, because the star has a
 special meaning in formulae as will be explained in \Sexpr{ch("ANOVA")},
 the conversion needs to be embedded by \texttt{I}. The factor \Robject{unit} on
 the right hand side specifies the two groups to be compared.
+
 <<SI-roomwidth-tt-T-hide, echo = FALSE, results = hide>>=
-tt <- t.test(I(width * convert) ~ unit, data = roomwidth,
+tt <- t.test(I(width * convert) ~ unit, data = roomwidth, 
              var.equal = TRUE)
 @
+
+
 \renewcommand{\nextcaption}{\R{} output of the independent samples $t$-test for the
                             \Robject{roomwidth} data. \label{SI-roomwidth-tt-fig}}
 \SchunkLabel
 <<SI-roomwidth-tt-T, echo = TRUE>>=
-t.test(I(width * convert) ~ unit, data = roomwidth,
+t.test(I(width * convert) ~ unit, data = roomwidth, 
        var.equal = TRUE)
 @
 \SchunkRaw
-\renewcommand{\nextcaption}{\R{} output of the independent samples Welch test for the
+
+\renewcommand{\nextcaption}{\R{} output of the independent samples Welch test for the    
                             \Robject{roomwidth} data. \label{SI-roomwidth-welch-fig}}
 \SchunkLabel
 <<SI-roomwidth-tt-F, echo = TRUE>>=
-t.test(I(width * convert) ~ unit, data = roomwidth,
+t.test(I(width * convert) ~ unit, data = roomwidth, 
        var.equal = FALSE)
 @
 \SchunkRaw
-\renewcommand{\nextcaption}{\R{} output of the Wilcoxon rank sum test for the
+
+
+\renewcommand{\nextcaption}{\R{} output of the Wilcoxon rank sum test for the 
                             \Robject{roomwidth} data. \label{SI-roomwidth-wilcox-fig}}
 \SchunkLabel
 <<SI-roomwidth-wt, echo = TRUE>>=
-wilcox.test(I(width * convert) ~ unit, data = roomwidth,
+wilcox.test(I(width * convert) ~ unit, data = roomwidth, 
             conf.int = TRUE)
 @
 \SchunkRaw
@@ -370,23 +402,26 @@ wilcox.test(I(width * convert) ~ unit, data = roomwidth,
 pwt <- round(wilcox.test(I(width * convert) ~ unit, data =
              roomwidth)$p.value, 3)
 @
+
+
 \subsection{Wave Energy Device Mooring}
-The data from Table~\ref{SI-m-tab} are available as \Rclass{data.frame} \Robject{waves}
+
+The data from Table~\ref{SI-m-tab} are available as \Rclass{data.frame} \Robject{waves} 
 <<SI-waves-data, echo = TRUE>>=
 data("waves", package = "HSAUR2")
 @
 and requires the use of a matched pairs
-$t$-test to answer the question of interest.
+$t$-test to answer the question of interest. 
 This test assumes that the differences between the matched
 observations have a normal distribution so we can begin by checking
-this assumption by constructing a boxplot and a normal probability
+this assumption by constructing a boxplot and a normal probability 
 plot -- see Figure~\ref{SI-w-bxp}.
 \begin{figure}
 \begin{center}
 <<SI-wavese-boxplot, echo = TRUE, fig = TRUE, height = 4>>=
 mooringdiff <- waves$method1 - waves$method2
 layout(matrix(1:2, ncol = 2))
-boxplot(mooringdiff, ylab = "Differences (Newton metres)",
+boxplot(mooringdiff, ylab = "Differences (Newton metres)", 
         main = "Boxplot")
 abline(h = 0, lty = 2)
 qqnorm(mooringdiff, ylab = "Differences (Newton metres)")
@@ -396,6 +431,7 @@ qqline(mooringdiff)
 mooring methods. \label{SI-w-bxp}}
 \end{center}
 \end{figure}
+
 \renewcommand{\nextcaption}{\R{} output of the paired $t$-test for the
                             \Robject{waves} data. \label{SI-waves-tt-fig}}
 \SchunkLabel
@@ -403,9 +439,12 @@ mooring methods. \label{SI-w-bxp}}
 t.test(mooringdiff)
 @
 \SchunkRaw
+
 <<SI-waves-wt, echo = FALSE, results = hide>>=
 pwt <- round(wilcox.test(mooringdiff)$p.value, 3)
 @
+
+
 \renewcommand{\nextcaption}{\R{} output of the Wilcoxon signed rank test for the
                             \Robject{waves} data. \label{SI-waves-ws-fig}}
 \SchunkLabel
@@ -413,7 +452,9 @@ pwt <- round(wilcox.test(mooringdiff)$p.value, 3)
 wilcox.test(mooringdiff)
 @
 \SchunkRaw
+
 \subsection{Mortality and Water Hardness}
+
 There is a wide range of analyses we could apply to the
 data in Table~\ref{SI-w-tab} available from
 <<SI-water-data, echo = TRUE>>=
@@ -423,8 +464,8 @@ But to begin we will construct a scatterplot
 of the data enhanced somewhat by the addition of information
 about the marginal distributions of water hardness (calcium concentration)
 and mortality, and by adding the estimated linear regression
-fit (see \Sexpr{ch("MLR")}) for mortality on hardness.
-The plot and the required \R{} code is given along with
+fit (see \Sexpr{ch("MLR")}) for mortality on hardness. 
+The plot and the required \R{} code is given along with 
 Figure~\ref{SI-water-sp}. In line 1 of Figure~\ref{SI-water-sp}, we divide
 the plotting region into four areas of different size. The scatterplot (line
 3) uses a plotting symbol depending on the location of the city (by
@@ -433,8 +474,10 @@ We add a least squares fit (see \Sexpr{ch("MLR")})
 to the scatterplot and,
 finally, depict the marginal distributions by means of a boxplot and a
 histogram. The scatterplot
-shows that as hardness increases mortality decreases, and the
+shows that as hardness increases mortality decreases, and the 
 histogram for the water hardness shows it has a rather skewed distribution.
+
+
 \numberSinput
 \begin{figure}
 \begin{center}
@@ -444,18 +487,20 @@ nf <- layout(matrix(c(2, 0, 1, 3), 2, 2, byrow = TRUE),
 psymb <- as.numeric(water$location)
 plot(mortality ~ hardness, data = water, pch = psymb)
 abline(lm(mortality ~ hardness, data = water))
-legend("topright", legend = levels(water$location),
+legend("topright", legend = levels(water$location), 
        pch = c(1,2), bty = "n")
 hist(water$hardness)
 boxplot(water$mortality)
 @
 \caption{Enhanced scatterplot of water hardness and mortality, showing both
-         the joint and the marginal distributions and, in addition,
+         the joint and the marginal distributions and, in addition, 
          the location of the city by different plotting symbols.
          \label{SI-water-sp}}
 \end{center}
 \end{figure}
 \rawSinput
+
+
 \renewcommand{\nextcaption}{\R{} output of Pearsons' correlation coefficient %'
                             for the \Robject{water} data. \label{SI-water-c-fig}}
 \SchunkLabel
@@ -466,11 +511,16 @@ cor.test(~ mortality + hardness, data = water)
 <<SI-water-cor, echo = FALSE, results = hide>>=
 cr <- round(cor.test(~ mortality + hardness, data = water)$estimate, 3)
 @
+
+
 \subsection{Piston-ring Failures}
-<<SI-pistonrings-chisq-hide, echo = FALSE, results = hide>>=
+
+<<SI-pistonrings-chisq-hide, echo = FALSE, results = hide>>=                                      
 chisqt <- chisq.test(pistonrings)
 @
-\renewcommand{\nextcaption}{\R{} output of the chi-squared test
+
+
+\renewcommand{\nextcaption}{\R{} output of the chi-squared test 
                             for the \Robject{pistonrings} data. \label{SI-pr-x2-fig}}
 \SchunkLabel
 <<SI-pistonrings-chisq, echo = TRUE>>=
@@ -478,22 +528,24 @@ data("pistonrings", package = "HSAUR2")
 chisq.test(pistonrings)
 @
 \SchunkRaw
-Rather than looking
-at the simple differences of observed and expected values for
-each cell which would be unsatisfactory since a difference of
-fixed size is clearly more important for smaller samples, it
+
+Rather than looking  
+at the simple differences of observed and expected values for     
+each cell which would be unsatisfactory since a difference of     
+fixed size is clearly more important for smaller samples, it      
 is preferable to consider a \stress{standardised residual}
 \index{Standardised residual, for chi-squared tests}
 given
-by dividing the observed minus the expected difference by the square
-root of the appropriate expected value. The $X^2$ statistic
-for assessing independence is simply the sum, over all the cells
-in the table, of the squares of these terms. We can find these
+by dividing the observed minus the expected difference by the square 
+root of the appropriate expected value. The $X^2$ statistic 
+for assessing independence is simply the sum, over all the cells 
+in the table, of the squares of these terms. We can find these   
 values extracting the \Robject{residuals} element of the object returned by
 the \Rcmd{chisq.test} function
 <<SI-pistonrings-resid, echo = TRUE>>=
 chisq.test(pistonrings)$residuals
 @
+
 A graphical representation of these residuals is called an \stress{association
 plot}
 \index{Association plot}
@@ -502,9 +554,10 @@ and is available via the \Rcmd{assoc} function from package
 categorical variables. Figure \ref{SI-assoc-plot} depicts the residuals for
 the piston ring data. The deviations from independence are largest for
 C1 and C4 compressors in the centre and south leg.
-\begin{figure}
+
+\begin{figure}  
 \begin{center}
-<<SI-assoc-plot, echo = TRUE, fig = TRUE>>=
+<<SI-assoc-plot, echo = TRUE, fig = TRUE>>= 
 library("vcd")
 assoc(pistonrings)
 @
@@ -512,7 +565,11 @@ assoc(pistonrings)
          \label{SI-assoc-plot}}
 \end{center}
 \end{figure}
+
+
+
 \subsection{Rearrests of Juveniles}
+
 The data in Table~\ref{SI-r-tab} are available as \Rclass{table} object
 via
 <<SI-rearrests-data, echo = TRUE>>=
@@ -523,20 +580,21 @@ rearrests
 mcs <- round(mcnemar.test(rearrests, correct = FALSE)$statistic, 2)
 @
 and in \Robject{rearrests} the counts in the four cells refer
-to the matched pairs of subjects; for example, in $\Sexpr{rearrests[1,1]}$
-pairs both
+to the matched pairs of subjects; for example, in $\Sexpr{rearrests[1,1]}$ 
+pairs both   
 members of the pair were rearrested. Here we need to use McNemar's  %'
-test to assess whether rearrest is associated with the type of court
+test to assess whether rearrest is associated with the type of court   
 where the juvenile was tried. We can use the \R{} function \Rcmd{mcnemar.test}.
-The test statistic shown in Figure~\ref{SI-ra-mc-fig}
+The test statistic shown in Figure~\ref{SI-ra-mc-fig} 
 is $\Sexpr{mcs}$ with a single degree of freedom -- the
-associated $p$-value is extremely small and there is strong evidence
-that type of court and the probability of rearrest are related.
-It appears that trial at a juvenile court is less likely to result
+associated $p$-value is extremely small and there is strong evidence    
+that type of court and the probability of rearrest are related.        
+It appears that trial at a juvenile court is less likely to result     
 in rearrest (see Exercise~3.4).
 An exact version of McNemar's test %%'
 can be obtained by testing whether $b$ and $c$ are equal using a binomial
 test (see Figure \ref{SI-ra-mcbin-fig}).
+
 \renewcommand{\nextcaption}{\R{} output of McNemar's test %'
                             for the \Robject{rearrests} data. \label{SI-ra-mc-fig}}
 \SchunkLabel
@@ -544,6 +602,8 @@ test (see Figure \ref{SI-ra-mcbin-fig}).
 mcnemar.test(rearrests, correct = FALSE)
 @
 \SchunkRaw
+
+
 \renewcommand{\nextcaption}{\R{} output of an exact version of McNemar's test %'
                             for the \Robject{rearrests} data computed via a
                             binomial test. \label{SI-ra-mcbin-fig}}
@@ -552,6 +612,9 @@ mcnemar.test(rearrests, correct = FALSE)
 binom.test(rearrests[2], n = sum(rearrests[c(2,3)]))
 @
 \SchunkRaw
+
+
+
 \bibliographystyle{LaTeXBibTeX/refstyle}
-\bibliography{LaTeXBibTeX/HSAUR}
+\bibliography{LaTeXBibTeX/HSAUR}   
 \end{document}

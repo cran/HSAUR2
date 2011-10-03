@@ -1,7 +1,9 @@
+### R code from vignette source 'Ch_analysing_longitudinal_dataI.Rnw'
+### Encoding: UTF-8
+
 ###################################################
-### chunk number 1: setup
+### code chunk number 1: setup
 ###################################################
-#line 183 "Ch_analysing_longitudinal_dataI.Rnw"
 rm(list = ls())
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
@@ -41,16 +43,14 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 
 
 ###################################################
-### chunk number 2: singlebook
+### code chunk number 2: singlebook
 ###################################################
-#line 222 "Ch_analysing_longitudinal_dataI.Rnw"
 book <- FALSE
 
 
 ###################################################
-### chunk number 3: ALDI-setup
+### code chunk number 3: ALDI-setup
 ###################################################
-#line 225 "Ch_analysing_longitudinal_dataI.Rnw"
 library("Matrix")
 library("lme4")
 library("multcomp")
@@ -59,9 +59,8 @@ residuals <- function(object) object@y - fitted(object)
 
 
 ###################################################
-### chunk number 4: ALDI-plot-BtheB
+### code chunk number 4: ALDI-plot-BtheB
 ###################################################
-#line 240 "Ch_analysing_longitudinal_dataI.Rnw"
 data("BtheB", package = "HSAUR2")
 layout(matrix(1:2, nrow = 1))
 ylim <- range(BtheB[,grep("bdi", names(BtheB))],
@@ -79,9 +78,8 @@ boxplot(btheb, main = "Beat the Blues", ylab = "BDI",
 
 
 ###################################################
-### chunk number 5: ALDI-long-BtheB
+### code chunk number 5: ALDI-long-BtheB
 ###################################################
-#line 273 "Ch_analysing_longitudinal_dataI.Rnw"
 data("BtheB", package = "HSAUR2")
 BtheB$subject <- factor(rownames(BtheB))
 nobs <- nrow(BtheB)
@@ -92,16 +90,14 @@ BtheB_long$time <- rep(c(2, 3, 5, 8), rep(nobs, 4))
 
 
 ###################################################
-### chunk number 6: ALDI-showlong-BtheB
+### code chunk number 6: ALDI-showlong-BtheB
 ###################################################
-#line 284 "Ch_analysing_longitudinal_dataI.Rnw"
 subset(BtheB_long, subject %in% c("1", "2", "3"))
 
 
 ###################################################
-### chunk number 7: ALDI-fit-BtheB
+### code chunk number 7: ALDI-fit-BtheB
 ###################################################
-#line 300 "Ch_analysing_longitudinal_dataI.Rnw"
 library("lme4")
 BtheB_lmer1 <- lmer(bdi ~ bdi.pre + time + treatment + drug +
     length + (1 | subject), data = BtheB_long,
@@ -113,23 +109,20 @@ anova(BtheB_lmer1, BtheB_lmer2)
 
 
 ###################################################
-### chunk number 8: ALDI-summary-BtheB
+### code chunk number 8: ALDI-summary-BtheB
 ###################################################
-#line 314 "Ch_analysing_longitudinal_dataI.Rnw"
 summary(BtheB_lmer1)
 
 
 ###################################################
-### chunk number 9: ALDI-summary-BtheB-p
+### code chunk number 9: ALDI-summary-BtheB-p
 ###################################################
-#line 328 "Ch_analysing_longitudinal_dataI.Rnw"
 cftest(BtheB_lmer1)
 
 
 ###################################################
-### chunk number 10: ALDI-qqnorm-BtheB
+### code chunk number 10: ALDI-qqnorm-BtheB
 ###################################################
-#line 345 "Ch_analysing_longitudinal_dataI.Rnw"
 layout(matrix(1:2, ncol = 2))
 qint <- ranef(BtheB_lmer1)$subject[["(Intercept)"]]
 qres <- residuals(BtheB_lmer1)
@@ -144,9 +137,8 @@ qqline(qres)
 
 
 ###################################################
-### chunk number 11: ALDI-dropout
+### code chunk number 11: ALDI-dropout
 ###################################################
-#line 365 "Ch_analysing_longitudinal_dataI.Rnw"
 bdi <- BtheB[, grep("bdi", names(BtheB))]
 plot(1:4, rep(-0.5, 4), type = "n", axes = FALSE,
      ylim = c(0, 50), xlab = "Months", ylab = "BDI")
