@@ -1,0 +1,29 @@
+
+		Changes in version 1.0-6
+
+    o    reduce package size a bit
+
+		Changes in version 1.0-5
+ 
+    o    package `partykit' is finally on CRAN
+
+		Changes in version 1.0-4
+
+    o    fix install options for partykit
+
+		Changes in version 1.0-3
+
+    o    fix typo in gardenflowers data set
+
+		Changes in version 1.0-2
+
+    o    aspirin dataset contained typos which have been
+         fixed. Spotted by Antony Unwin <unwin@math.uni-augsburg.de>
+
+    o    URL for CHFLS data set had changed.
+         Spotted by Antony Unwin <unwin@math.uni-augsburg.de>
+
+    o    new doubledecker plot for BCG data, as suggested
+         Antony Unwin <unwin@math.uni-augsburg.de>
+
+    o    workaround partykit still not being awailable from CRAN
