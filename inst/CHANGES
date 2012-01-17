@@ -1,4 +1,10 @@
 
+		Changes in version 1.1-0
+
+    o    put vignettes in HSAUR2/vignettes together
+         with *.Rout.save files. R CMD check is now
+         ~50% faster.
+
 		Changes in version 1.0-7
 
     o    further size reductions

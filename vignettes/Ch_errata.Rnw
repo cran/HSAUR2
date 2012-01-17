@@ -1,5 +1,6 @@
 
 
+
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -180,7 +181,8 @@
 \author{Brian S. Everitt and Torsten Hothorn}
 
 \maketitle
-%%\VignetteIndexEntry{Chapter Preface}
+%%\VignetteIndexEntry{Errata}
+\setcounter{chapter}{15}
 
 
 \SweaveOpts{prefix.string=figures/HSAUR,eps=FALSE,keep.source=TRUE} 
@@ -226,107 +228,81 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 @
 
 \pagestyle{headings}
-
-
-\pagestyle{empty}
-
-\chapter*{Preface to First Edition}
-
-This book is intended as a guide to data analysis with the \R{} system for
-statistical computing. \R{} is an environment incorporating an implementation 
-of the \S{} programming language, which is powerful and flexible and has excellent 
-graphical facilities \citep{HSAUR:R}. In the Handbook we aim to give   
-relatively brief and straightforward descriptions of how to conduct
-a range of statistical analyses using \R{}. Each chapter deals with
-the analysis appropriate for one or several data sets. A brief
-account of the relevant statistical background is included in
-each chapter along with appropriate references, but our prime    
-focus is on how to use \R{} and how to interpret results. We hope 
-the book will provide students and researchers in many disciplines
-with a self-contained means of using \R{} to analyse their data.
-
-\R{} is an open-source project developed by dozens of volunteers for more
-than ten years now and is available from the Internet under the General 
-Public Licence. \R{} has become the \stress{lingua franca} of statistical
-computing. Increasingly, implementations of new statistical methodology 
-first appear as \R{} add-on packages. In some communities, such as in bioinformatics, 
-\R{} already is the primary workhorse for statistical analyses. 
-Because the sources
-of the \R{} system are open and available to everyone without restrictions
-and because of its powerful language and graphical capabilities,
-\R{} has started to become the main computing engine for reproducible
-statistical research
-\citep{HSAUR:Leisch2002b,HSAUR:Leisch2002a,HSAUR:Leisch2003,HSAUR:LeischRossini2003,
-HSAUR:Gentleman2005}. For a reproducible piece of research, the original 
-observations, all data preprocessing steps, the statistical analysis as well
-as the scientific report form a unity and all need to be available for 
-inspection, reproduction and modification by the readers.
-
-Reproducibility is a natural requirement for textbooks such as the
-\booktitle{Handbook of Statistical Analyses Using \R{}}
-and therefore this book is fully reproducible using an \R{} version 
-greater or equal to 2.2.1. 
-All analyses and results, including figures and tables, can be reproduced 
-by the reader
-without having to retype a single line of \R{} code.
-The data sets presented in this book are collected in a dedicated add-on package called 
-{\fontseries{b}\selectfont HSAUR} accompanying this book. The package can be installed
-from the Comprehensive \R{} Archive Network (CRAN) via 
-<<pre-HSAUR-install, eval = FALSE>>=
-install.packages("HSAUR")
+<<singlebook, echo = FALSE>>=
+book <- FALSE
 @
-and its functionality is attached by 
-<<pre-HSAUR, echo = TRUE, eval = FALSE>>=
-library("HSAUR")
-@
-The relevant parts of each chapter are available as a \stress{vignette},
-basically a document including both the \R{} sources and the rendered output 
-of every analysis contained in the book. For example, the first chapter can 
-be inspected by
-<<pre-vignette, echo = TRUE, eval = FALSE>>= 
-vignette("Ch_introduction_to_R", package = "HSAUR")
-@
-and the \R{} sources are available for reproducing our analyses by
-<<pre-vignette-source, echo = TRUE, eval = FALSE>>= 
-edit(vignette("Ch_introduction_to_R", package = "HSAUR"))
-@
-An overview on all chapter vignettes included in the package can be obtained
-from
-<<pre-vignette-source, echo = TRUE, eval = FALSE>>=
-vignette(package = "HSAUR")
-@
-We welcome comments on the \R{} package {\fontseries{b}\selectfont HSAUR}, and
-where we think these add to or improve our analysis of a data set 
-we will incorporate them into the package and, hopefully at a later stage, 
-into a revised or second edition of the book.
 
-Plots and tables of results obtained from \R{} are all 
-labelled as `Figures' in the %%'
-text. For the graphical material, the corresponding figure also contains
-the `essence' of the \R{} code used to produce the figure, although this %%'
-code may differ a little from that given in the  {\fontseries{b}\selectfont HSAUR} package,
-since the latter may include some features, for example thicker line widths,
-designed to make a basic plot more suitable for publication. 
+\chapter[Errata]{Errata}
 
-We would like to thank the \R{} Development Core Team for the \R{} system,
-and authors of contributed add-on packages, particularly Uwe Ligges and Vince Carey
-for helpful advice on \Rpackage{scatterplot3d} and \Rpackage{gee}. Kurt
-Hornik, Ludwig A. Hothorn, Fritz Leisch and Rafael Wei{\ss}bach provided
-good advice with some statistical and technical problems. We are 
-also very grateful to Achim Zeileis for reading the entire manuscript,
-pointing out inconsistencies or even bugs and for 
-making many suggestions which have led to improvements. Lastly we
-would like to thank the CRC Press staff, in particular Rob Calver, for
-their support during the preparation of the book. 
-Any errors in the book are, of course, the joint
-responsibility of the two authors.
+We would like to thank your Japanese translators,
+Prof. Takashi Daimon, Prof. Satoshi Teramukai, and 
+Prof. Toshihiro Yoshikawa for bringing inconsistenties and typos
+to our attention. Typos have been fixed silently, more serious
+mistakes are listed below. We would also like to thank
+Antony Unwin for helpful comments on several displays. Typos
+in formulae in Chapters~16 and 17 were spotted and reported
+by Prof. Schader.
 
-\vspace*{1cm}
+\section{Data Analysis Using Graphical Displays}
 
-\begin{flushright}
-\textbf{Brian S. Everitt and Torsten Hothorn} \\ London and Erlangen, December 2005
-\end{flushright}
+The correct title is Chinese Health and Family Life Survey, not Study.
 
-\bibliographystyle{LaTeXBibTeX/refstyle}
-\bibliography{LaTeXBibTeX/HSAUR}   
+\section{Simple Inference}
+
+page 54 top: The \Rcmd{qqnorm} statements are in lines 7 and 10, not 8 and 11.
+
+\section{Conditional Inference}
+
+page 69: $n_{jk}$ instead of $n_{ij}$
+
+\section{Density Estimation}
+
+Line numbering on page 147 was wrong and should read:
+The \Rcmd{hist} function places an ordinary
+histogram of the geyser data in each of the three plotting regions (lines 4,
+9, 14). Then, the \Rcmd{density} function with three different kernels 
+(lines 7, 12, 17, with a Gaussian kernel being the default in line 7) is
+plotted in addition. 
+
+\section{Smoothers and Generalised Additive Models}
+
+page 194: interpretation of Figure 10.9 was wrong and now reads:
+``The risk of kyphosis being present decreases with higher
+starting vertebral level and lower number of vertebrae involved.
+Children about $100$ months old are under higher risk compared
+to younger or older children.''
+
+\section{Simultaneous Inference}
+
+page 262: $\mathbf{K} = \text{diag}(5)$ instead of $\mathbf{K} = \text{diag}(6)$. Browsing
+          is \textit{more} frequent in hardwood. No data on ash, elm and lime shown here.
+
+\section{Principal Components}
+
+page 287: formula reads
+\begin{eqnarray*}
+\sum_{r = 1}^n \sum_{s = 1}^n \left(d^2_{rs} - \hat{d}^2_{rs}\right)^2
+\end{eqnarray*}
+page 292: hurdles and long jump have highest weight.
+
+\section{Multidimensional Scaling}
+
+page 303: formula reads
+\begin{eqnarray*}
+b_{ij} = -\frac{1}{2}\left(d_{ij}^2 - n^{-1} \sum_{r = 1}^n d_{ir}^2 -
+n^{-1} \sum_{s = 1}^n d_{sj}^2 + n^{-2} \sum_{r = 1}^n \sum_{s = 1}^n
+d_{rs}^2 \right).
+\end{eqnarray*}
+
+\section{Meta-Analysis}
+
+page 283, Table~15.4: Several typos corrected.
+
+\section{Cluster Analysis}
+
+Pages 328, Table~18.6, and 334, Table~18.18: also 
+display observations with \texttt{eccen == 0}.
+
+%\bibliographystyle{LaTeXBibTeX/refstyle}
+%\bibliography{LaTeXBibTeX/HSAUR}   
 \end{document}
