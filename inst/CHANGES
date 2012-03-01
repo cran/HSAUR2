@@ -1,4 +1,8 @@
 
+		Changes in version 1.1-1
+
+    o    mark UTF-8 strings
+
 		Changes in version 1.1-0
 
     o    put vignettes in HSAUR2/vignettes together

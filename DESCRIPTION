@@ -1,7 +1,7 @@
 Package: HSAUR2
 Title: A Handbook of Statistical Analyses Using R (2nd Edition)
-Date: 2012-01-17
-Version: 1.1-0
+Date: 2012-03-01
+Version: 1.1-1
 Author: Brian S. Everitt and Torsten Hothorn
 Maintainer: Torsten Hothorn <Torsten.Hothorn@R-project.org>
 Description: Functions, data sets, analyses and examples from the
@@ -23,6 +23,6 @@ Suggests: alr3, ape (>= 1.6), coin (>= 0.3-3), flexmix (>= 1.1-0), gee
 LazyData: yes
 License: GPL-2
 Encoding: UTF-8
-Packaged: 2012-01-17 16:03:19 UTC; hothorn
+Packaged: 2012-03-02 18:08:20 UTC; hothorn
 Repository: CRAN
-Date/Publication: 2012-01-18 12:51:57
+Date/Publication: 2012-03-03 06:54:43
