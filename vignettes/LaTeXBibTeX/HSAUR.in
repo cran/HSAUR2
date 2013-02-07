@@ -1962,6 +1962,15 @@
     url = {http://rgl.neoscientists.org},
 }
 
+@Manual{PKG:wordcloud,
+    title = {\Rpackage{wordcloud}: Word Clouds},
+    author = {Ian Fellows},
+    year = {wordcloudPKGYEAR},
+    note = {\rR{} package version wordcloudVERSION},
+    url = {http://CRAN.R-project.org/package=wordcloud}
+}
+
+
 @book{HSAUR:Sarkar2008,
     title = {Lattice: {M}ultivariate Data Visualization with \rR{}},
     author = {Deepayan Sarkar},
