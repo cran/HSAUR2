@@ -235,6 +235,7 @@ book <- FALSE
 
 <<MDS-setup, echo = FALSE, results = hide>>=
 x <- library("ape")
+library("wordcloud")
 @
 
 \chapter[Multidimensional Scaling]{Multidimensional Scaling: British Water
@@ -270,9 +271,11 @@ sum((voles_mds$eig[1:2])^2)/sum((voles_mds$eig)^2)
 The two criteria for judging number of dimensions differ considerably, but
 both values are reasonably large, suggesting that the original distances
 between the water vole populations can be represented adequately in two
-dimensions. The two-dimensional solution can be plotted by extracting
-the coordinates from the \Robject{points} element of the \Robject{voles\_mds}
-object; the plot is shown in Figure~\ref{MDS-watervoles-plot}.
+dimensions.  The two-dimensional solution can be plotted by extracting the
+coordinates from the \Robject{points} element of the \Robject{voles\_mds}
+object; the plot is shown in Figure~\ref{MDS-watervoles-plot}.  The
+\Rcmd{textplot} function from package \Rpackage{wordcloud} can be used to
+annotate the plot with non-overlapping text.
 
 
 \begin{figure}
@@ -282,7 +285,7 @@ x <- voles_mds$points[,1]
 y <- voles_mds$points[,2]
 plot(x, y, xlab = "Coordinate 1", ylab = "Coordinate 2",
      xlim = range(x)*1.2, type = "n")
-text(x, y, labels = colnames(watervoles))
+textplot(x, y, words = colnames(watervoles), new = FALSE)
 @
 \caption{Two-dimensional solution from classical multidimensional scaling of
 distance matrix for water vole populations. \label{MDS-watervoles-plot}}
@@ -301,7 +304,7 @@ for (i in 1:nrow(watervoles)) {
     w1 <- which(st[i, ] == 1)
     segments(x[i], y[i], x[w1], y[w1])
 }
-text(x, y, labels = colnames(watervoles))
+textplot(x, y, words = colnames(watervoles), new = FALSE)
 @
 \caption{Minimum spanning tree for the \Robject{watervoles} data.
 \label{MDS-watervoles-mst}}
@@ -332,7 +335,7 @@ x <- voting_mds$points[,1]
 y <- voting_mds$points[,2]
 plot(x, y, xlab = "Coordinate 1", ylab = "Coordinate 2",
      xlim = range(voting_mds$points[,1])*1.2, type = "n")
-text(x, y, labels = colnames(voting))
+textplot(x, y, words = colnames(voting), new = FALSE)
 voting_sh <- Shepard(voting[lower.tri(voting)], 
                      voting_mds$points)
 @

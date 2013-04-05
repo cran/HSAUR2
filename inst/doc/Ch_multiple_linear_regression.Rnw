@@ -232,6 +232,10 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 book <- FALSE
 @
 
+<<MLR-setup, echo = FALSE, results = hide>>=
+library("wordcloud")
+@
+
 \chapter[Simple and Multiple Linear Regression]{Simple and Multiple Linear Regression: \\ How Old is the Universe and Cloud Seeding \label{MLR}}
 
 \section{Introduction}
@@ -305,16 +309,16 @@ in the day is small.
 On suitable days, a decision was taken at random as to whether 
 to seed or not. For each day the following variables were measured:
 \begin{description}
-\item{\Robject{seeding}}: a factor indicating whether seeding action occurred (yes or no),
-\item{\Robject{time}}: number of days after the first day of the experiment,
-\item{\Robject{cloudcover}}: the percentage cloud cover in the experimental area, 
+\item[\Robject{seeding}]: a factor indicating whether seeding action occurred (yes or no),
+\item[\Robject{time}]: number of days after the first day of the experiment,
+\item[\Robject{cloudcover}]: the percentage cloud cover in the experimental area, 
                   measured using radar,
-\item{\Robject{prewetness}}: the total rainfall in the target area one hour before seeding 
+\item[\Robject{prewetness}]: the total rainfall in the target area one hour before seeding 
                   (in cubic metres $\times 10^{7}$), 
-\item{\Robject{echomotion}}: a factor showing whether the radar echo was moving or
+\item[\Robject{echomotion}]: a factor showing whether the radar echo was moving or
                              stationary,
-\item{\Robject{rainfall}}: the amount of rain in cubic metres $\times 10^{7}$,
-\item{\Robject{sne}}: suitability criterion, see above.
+\item[\Robject{rainfall}]: the amount of rain in cubic metres $\times 10^{7}$,
+\item[\Robject{sne}]: suitability criterion, see above.
 \end{description}
 
 The objective in analysing these data is to see how rainfall 
@@ -572,7 +576,8 @@ clouds_fitted <- fitted(clouds_lm)
 Now the residuals and the fitted values 
 can be used to construct diagnostic plots; for example the residual
 plot in Figure~\ref{MLR-resid} where each observation is labelled by its
-number. Observations $1$ and $15$ give rather large residual values and the
+number (using \Rcmd{textplot} from package \Rpackage{wordclouds}). 
+Observations $1$ and $15$ give rather large residual values and the
 data should perhaps be reanalysed after these two observations are removed.
 The normal probability plot of the residuals shown in Figure~\ref{MLR-qqplot} 
 shows a reasonable agreement between theoretical and sample
@@ -585,7 +590,7 @@ plot(clouds_fitted, clouds_resid, xlab = "Fitted values",
      ylab = "Residuals", type = "n", 
      ylim = max(abs(clouds_resid)) * c(-1, 1))
 abline(h = 0, lty = 2)
-text(clouds_fitted, clouds_resid, labels = rownames(clouds))
+textplot(clouds_fitted, clouds_resid, words = rownames(clouds), new = FALSE)
 @
 \caption{Plot of residuals against fitted values for \Robject{clouds} seeding data.
 \label{MLR-resid}}

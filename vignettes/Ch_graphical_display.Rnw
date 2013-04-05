@@ -612,10 +612,10 @@ from a survey of household expenditure and give the expenditure of $20$ single m
 and $20$ single women on four commodity groups. The units of expenditure are 
 Hong Kong dollars, and the four commodity groups are
 \begin{description}
-\item{\Robject{housing}}: housing, including fuel and light,
-\item{\Robject{food}}: foodstuffs, including alcohol and tobacco,
-\item{\Robject{goods}}: other goods, including clothing, footwear and durable goods,
-\item{\Robject{service}}: services, including transport and vehicles.
+\item[\Robject{housing}]: housing, including fuel and light,
+\item[\Robject{food}]: foodstuffs, including alcohol and tobacco,
+\item[\Robject{goods}]: other goods, including clothing, footwear and durable goods,
+\item[\Robject{service}]: services, including transport and vehicles.
 \end{description}
 The aim of the survey was to investigate how the division of household 
 expenditure between the four commodity groups depends on total expenditure 
@@ -634,13 +634,13 @@ toLatex(HSAURtable(household),
 The data set shown in Table~\ref{DAGD-USstates-tab} contains values 
 of seven variables for ten states in the US. The seven variables are
 \begin{description}
-\item{\Robject{Population}}: population size divided by $1000$,
-\item{\Robject{Income}}: average per capita income,
-\item{\Robject{Illiteracy}}: illiteracy rate (\% population),
-\item{\Robject{Life.Expectancy}}: life expectancy (years),
-\item{\Robject{Homicide}}: homicide rate (per $1000$),
-\item{\Robject{Graduates}}: percentage of high school graduates,
-\item{\Robject{Freezing}}: average number of days per below freezing.
+\item[\Robject{Population}]: population size divided by $1000$,
+\item[\Robject{Income}]: average per capita income,
+\item[\Robject{Illiteracy}]: illiteracy rate (\% population),
+\item[\Robject{Life.Expectancy}]: life expectancy (years),
+\item[\Robject{Homicide}]: homicide rate (per $1000$),
+\item[\Robject{Graduates}]: percentage of high school graduates,
+\item[\Robject{Freezing}]: average number of days per below freezing.
 \end{description}
 With these data
 \begin{enumerate}

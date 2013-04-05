@@ -236,6 +236,7 @@ book <- FALSE
 library("mgcv")
 library("mboost")
 library("rpart")
+library("wordcloud")
 @
 
 \chapter[Scatterplot Smoothers and Generalised Additive Models]{Scatterplot 
@@ -414,7 +415,7 @@ plot(USair_gam, ask = FALSE)
 
 As always, an inspection of the model fit via a residual plot
 is worth the effort. Here, we plot the fitted values against the residuals
-and label the points with the name of the corresponding city.
+and label the points with the name of the corresponding city using the \Rcmd{textplot} function from package \Rpackage{wordcloud}.
 Figure~\ref{GAM-USairpollution-residplot} shows at least two
 extreme observations. Chicago has a very large observed and fitted 
 $\text{SO}_2$ concentration, which is due to the huge number of inhabitants and
@@ -435,9 +436,10 @@ of the covariates for modelling and thus fitting a model using
 <<GAM-USairpollution-residplot, echo = TRUE, fig = TRUE>>=
 SO2hat <- predict(USair_gam)
 SO2 <- USairpollution$SO2
-plot(SO2hat, SO2 - SO2hat, type = "n", xlim = c(0, 110))
-text(SO2hat, SO2 - SO2hat, labels = rownames(USairpollution), 
-     adj = 0)
+plot(SO2hat, SO2 - SO2hat, type = "n", 
+     xlim = c(-30, 110), ylim = c(-30, 60))
+textplot(SO2hat, SO2 - SO2hat, rownames(USairpollution), 
+         show.lines = FALSE, new = FALSE)
 abline(h = 0, lty = 2, col = "grey")
 @
 \caption{Residual plot of $\text{SO}_2$ concentration. 

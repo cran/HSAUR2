@@ -578,16 +578,16 @@ expected, information about $2000$ observations, i.e., companies,
 are stored in this object.
 For each observation, the following eight variables are available:
 \begin{description}
-\item{\Robject{rank}}: the ranking of the company,
-\item{\Robject{name}}: the name of the company,
-\item{\Robject{country}}: the country the company is situated in,
-\item{\Robject{category}}: a category describing the products the company
+\item[\Robject{rank}]: the ranking of the company,
+\item[\Robject{name}]: the name of the company,
+\item[\Robject{country}]: the country the company is situated in,
+\item[\Robject{category}]: a category describing the products the company
                            produces,
-\item{\Robject{sales}}: the amount of sales of the company in billion
+\item[\Robject{sales}]: the amount of sales of the company in billion
                         US dollars,
-\item{\Robject{profits}}: the profit of the company in billion US dollars,
-\item{\Robject{assets}}: the assets of the company in billion US dollars,
-\item{\Robject{marketvalue}}: the market value of the company in billion US dollars.
+\item[\Robject{profits}]: the profit of the company in billion US dollars,
+\item[\Robject{assets}]: the assets of the company in billion US dollars,
+\item[\Robject{marketvalue}]: the market value of the company in billion US dollars.
 \end{description}
 A similar but more detailed description is available from the help page for the
 \Robject{Forbes2000} object:

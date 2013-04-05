@@ -233,6 +233,11 @@ setHook(packageEvent("lattice", "attach"), function(...) {
 book <- FALSE
 @
 
+<<ANOVA-setup, echo = FALSE, results = hide>>=
+library("tm")
+library("wordcloud")
+@
+
 \chapter[Analysis of Variance]{Analysis of Variance: Weight Gain, Foster
 Feeding in Rats, Water Hardness and Male Egyptian Skulls \label{ANOVA}}
 
@@ -475,12 +480,16 @@ and this could be done in a variety of ways. Here we construct
 a scatterplot matrix of the means using the code attached to 
 Figure~\ref{ANOVA-skulls-fig}.
 
+%%<FIXME>
+%% now uses wordcloud::textplot but xlim/ylim needs to be increased
+%% </FIXME>
+
 \begin{figure}
 \begin{center}
 <<ANOVA-skulls-fig, echo = TRUE, fig = TRUE>>=
 pairs(means[,-1],
     panel = function(x, y) {
-        text(x, y, abbreviate(levels(skulls$epoch)))
+        textplot(x, y, levels(skulls$epoch), new = FALSE, cex = 0.8)
     })
 @
 \caption{Scatterplot matrix of epoch means for Egyptian

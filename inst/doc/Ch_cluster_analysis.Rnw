@@ -430,16 +430,16 @@ that is displayed on top of Figure~\ref{CA-mclust1}.
 In this diagram the different plotting symbols refer
 to different model assumptions about the shape of clusters:
 \begin{description}
-\item{EII}: spherical, equal volume,
-\item{VII}: spherical, unequal volume, 
-\item{EEI}: diagonal, equal volume and shape,
-\item{VEI}: diagonal, varying volume, equal shape,
-\item{EVI}: diagonal, equal volume, varying shape, 
-\item{VVI}: diagonal, varying volume and shape,
-\item{EEE}: ellipsoidal, equal volume, shape, and orientation, 
-\item{EEV}: ellipsoidal, equal volume and equal shape,
-\item{VEV}: ellipsoidal, equal shape, 
-\item{VVV}: ellipsoidal, varying volume, shape, and orientation
+\item[EII]: spherical, equal volume,
+\item[VII]: spherical, unequal volume, 
+\item[EEI]: diagonal, equal volume and shape,
+\item[VEI]: diagonal, varying volume, equal shape,
+\item[EVI]: diagonal, equal volume, varying shape, 
+\item[VVI]: diagonal, varying volume and shape,
+\item[EEE]: ellipsoidal, equal volume, shape, and orientation, 
+\item[EEV]: ellipsoidal, equal volume and equal shape,
+\item[VEV]: ellipsoidal, equal shape, 
+\item[VVV]: ellipsoidal, varying volume, shape, and orientation
 \end{description}  
 
 \begin{figure}
