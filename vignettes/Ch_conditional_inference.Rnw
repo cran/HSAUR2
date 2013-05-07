@@ -446,9 +446,9 @@ of the gastrointestinal damage data above, we can take this information
 into account by the definition of an appropriate score. Here, the number of
 anomalies is a natural choice:
 <<CI-anomalies-ordered, echo = TRUE>>=
-mh_test(anomalies, scores = list(c(0, 1, 2, 3)))
+mh_test(anomalies, scores = list(response = c(0, 1, 2, 3)))
 @
-In our case, both versions coincide and one can conclude that the
+In our case, one can conclude that the
 assessment of the number of anomalies differs between the medical doctor
 and the research assistant.
 
