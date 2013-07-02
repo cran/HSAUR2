@@ -285,7 +285,7 @@ summary(epilepsy_gee3)
 ### code chunk number 26: ALDII-respiratory-lmer
 ###################################################
 library("lme4")
-resp_lmer <- lmer(status ~ baseline + month + 
+resp_lmer <- glmer(status ~ baseline + month + 
     trt + gender + age + centre + (1 | subject), 
     family = binomial(), data = resp)
 exp(fixef(resp_lmer))
@@ -299,7 +299,12 @@ if (!interactive()) {
     summary <- function(x) {
         cat("\n...\n")
         cat("Fixed effects:\n")
-        printCoefmat(su@coefs)
+        lme4V <- packageDescription("lme4")$Version
+        if (compareVersion("0.999999-2", lme4V) >= 0) {
+            printCoefmat(su@coefs)
+        } else { 
+            printCoefmat(su$coefficients)
+        }
         cat("\n...\n")
     }
 }

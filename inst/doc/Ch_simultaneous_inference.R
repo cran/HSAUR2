@@ -132,7 +132,7 @@ levels(trees513$species)[nlevels(trees513$species)] <- "hardwood"
 ###################################################
 ### code chunk number 12: SIMC-trees-lmer
 ###################################################
-mmod <- lmer(damage ~ species - 1 + (1 | lattice / plot),
+mmod <- glmer(damage ~ species - 1 + (1 | lattice / plot),
               data = trees513, family = binomial())
 K <- diag(length(fixef(mmod)))
 K
