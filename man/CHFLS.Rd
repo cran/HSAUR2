@@ -91,7 +91,8 @@ of 1534 women. The data have been extracted as given in the example section.
      names(tmp) <- c("Region",
                 "Rgender",               ### gender of respondent
                 "Rage",                  ### age of respondent
-		"RagestartA",		 ### age of respondent at beginning of relationship with partner A
+		"RagestartA",		 ### age of respondent at beginning of relationship 
+                                         ### with partner A
                 "Redu",                  ### education of respondent
                 "RincomeM",              ### rounded monthly income of respondent
 		"RincomeComp",		 ### inputed monthly income of respondent
@@ -127,19 +128,24 @@ of 1534 women. The data have been extracted as given in the example section.
                       "Aheight", "Aedu", "AincomeComp")]
     names(CHFLS) <- c("R_region", "R_age", "R_edu", "R_income", "R_health", "R_height", 
                       "R_happy", "A_height", "A_edu", "A_income")
-    levels(CHFLS$R_region) <- c("Coastal South", "Coastal Easth", "Inlands", "North", "Northeast", "Central West")
+    levels(CHFLS$R_region) <- c("Coastal South", "Coastal Easth", "Inlands", "North", 
+                                "Northeast", "Central West")
 
-    CHFLS$R_edu <- ordered(as.character(CHFLS$R_edu), levels = c("no school", "primary", "low mid", "up mid", "j col", "univ/grad"))
-    levels(CHFLS$R_edu) <- c("Never attended school", "Elementary school", "Junior high school", "Senior high school",
-                         "Junior college", "University")
-    CHFLS$A_edu <- ordered(as.character(CHFLS$A_edu), levels = c("no school", "primary", "low mid", "up mid", "j col", "univ/grad"))
-    levels(CHFLS$A_edu) <- c("Never attended school", "Elementary school", "Junior high school", "Senior high school",
-                             "Junior college", "University")
+    CHFLS$R_edu <- ordered(as.character(CHFLS$R_edu), levels = c("no school", "primary", 
+                           "low mid", "up mid", "j col", "univ/grad"))
+    levels(CHFLS$R_edu) <- c("Never attended school", "Elementary school", "Junior high school", 
+                             "Senior high school", "Junior college", "University")
+    CHFLS$A_edu <- ordered(as.character(CHFLS$A_edu), levels = c("no school", "primary", 
+                           "low mid", "up mid", "j col", "univ/grad"))
+    levels(CHFLS$A_edu) <- c("Never attended school", "Elementary school", "Junior high school", 
+                             "Senior high school", "Junior college", "University")
 
-    CHFLS$R_health <- ordered(as.character(CHFLS$R_health), levels = c("poor", "not good", "fair", "good", "excellent"))
+    CHFLS$R_health <- ordered(as.character(CHFLS$R_health), levels = c("poor", "not good", 
+                              "fair", "good", "excellent"))
     levels(CHFLS$R_health) <- c("Poor", "Not good", "Fair", "Good", "Excellent")
 
-    CHFLS$R_happy <- ordered(as.character(CHFLS$R_happy), levels = c("v unhappy", "not too", "relatively", "very"))
+    CHFLS$R_happy <- ordered(as.character(CHFLS$R_happy), levels = c("v unhappy", "not too", 
+                             "relatively", "very"))
     levels(CHFLS$R_happy) <- c("Very unhappy", "Not too happy", "Relatively happy", "Very happy")
 }
 

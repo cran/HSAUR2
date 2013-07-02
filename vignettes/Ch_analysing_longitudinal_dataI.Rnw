@@ -238,7 +238,14 @@ library("Matrix")
 library("lme4")
 library("multcomp")
  ### fix bug in lme4 0.9975-1 (for the time being)
-residuals <- function(object) object@y - fitted(object)
+residuals <- function(object) {
+    lme4V <- packageDescription("lme4")$Version
+    if (compareVersion("0.999999-2", lme4V) >= 0)
+        y <- object@y
+    else 
+        y <- getME(object, 'y')
+    y - fitted(object)
+}
 @
 
 \chapter[Analysing Longitudinal Data I]{Analysing Longitudinal Data I: 
