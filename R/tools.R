@@ -43,7 +43,7 @@ extRact <- function(file, what = "Robject") {
             where <- regexpr(what, x[i])
             if (where != -1) {
                 x[i] <- substring(x[i], where)
-                dm <- tools:::delimMatch(x[i])
+                dm <- delimMatch(x[i])
                 obj <- c(obj, (substring(x[i], dm + 1, 
                          dm + attr(dm, "match.length") - 2)))
                 x[i] <- substring(x[i], dm + attr(dm, "match.length"))

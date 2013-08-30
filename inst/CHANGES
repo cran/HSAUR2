@@ -1,4 +1,13 @@
 
+                Changes in version 1.1-7
+
+    o    ready for TH.data
+
+
+                Changes in version 1.1-6
+
+    o    ensure backward compatibility with lme4 < 1.0-0
+
                 Changes in version 1.1-5
 
     o    documentation updates

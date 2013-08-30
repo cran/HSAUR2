@@ -75,14 +75,9 @@ of 1534 women. The data have been extracted as given in the example section.
 
 \dontrun{
 
-    library("foreign")
-
-    dataurl <- "http://www.src.uchicago.edu/datalib/chfls/data/chfls1.sav"
-    td <- tempdir()
-    download.file(dataurl, destfile = file.path(td, "chfls1.sav"), mode = "wb")
-
     ### for a description see http://popcenter.uchicago.edu/data/chfls.shtml
-    chfls1 <- read.spss(file.path(td, "chfls1.sav"), to.data.frame = TRUE)
+    library("TH.data")
+    load(file.path(path.package(package="TH.data"), "rda", "CHFLS.rda"))
 
     tmp <- chfls1[, c("REGION6", "ZJ05", "ZJ06", "A35", "ZJ07", "ZJ16M", "INCRM",
                       "JK01", "JK02", "JK20", "HY04", "HY07", "A02", "AGEGAPM", 

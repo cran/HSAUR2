@@ -356,7 +356,7 @@ set.seed(290875)
 @
 
 <<RP-glaucoma-rpart, echo = TRUE>>=
-data("GlaucomaM", package = "ipred")
+data("GlaucomaM", package = "TH.data")
 glaucoma_rpart <- rpart(Class ~ ., data = GlaucomaM, 
     control = rpart.control(xval = 100))
 glaucoma_rpart$cptable

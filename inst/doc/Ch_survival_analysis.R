@@ -107,7 +107,7 @@ surv_test(Surv(time, event) ~ group | histology,
 ###################################################
 ### code chunk number 9: SA-GBSG2-plot
 ###################################################
-data("GBSG2", package = "ipred")
+data("GBSG2", package = "TH.data")
 plot(survfit(Surv(time, cens) ~ horTh, data = GBSG2), 
      lty = 1:2, mark.time = FALSE,  ylab = "Probability", 
      xlab = "Survival Time in Days")

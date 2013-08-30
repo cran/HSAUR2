@@ -125,7 +125,7 @@ set.seed(290875)
 ###################################################
 ### code chunk number 11: RP-glaucoma-rpart
 ###################################################
-data("GlaucomaM", package = "ipred")
+data("GlaucomaM", package = "TH.data")
 glaucoma_rpart <- rpart(Class ~ ., data = GlaucomaM, 
     control = rpart.control(xval = 100))
 glaucoma_rpart$cptable

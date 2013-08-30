@@ -151,10 +151,10 @@ cdplot(R_happy ~ log(R_income + 1), data = CHFLS)
 ###################################################
 ### code chunk number 16: DAGD-CHFLS-RAincome3
 ###################################################
+library("lattice")
 lattice.options(default.theme =
         function()
             standard.theme("pdf", color = FALSE))
-
 print(xyplot(jitter(log(A_income + 0.5)) ~ jitter(log(R_income + 0.5)) | R_edu, data = CHFLS))
 
 
