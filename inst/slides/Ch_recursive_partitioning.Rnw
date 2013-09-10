@@ -45,7 +45,7 @@ people, $98$ patients suffering glaucoma and $98$ controls which have been
 matched by age and sex, $62$ numeric variables derived from the laser
 scanning images are available. The data are available as \Robject{GlaucomaM}
 \index{GlaucomaM data@\Robject{GlaucomaM} data}
-from package \Rpackage{ipred}.
+from package \Rpackage{TH.data}.
 The variables describe the morphology of the
 optic nerve head, i.e., measures of volumes and areas in certain regions of
 the eye background. Those regions have been manually outlined by a
@@ -208,7 +208,7 @@ cross-validation criterion.
 set.seed(290875)
 @
 <<RP-glaucoma-rpart, echo = TRUE>>=
-data("GlaucomaM", package = "ipred")
+data("GlaucomaM", package = "TH.data")
 glaucoma_rpart <- rpart(Class ~ ., data = GlaucomaM,
               control = rpart.control(xval = 100))
 glaucoma_rpart$cptable

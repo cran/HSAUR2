@@ -3,6 +3,10 @@
 
 <<setup, echo = FALSE, results = hide>>=
 rm(list = ls())
+s <- search()[-1]
+s <- s[-match(c("package:base", "package:stats", "package:graphics", "package:grDevices",
+                "package:utils", "package:datasets", "package:methods", "Autoloads"), s)]
+if (length(s) > 0) sapply(s, detach, character.only = TRUE)
 if (!file.exists("tables")) dir.create("tables")
 if (!file.exists("figures")) dir.create("figures")
 set.seed(290875)
