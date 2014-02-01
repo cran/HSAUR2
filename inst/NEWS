@@ -1,4 +1,9 @@
 
+                Changes in version 1.1-9
+
+    o    fix compilation problems in inst/slides
+
+
                 Changes in version 1.1-8
  
     o    make sure the search path is clean for each vignette

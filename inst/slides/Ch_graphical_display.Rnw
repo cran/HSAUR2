@@ -402,6 +402,7 @@ xyplot(jitter(log(A_income + 0.5)) ~
     jitter(log(R_income + 0.5)) | R_edu, data = CHFLS)
 @
 <<DAGD-CHFLS-RAincome3, echo = FALSE, fig = TRUE, width = 8>>=
+library("lattice")
 lattice.options(default.theme =
         function()
             standard.theme("pdf", color = FALSE))
