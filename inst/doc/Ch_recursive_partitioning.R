@@ -75,7 +75,7 @@ numbers <- c("zero", "one", "two", "three", "four", "five", "six", "seven", "eig
 ### code chunk number 4: RP-bodyfat-rpart
 ###################################################
 library("rpart")
-data("bodyfat", package = "mboost")
+data("bodyfat", package = "TH.data")
 bodyfat_rpart <- rpart(DEXfat ~ age + waistcirc + hipcirc + 
     elbowbreadth + kneebreadth, data = bodyfat, 
     control = rpart.control(minsplit = 10))

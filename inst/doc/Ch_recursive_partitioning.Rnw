@@ -182,7 +182,7 @@
 
 \maketitle
 %%\VignetteIndexEntry{Chapter Recursive Partitioning}
-%%\VignetteDepends{vcd,lattice,randomForest,party,partykit}
+%%\VignetteDepends{vcd,lattice,randomForest,party,partykit,TH.data}
 \setcounter{chapter}{8}
 
 
@@ -274,7 +274,7 @@ initial tree is grown, we restrict the number of observations required to
 establish a potential binary split to at least ten:
 <<RP-bodyfat-rpart, echo = TRUE>>=
 library("rpart")
-data("bodyfat", package = "mboost")
+data("bodyfat", package = "TH.data")
 bodyfat_rpart <- rpart(DEXfat ~ age + waistcirc + hipcirc + 
     elbowbreadth + kneebreadth, data = bodyfat, 
     control = rpart.control(minsplit = 10))
