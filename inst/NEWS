@@ -1,4 +1,8 @@
 
+                Changes in version 1.1-12
+
+    o    don't ship Makefiles
+
                 Changes in version 1.1-11
 
     o    tools::delimMatch
