@@ -1,6 +1,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -519,7 +532,6 @@ table(predict(rf), GlaucomaM$Class)
 @
 
 \subsection{Trees Revisited}
-
 
 
 <<RP-detach, echo = FALSE, results = hide>>=

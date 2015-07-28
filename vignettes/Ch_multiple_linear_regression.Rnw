@@ -1,6 +1,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 \documentclass{chapman}
 
 %%% copy Sweave.sty definitions
@@ -540,9 +553,6 @@ shown in Figure~\ref{MLR-clouds-summary}
 <<MLR-clouds-sd, echo = TRUE>>=
 sqrt(diag(Vbetastar))
 @
-
-
-
 
 
 \begin{figure}
