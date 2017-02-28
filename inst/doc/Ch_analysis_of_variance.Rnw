@@ -251,7 +251,6 @@ book <- FALSE
 @
 
 <<ANOVA-setup, echo = FALSE, results = hide>>=
-library("tm")
 library("wordcloud")
 @
 

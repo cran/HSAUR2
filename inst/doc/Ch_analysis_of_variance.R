@@ -56,7 +56,6 @@ book <- FALSE
 ###################################################
 ### code chunk number 3: ANOVA-setup
 ###################################################
-library("tm")
 library("wordcloud")
 
 
