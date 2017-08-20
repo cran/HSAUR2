@@ -1,14 +1,14 @@
 Package: HSAUR2
 Title: A Handbook of Statistical Analyses Using R (2nd Edition)
-Date: 2017-06-21
-Version: 1.1-16
+Date: 2017-08-18
+Version: 1.1-17
 Author: Brian S. Everitt and Torsten Hothorn
 Maintainer: Torsten Hothorn <Torsten.Hothorn@R-project.org>
 Description: Functions, data sets, analyses and examples from the 
   second edition of the book 
-  `A Handbook of Statistical Analyses Using R' (Brian S. Everitt and Torsten
+  ''A Handbook of Statistical Analyses Using R'' (Brian S. Everitt and Torsten
   Hothorn, Chapman & Hall/CRC, 2008). The first chapter
-  of the book, which is entitled `An Introduction to R', 
+  of the book, which is entitled ''An Introduction to R'', 
   is completely included in this package, for all other chapters,
   a vignette containing all data analyses is available. In addition,
   the package contains Sweave code for producing slides for selected
@@ -24,6 +24,6 @@ LazyData: yes
 License: GPL-2
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2017-06-21 08:06:52 UTC; hothorn
+Packaged: 2017-08-18 18:51:46 UTC; hothorn
 Repository: CRAN
-Date/Publication: 2017-06-21 15:02:34 UTC
+Date/Publication: 2017-08-20 14:22:03 UTC

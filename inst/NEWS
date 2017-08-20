@@ -1,4 +1,8 @@
 
+                Changes in version 1.1-17
+
+    o remove longtable.sty
+
                 Changes in version 1.1-16
 
     o use logrank_test instead of surv_test (for coin 1.2-0)
