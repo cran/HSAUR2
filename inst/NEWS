@@ -1,4 +1,8 @@
 
+                Changes in version 1.1-19
+
+    o don't escape &
+
                 Changes in version 1.1-18
 
     o remove dependency on alr3
